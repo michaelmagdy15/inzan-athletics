@@ -1,0 +1,8 @@
+.git
+.gitignore
+.DS_Store
+.dockerignore
+.gcloudignore
+README.md
+*.zip
+*.psd

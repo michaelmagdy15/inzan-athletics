@@ -1,0 +1,10 @@
+.git
+.gitignore
+.DS_Store
+Dockerfile
+nginx.conf
+.dockerignore
+.gcloudignore
+README.md
+*.zip
+*.psd

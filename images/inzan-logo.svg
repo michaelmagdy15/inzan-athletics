@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 40" width="320" height="40">
+  <defs>
+    <style>
+      .inzan { fill: none; stroke: #FFFFFF; stroke-width: 2.2; stroke-linecap: square; stroke-linejoin: miter; }
+      .bar { stroke: rgba(255, 255, 255, 0.35); stroke-width: 1.5; }
+      .athletics { font-family: 'Dosis', 'Montserrat', 'Helvetica Neue', Arial, sans-serif; font-size: 13.5px; font-weight: 500; fill: #FFFFFF; letter-spacing: 5px; }
+    </style>
+  </defs>
+  <!-- I -->
+  <line x1="8" y1="9" x2="8" y2="31" class="inzan" />
+  <!-- N -->
+  <polyline points="22,31 22,9 39,31 39,9" class="inzan" />
+  <!-- Z -->
+  <polyline points="52,9 69,9 52,31 69,31" class="inzan" />
+  <!-- A (chevron inverted V) -->
+  <polyline points="82,31 91,9 100,31" class="inzan" />
+  <!-- N -->
+  <polyline points="112,31 112,9 129,31 129,9" class="inzan" />
+  <!-- Separator | -->
+  <line x1="145" y1="8" x2="145" y2="32" class="bar" />
+  <!-- ATHLETICS -->
+  <text x="165" y="24" class="athletics">ATHLETICS</text>
+</svg>
