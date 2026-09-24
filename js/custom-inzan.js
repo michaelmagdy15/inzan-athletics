@@ -5,28 +5,44 @@
 (function($) {
     "use strict";
 
-    // News Data for interactive modal reader
+    // News Data for interactive modal reader (Sports Science & Coaching Articles)
     var newsArticles = {
         1: {
-            title: "GROUP TRAINING NOW AVAILABLE!",
-            meta: "JOHN DOE | 1 NOVEMBER",
-            category: "COACHING & PERFORMANCE",
-            image: "images/blog/post-prev-1.jpg",
-            content: "<p>Small Group Training sessions [4-6 Athletes] with a Certified Fitness Instructor [CFI] are now officially active on the training floor. Engineered for athletes who thrive in a high-energy, motivating environment without compromising individualized coaching attention.</p><p>Every session includes a progressive neuromuscular warm-up, targeted compound lifts, athletic conditioning, and recovery protocols. Group slots are strictly capped at 6 athletes per coach to maintain elite standard execution, precision form cueing, and injury prevention.</p><p>Book your assessment at the front desk or contact us below to reserve your squad slot.</p>"
+            title: "BIOMECHANICAL PROFILING: WHY INZAN STARTS EVERY ATHLETE WITH MOVEMENT SCREENING",
+            meta: "COACH YOUSSEF R. &bull; 18 SEPTEMBER 2026",
+            category: "SPORTS SCIENCE & ASSESSMENT",
+            image: "images/full-width-images/Test.jpg",
+            content: "<p>At Inzan Athletics, we reject one-size-fits-all programming. Before an athlete touches a loaded barbell or performs high-intensity intervals, they undergo our comprehensive 60-minute Biomechanical Baseline Assessment.</p><p>Using high-speed video analysis and standardized movement screens (overhead squat, thoracic rotation, hip internal/external range, and ankle dorsiflexion), our coaching staff identifies kinetic compensations before they manifest as chronic injuries. We map your force-velocity profile to ensure your program develops the exact physical qualities your body currently lacks.</p><p>Whether your goal is competing at an elite level or lifting pain-free into your sixties, our diagnostic protocol sets the standard for high-performance training in Egypt.</p>"
         },
         2: {
-            title: "PRIVATE TRAINING NOW AVAILABLE!",
-            meta: "JOHN DOE | 9 DECEMBER",
-            category: "ELITE 1-ON-1",
-            image: "images/blog/post-prev-2.jpg",
-            content: "<p>Private 1-on-1 Training sessions with our Senior Certified Personal Trainers [CPT] are now accepting dedicated athletes. These intensive sessions are customized exclusively for individuals requiring undivided technical focus, advanced periodization, and relentless accountability.</p><p>Whether preparing for collegiate track, mastering Olympic snatch technique, or executing targeted body recomposition, our CPTs construct your daily biometric tracking, velocity-based training protocols, and lifestyle nutrition architecture.</p><p>Limited coach availability. Inquire directly via phone or our contact portal to schedule your intake interview.</p>"
+            title: "THE OLYMPIC LIFTING TRANSFER: DEVELOPING TRIPLE EXTENSION & ROTATIONAL POWER",
+            meta: "COACH AHMED M. &bull; 04 SEPTEMBER 2026",
+            category: "STRENGTH & TECHNICAL MASTERY",
+            image: "images/full-width-images/facility-1.jpg",
+            content: "<p>The snatch and clean & jerk are the ultimate expressions of Rate of Force Development (RFD). No single gym exercise produces higher power outputs than the triple extension of ankles, knees, and hips executed during a maximal Olympic pull.</p><p>At our Garden 8 facility, Olympic weightlifting is taught through strict technical progressions: hook grip mastery, bar path trajectory, barbell turnover speed, and active overhead receiving positions. Athletes across basketball, football, martial arts, and track notice immediate transfers in first-step acceleration, vertical leap, and deceleration control.</p><p>All sessions are supervised with strict 1:6 coach-to-athlete ratios on dedicated Eleiko-standard lifting platforms.</p>"
         },
         3: {
-            title: "FINANCING OPTIONS NOW AVAILABLE!",
-            meta: "JOHN DOE | 7 DECEMBER",
-            category: "MEMBERSHIP & ACCESS",
-            image: "images/blog/post-prev-3.jpg",
-            content: "<p>We believe elite athletic training infrastructure should be accessible to truly committed athletes. We are proud to announce our partnership with leading regional financial providers to offer 0% interest and flexible installment payment solutions for all Annual and Semi-Annual training packages.</p><p>Members can now split comprehensive full-facility access, regular physiological testing, and coaching programs across 6, 12, or 18 easy monthly payments.</p><p>Speak with our Member Services team at Garden 8, New Cairo to configure your customized payment schedule today.</p>"
+            title: "CALISTHENICS VS. HEAVY IRON: INTEGRATING RELATIVE BODYWEIGHT STRENGTH",
+            meta: "COACH KAREEM S. &bull; 22 AUGUST 2026",
+            category: "MOVEMENT & PERIODIZATION",
+            image: "images/full-width-images/ast.jpg",
+            content: "<p>A common mistake in commercial gym training is viewing calisthenics and heavy barbell lifting as opposing philosophies. Inzan's High Performance methodology merges relative bodyweight mastery with progressive loaded resistance.</p><p>By mastering gymnastic ring support holds, strict pull-up variations, handstand wall drills, and parallel bar dips, athletes cultivate unparalleled scapular stability and rotational core stiffness. When paired with heavy deadlifts and squats, this dual stimulus protects vulnerable shoulder and lumbar joints while promoting balanced hypertrophy.</p><p>Explore our specialized Calisthenics & Gymnastics Zone to discover how gymnastic conditioning will transform your athleticism.</p>"
+        }
+    };
+
+    // Pathway selector helper: pre-selects goal dropdown and scrolls smoothly to assessment form
+    window.selectPathway = function(goalValue) {
+        var $select = $("#athleteGoal");
+        if ($select.length > 0 && goalValue) {
+            $select.val(goalValue);
+        }
+        var $target = $("#assessment");
+        if ($target.length > 0) {
+            $("html, body").animate({
+                scrollTop: $target.offset().top - 80
+            }, 600, "easeInOutExpo", function() {
+                $("#athleteName").focus();
+            });
         }
     };
 
@@ -34,8 +50,8 @@
     function showToast(message, iconClass) {
         iconClass = iconClass || "fa fa-check-circle";
         var $toast = $("#inzanToast");
-        $toast.html('<i class="' + iconClass + '" style="color:#FFFFFF; font-size:18px;"></i> <span>' + message + '</span>');
-        $toast.stop(true, true).fadeIn(300).delay(3500).fadeOut(400);
+        $toast.html('<i class="' + iconClass + '" style="color:#25D366; font-size:18px;"></i> <span>' + message + '</span>');
+        $toast.stop(true, true).fadeIn(300).delay(4000).fadeOut(400);
     }
 
     // Modal helpers
@@ -45,7 +61,7 @@
 
         $("#modalCategory").text(article.category);
         $("#modalTitle").text(article.title);
-        $("#modalMeta").text(article.meta);
+        $("#modalMeta").html(article.meta);
         $("#modalImage").attr("src", article.image);
         $("#modalBody").html(article.content);
         $("#inzanNewsModal").fadeIn(250);
@@ -158,27 +174,58 @@
             }
         });
 
-        // Contact Form Interactive Handling
+        // Assessment Booking & Inquiry Form Interactive Handling
         $("#inzanContactForm").on("submit", function(e) {
             e.preventDefault();
             var $form = $(this);
-            var name = $("#name").val().trim();
-            var email = $("#email").val().trim();
-            var message = $("#message").val().trim();
             var $submitBtn = $("#submit_btn");
 
-            if (!name || !email || !message) {
-                showToast("Please fill in all required fields.", "fa fa-exclamation-circle");
+            // Anti-spam honeypot verification
+            if ($("#_anti_spam").val() !== "") {
+                return false;
+            }
+
+            var name = $("#athleteName").val().trim();
+            var phone = $("#athletePhone").val().trim();
+            var email = $("#athleteEmail").val().trim();
+            var goal = $("#athleteGoal").val();
+            var timePref = $("#athleteTime").val() || "Anytime";
+            var message = $("#athleteMessage").val().trim();
+
+            // Clear previous errors
+            $form.find(".inzan-form-control").css("border-color", "");
+
+            if (!name || !phone || !email || !goal) {
+                if (!name) $("#athleteName").css("border-color", "#FF4444");
+                if (!phone) $("#athletePhone").css("border-color", "#FF4444");
+                if (!email) $("#athleteEmail").css("border-color", "#FF4444");
+                if (!goal) $("#athleteGoal").css("border-color", "#FF4444");
+
+                showToast("Please complete all required fields (Name, Phone, Email, Goal).", "fa fa-exclamation-triangle");
                 return;
             }
 
             // Visual loading state
-            $submitBtn.prop("disabled", true).html('<i class="fa fa-circle-o-notch fa-spin"></i> Sending...');
+            $submitBtn.prop("disabled", true).html('<i class="fa fa-circle-o-notch fa-spin"></i> Reserving Assessment Slot...');
 
             setTimeout(function() {
-                $submitBtn.prop("disabled", false).html("Submit Message");
-                $form[0].reset();
-                showToast("Thank you, " + name + "! Your inquiry has been sent to admin@inzanathletics.com.", "fa fa-check");
+                $submitBtn.prop("disabled", false).html("Confirm Assessment Request");
+                
+                // Populate personalized confirmation
+                $("#successAthleteName").text(name);
+                $("#successAthleteGoal").text(goal);
+                $("#successAthleteTime").text(timePref);
+                
+                // Configure direct WhatsApp confirmation link
+                var waMessage = encodeURIComponent("Hi Inzan Athletics! I just booked my 60-min assessment online.\nName: " + name + "\nPhone: " + phone + "\nGoal: " + goal + "\nPreferred Time: " + timePref + (message ? "\nNotes: " + message : ""));
+                $("#successWhatsAppBtn").attr("href", "https://wa.me/201000061243?text=" + waMessage);
+
+                // Smoothly replace form with confirmation box
+                $form.slideUp(300, function() {
+                    $("#inzanSuccessBox").slideDown(350);
+                });
+
+                showToast("Assessment booked! Welcome to Inzan Athletics, " + name + ".", "fa fa-check-circle");
             }, 800);
         });
 
@@ -195,13 +242,16 @@
             setTimeout(function() {
                 $btn.prop("disabled", false).html("Subscribe");
                 $("#newsletterEmail").val("");
-                showToast("Thank you for subscribing to Inzan Athletics!", "fa fa-check");
+                showToast("Subscribed! Performance Intel will be sent to " + email, "fa fa-check-circle");
             }, 600);
         });
 
-        // Mobile Nav Drawer Toggle
+        // Mobile Nav Drawer Toggle with Accessibility
         $(".mobile-nav").on("click", function() {
             var $nav = $(".desktop-nav");
+            var isExpanded = $(this).attr("aria-expanded") === "true";
+            $(this).attr("aria-expanded", !isExpanded);
+
             if ($nav.hasClass("mobile-open")) {
                 $nav.removeClass("mobile-open").slideUp(250);
             } else {
@@ -211,6 +261,7 @@
 
         $(".desktop-nav a").on("click", function() {
             if ($(window).width() <= 1024) {
+                $(".mobile-nav").attr("aria-expanded", "false");
                 $(".desktop-nav").removeClass("mobile-open").slideUp(200);
             }
         });

@@ -420,8 +420,10 @@
         });
         
         // Responsive video
-        $(".video, .resp-media, .blog-media").fitVids();
-        $(".work-full-media").fitVids(); 
+        if (typeof $.fn.fitVids === "function") {
+            $(".video, .resp-media, .blog-media").fitVids();
+            $(".work-full-media").fitVids(); 
+        }
                
     }
     

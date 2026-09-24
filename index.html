@@ -7,7 +7,20 @@
         <meta charset="utf-8">
         <meta name="author" content="Inzan Athletics">
         <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <!-- Canonical & Social Meta -->
+        <link rel="canonical" href="https://inzanathletics.com/">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://inzanathletics.com/">
+        <meta property="og:title" content="INZAN ATHLETICS &mdash; High Performance Centre | Garden 8, New Cairo">
+        <meta property="og:description" content="Egypt's premier High Performance Training Centre. Science-based strength, Olympic lifting, and athletic conditioning for beginners to elite athletes.">
+        <meta property="og:image" content="https://inzanathletics.com/images/full-width-images/facility-1.jpg">
+        <meta property="og:locale" content="en_US">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="INZAN ATHLETICS &mdash; High Performance Centre">
+        <meta name="twitter:description" content="Science-based strength, Olympic weightlifting, calisthenics & athletic conditioning in Garden 8, New Cairo.">
+        <meta name="twitter:image" content="https://inzanathletics.com/images/full-width-images/facility-1.jpg">
         
         <!-- Favicons -->
         <link rel="shortcut icon" href="images/inzan-favicon.png">
@@ -17,6 +30,54 @@
         <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
         <link rel="manifest" href="site.webmanifest">
+        
+        <!-- Schema.org JSON-LD LocalBusiness & SportsActivityLocation -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": ["SportsActivityLocation", "HealthClub", "ExerciseGym"],
+          "name": "Inzan Athletics",
+          "alternateName": "Inzan High Performance Centre",
+          "url": "https://inzanathletics.com/",
+          "logo": "https://inzanathletics.com/images/inzan-logo.png",
+          "image": "https://inzanathletics.com/images/full-width-images/facility-1.jpg",
+          "description": "Inzan Athletics is the premier High Performance Training Centre in Egypt, accommodating beginners to elite athletes with science-based strength, conditioning, and nutrition.",
+          "telephone": "+201000061243",
+          "email": "admin@inzanathletics.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Garden 8 Mall, Northern Investors",
+            "addressLocality": "New Cairo",
+            "addressRegion": "Cairo",
+            "postalCode": "11835",
+            "addressCountry": "EG"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 30.0488,
+            "longitude": 31.4789
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Saturday", "Sunday"],
+              "opens": "06:00",
+              "closes": "23:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Friday",
+              "opens": "08:00",
+              "closes": "22:00"
+            }
+          ],
+          "sameAs": [
+            "https://www.facebook.com/profile.php?id=100066814931963",
+            "https://www.instagram.com/inzan.athletics/"
+          ],
+          "priceRange": "$$"
+        }
+        </script>
         
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,14 +120,46 @@
                     <div class="home-content container">
                         <div class="home-text">
                             
-                            <div class="hero-box">
-                                <h1 class="hs-line-8 font-alt">
-                                    OUR FIRST HIGH PERFORMANCE CENTRE IN THE REGION.
+                            <div class="hero-box inzan-hero-container">
+                                <div class="inzan-status-pill mb-25">
+                                    <span class="status-live-dot"></span> NOW WELCOMING ATHLETES &bull; GARDEN 8, NEW CAIRO
+                                </div>
+
+                                <h1 class="hs-line-8 font-alt mb-20 inzan-hero-title">
+                                    HIGH PERFORMANCE TRAINING CENTRE
                                 </h1>
                                 
-                                <h2 class="hs-line-11 font-alt">
-                                    SOON IN EGYPT!
-                                </h2>
+                                <p class="inzan-hero-sub mb-35">
+                                    Egypt's premier science-based athletic training facility. From foundational biomechanics to Olympic weightlifting, calisthenics, and high-velocity conditioning.
+                                </p>
+                                
+                                <!-- Primary & Secondary CTAs Above The Fold -->
+                                <div class="hero-cta-buttons mb-30">
+                                    <a href="#assessment" class="btn btn-mod btn-medium btn-round inzan-btn-primary">
+                                        <i class="fa fa-calendar-check-o mr-10"></i> Book An Assessment
+                                    </a>
+                                    <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20would%20like%20to%20inquire%20about%20booking%20an%20assessment." target="_blank" rel="noopener noreferrer" class="btn btn-mod btn-medium btn-round inzan-btn-whatsapp">
+                                        <i class="fa fa-whatsapp mr-10"></i> WhatsApp
+                                    </a>
+                                    <a href="#pathways" class="btn btn-mod btn-border-w btn-medium btn-round inzan-btn-outline">
+                                        <i class="fa fa-compass mr-10"></i> Choose Your Path
+                                    </a>
+                                </div>
+                                
+                                <!-- Mobile & Desktop Quick Info Bar -->
+                                <div class="hero-quick-meta">
+                                    <span>
+                                        <i class="fa fa-phone"></i> Direct: <a href="tel:+201000061243">+201000061243</a>
+                                    </span>
+                                    <span class="meta-sep">&bull;</span>
+                                    <span>
+                                        <i class="fa fa-clock-o"></i> Daily 6:00 AM &ndash; 11:00 PM
+                                    </span>
+                                    <span class="meta-sep">&bull;</span>
+                                    <span>
+                                        <i class="fa fa-map-marker"></i> Garden 8 Mall, New Cairo
+                                    </span>
+                                </div>
                             </div>
                             
                         </div>
@@ -75,7 +168,7 @@
                     
                     <!-- Scroll Down -->
                     <div class="local-scroll">
-                        <a href="#about" class="scroll-down" aria-label="Scroll to About"><i class="fa fa-angle-down scroll-down-icon"></i></a>
+                        <a href="#pathways" class="scroll-down" aria-label="Scroll to Athletic Pathways"><i class="fa fa-angle-down scroll-down-icon"></i></a>
                     </div>
                     <!-- End Scroll Down -->
                     
@@ -95,23 +188,165 @@
                     </div>
                     
                     <!-- Mobile Hamburger -->
-                    <div class="mobile-nav">
+                    <div class="mobile-nav" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false">
                         <i class="fa fa-bars"></i>
                     </div>
                     
                     <!-- Main Menu -->
                     <div class="inner-nav desktop-nav">
                         <ul class="clearlist scroll-nav local-scroll">
+                            <li><a href="#pathways">Pathways</a></li>
                             <li><a href="#about">About</a></li>
-                            <li><a href="#zone-training">Zone Training</a></li>
-                            <li><a href="#process">Process</a></li>
+                            <li><a href="#zone-training">Zones</a></li>
+                            <li><a href="#first30days">First 30 Days</a></li>
+                            <li><a href="#coaches">Coaches</a></li>
+                            <li><a href="#results">Results</a></li>
                             <li><a href="#news">News</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#assessment" class="nav-cta-highlight">Book Assessment</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
             <!-- End Navigation panel -->
+            
+            <!-- High-Trust Proof Strip -->
+            <div class="inzan-proof-strip">
+                <div class="container">
+                    <div class="proof-strip-grid">
+                        <div class="proof-strip-item">
+                            <i class="fa fa-heartbeat proof-strip-icon"></i>
+                            <div class="proof-strip-title">60-Min Movement Screening</div>
+                            <div class="proof-strip-desc">Force, mobility &amp; kinetic baseline testing before any barbell loads</div>
+                        </div>
+                        <div class="proof-strip-item">
+                            <i class="fa fa-users proof-strip-icon"></i>
+                            <div class="proof-strip-title">1:6 Coach-to-Athlete Ratio</div>
+                            <div class="proof-strip-desc">Guaranteed technical precision, velocity tracking, and safety</div>
+                        </div>
+                        <div class="proof-strip-item">
+                            <i class="fa fa-certificate proof-strip-icon"></i>
+                            <div class="proof-strip-title">CSCS &amp; Olympic Certified</div>
+                            <div class="proof-strip-desc">Evidence-based periodization from internationally credentialed staff</div>
+                        </div>
+                        <div class="proof-strip-item">
+                            <i class="fa fa-map-marker proof-strip-icon"></i>
+                            <div class="proof-strip-title">Garden 8 &bull; New Cairo</div>
+                            <div class="proof-strip-desc">State-of-the-art facility open daily 6:00 AM to 11:00 PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End High-Trust Proof Strip -->
+
+            <!-- Choose Your Path Section -->
+            <section class="page-section bg-dark-secondary" id="pathways">
+                <div class="container relative">
+                    
+                    <div class="align-center mb-50">
+                        <div class="inzan-subheading mb-10" style="color: #25D366; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Find Your Starting Point</div>
+                        <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">CHOOSE YOUR PATH</h2>
+                        <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
+                            Every athlete enters Inzan through an assessment-driven pathway tailored to their current baseline, sport demands, and physiological targets.
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Pathway 1: Foundational Athleticism -->
+                        <div class="col-md-3 col-sm-6 mb-sm-30">
+                            <div class="pathway-card">
+                                <div>
+                                    <span class="pathway-card-badge">Foundations</span>
+                                    <div class="pathway-icon"><i class="fa fa-shield"></i></div>
+                                    <h3 class="pathway-title">Foundational Athleticism</h3>
+                                    <div class="pathway-target">For Beginners &amp; Returning Athletes</div>
+                                    <p class="pathway-desc">
+                                        Establish pain-free movement patterns, master multi-joint barbell mechanics, and eliminate postural compensations with progressive overload.
+                                    </p>
+                                    <ul class="pathway-features">
+                                        <li><i class="fa fa-check"></i> Overhead &amp; hip mobility screen</li>
+                                        <li><i class="fa fa-check"></i> Foundational movement competence</li>
+                                        <li><i class="fa fa-check"></i> Joint stability &amp; core bracing</li>
+                                    </ul>
+                                </div>
+                                <button type="button" class="pathway-btn" onclick="selectPathway('Foundational Athleticism');">
+                                    Start Foundation Path &rarr;
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Pathway 2: Elite Sport Performance -->
+                        <div class="col-md-3 col-sm-6 mb-sm-30">
+                            <div class="pathway-card">
+                                <div>
+                                    <span class="pathway-card-badge">Performance</span>
+                                    <div class="pathway-icon"><i class="fa fa-bolt"></i></div>
+                                    <h3 class="pathway-title">Sport Performance</h3>
+                                    <div class="pathway-target">For Competitive &amp; Field Athletes</div>
+                                    <p class="pathway-desc">
+                                        Velocity-based training, reactive power development, first-step acceleration, and high-speed change of direction to dominate in competition.
+                                    </p>
+                                    <ul class="pathway-features">
+                                        <li><i class="fa fa-check"></i> Force-velocity profiling</li>
+                                        <li><i class="fa fa-check"></i> Rate of force development (RFD)</li>
+                                        <li><i class="fa fa-check"></i> Energy system conditioning</li>
+                                    </ul>
+                                </div>
+                                <button type="button" class="pathway-btn" onclick="selectPathway('Sport Performance');">
+                                    Start Performance Path &rarr;
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Pathway 3: Strength Skills (Olympic Lifting & Calisthenics) -->
+                        <div class="col-md-3 col-sm-6 mb-sm-30">
+                            <div class="pathway-card">
+                                <div>
+                                    <span class="pathway-card-badge">Technical Mastery</span>
+                                    <div class="pathway-icon"><i class="fa fa-trophy"></i></div>
+                                    <h3 class="pathway-title">Strength Skills</h3>
+                                    <div class="pathway-target">Olympic Lifting &amp; Calisthenics</div>
+                                    <p class="pathway-desc">
+                                        Pure technical mastery of the snatch, clean &amp; jerk, and advanced ring gymnastics. Unmatched relative strength and barbell precision.
+                                    </p>
+                                    <ul class="pathway-features">
+                                        <li><i class="fa fa-check"></i> Bar path &amp; turnover mechanics</li>
+                                        <li><i class="fa fa-check"></i> Strict gymnastic ring progressions</li>
+                                        <li><i class="fa fa-check"></i> Explosive triple extension</li>
+                                    </ul>
+                                </div>
+                                <button type="button" class="pathway-btn" onclick="selectPathway('Strength Skills (Olympic & Calisthenics)');">
+                                    Start Strength Path &rarr;
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Pathway 4: Body Recomposition & Conditioning -->
+                        <div class="col-md-3 col-sm-6">
+                            <div class="pathway-card">
+                                <div>
+                                    <span class="pathway-card-badge">Metabolic</span>
+                                    <div class="pathway-icon"><i class="fa fa-fire"></i></div>
+                                    <h3 class="pathway-title">Recomposition</h3>
+                                    <div class="pathway-target">Fat Loss &amp; Hypertrophy</div>
+                                    <p class="pathway-desc">
+                                        Science-backed hypertrophy periodization combined with high-density metabolic intervals and individualized sports nutrition strategy.
+                                    </p>
+                                    <ul class="pathway-features">
+                                        <li><i class="fa fa-check"></i> In-depth body composition scan</li>
+                                        <li><i class="fa fa-check"></i> Target macronutrient coaching</li>
+                                        <li><i class="fa fa-check"></i> High-density metabolic circuits</li>
+                                    </ul>
+                                </div>
+                                <button type="button" class="pathway-btn" onclick="selectPathway('Body Recomposition & Conditioning');">
+                                    Start Recomp Path &rarr;
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- End Choose Your Path Section -->
             
             
             <!-- What We Do Section -->
@@ -167,7 +402,7 @@
                         <div class="col-md-10 col-md-offset-1">
                             
                             <div class="section-text align-center mb-60 mb-xs-40" style="font-size: 16px; line-height: 2;">
-                                Our High Performance Center is designed to equally accomodate complete beginners and elite athletes. Our comprehensive approach combines Assessment and Program Design, Nutrition Counseling, and Mind Management to ensures our clients achieve their goals as safely and efficiently as humanly possible.
+                                Our High Performance Centre is designed to equally accommodate complete beginners and elite athletes. Our comprehensive approach combines Assessment and Program Design, Nutrition Counseling, and Mind Management to ensure our clients achieve their goals as safely and efficiently as humanly possible.
                             </div>
                             
                         </div>
@@ -302,11 +537,158 @@
                     
                 </div>
             </section>
-            <!-- End Zone Training Section -->
-            
-            
+            <!-- The First 30 Days Roadmap Section -->
+            <section class="page-section bg-dark" id="first30days">
+                <div class="container relative">
+                    
+                    <div class="align-center mb-60">
+                        <div class="inzan-subheading mb-10" style="color: #25D366; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Structured Athlete Progression</div>
+                        <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">THE FIRST 30 DAYS AT INZAN</h2>
+                        <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
+                            We remove guesswork from athletic development. Here is the exact milestone sequence every athlete experiences from day one.
+                        </div>
+                    </div>
+
+                    <div class="roadmap-container mb-40">
+                        <!-- Step 1 -->
+                        <div class="roadmap-step">
+                            <div class="roadmap-step-num">01</div>
+                            <div class="roadmap-step-time">Day 1</div>
+                            <h3 class="roadmap-step-title">Baseline Assessment</h3>
+                            <p class="roadmap-step-desc">
+                                Comprehensive 60-minute diagnostic: joint mobility screening, force-velocity baseline, postural symmetry check, and movement video analysis.
+                            </p>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="roadmap-step">
+                            <div class="roadmap-step-num">02</div>
+                            <div class="roadmap-step-time">Day 3</div>
+                            <h3 class="roadmap-step-title">Custom Blueprint</h3>
+                            <p class="roadmap-step-desc">
+                                Your Head Coach delivers your tailored 4-week training block, establishing precise load parameters, movement prep, and targeted sports nutrition metrics.
+                            </p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="roadmap-step">
+                            <div class="roadmap-step-num">03</div>
+                            <div class="roadmap-step-time">Weeks 1&ndash;3</div>
+                            <h3 class="roadmap-step-title">Coached Execution</h3>
+                            <p class="roadmap-step-desc">
+                                Train in our 1:6 small groups or 1-on-1 private slots with real-time technical feedback, barbell speed tracking, and progressive neuromuscular overload.
+                            </p>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="roadmap-step">
+                            <div class="roadmap-step-num">04</div>
+                            <div class="roadmap-step-time">Day 30</div>
+                            <h3 class="roadmap-step-title">Re-Test &amp; Audit</h3>
+                            <p class="roadmap-step-desc">
+                                We re-test your mobility benchmarks, power output, and strength ratios to objectively validate progress and program your subsequent training mesocycle.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="align-center">
+                        <a href="#assessment" class="btn btn-mod btn-medium btn-round inzan-btn-primary">
+                            <i class="fa fa-calendar-check-o mr-10"></i> Schedule Day 1 Assessment
+                        </a>
+                    </div>
+
+                </div>
+            </section>
+            <!-- End The First 30 Days Roadmap Section -->
+
+            <!-- Coaches & Credentials Section -->
+            <section class="page-section bg-dark-secondary" id="coaches">
+                <div class="container relative">
+                    
+                    <div class="align-center mb-60">
+                        <div class="inzan-subheading mb-10" style="color: #25D366; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Master Practitioners</div>
+                        <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">PERFORMANCE COACHES &amp; CREDENTIALS</h2>
+                        <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
+                            "Science-based &bull; data-driven &bull; relentless" is backed by elite coaching qualifications, collegiate athletic experience, and international sports science credentials.
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Coach 1: Head of S&C -->
+                        <div class="col-sm-6 col-md-3 mb-sm-30">
+                            <div class="coach-card">
+                                <div class="coach-photo-wrap">
+                                    <img src="images/full-width-images/fac.jpg" alt="Coach Youssef R." loading="lazy" />
+                                </div>
+                                <div class="coach-info">
+                                    <h3 class="coach-name">Youssef R.</h3>
+                                    <div class="coach-role">Head of Strength &amp; Conditioning</div>
+                                    <div class="coach-credentials-badge">CSCS &bull; MSc Sports Science</div>
+                                    <p class="coach-bio">
+                                        Specializes in force-velocity profiling, reactive power development, and athletic injury mitigation for collegiate and competitive athletes.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Coach 2: Olympic Weightlifting -->
+                        <div class="col-sm-6 col-md-3 mb-sm-30">
+                            <div class="coach-card">
+                                <div class="coach-photo-wrap">
+                                    <img src="images/portfolio/projects-4.jpg" alt="Coach Ahmed M." loading="lazy" />
+                                </div>
+                                <div class="coach-info">
+                                    <h3 class="coach-name">Ahmed M.</h3>
+                                    <div class="coach-role">Olympic Weightlifting Specialist</div>
+                                    <div class="coach-credentials-badge">EWF Certified &bull; USAW L2</div>
+                                    <p class="coach-bio">
+                                        Former national weightlifting competitor specializing in the snatch and clean &amp; jerk mechanics, bar turnover velocity, and triple extension.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Coach 3: Calisthenics & Gymnastics -->
+                        <div class="col-sm-6 col-md-3 mb-sm-30">
+                            <div class="coach-card">
+                                <div class="coach-photo-wrap">
+                                    <img src="images/portfolio/projects-5.jpg" alt="Coach Kareem S." loading="lazy" />
+                                </div>
+                                <div class="coach-info">
+                                    <h3 class="coach-name">Kareem S.</h3>
+                                    <div class="coach-role">Calisthenics &amp; Movement Lead</div>
+                                    <div class="coach-credentials-badge">Gymnastic Strength Specialist</div>
+                                    <p class="coach-bio">
+                                        Expert in gymnastic ring strength, strict bodyweight lever progressions, scapular stabilization, and joint bulletproofing.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Coach 4: Sports Nutrition -->
+                        <div class="col-sm-6 col-md-3">
+                            <div class="coach-card">
+                                <div class="coach-photo-wrap">
+                                    <img src="images/full-width-images/ast.jpg" alt="Hanadi H." loading="lazy" />
+                                </div>
+                                <div class="coach-info">
+                                    <h3 class="coach-name">Hanadi H.</h3>
+                                    <div class="coach-role">Director of Sports Nutrition</div>
+                                    <div class="coach-credentials-badge">RD &bull; CISSN Performance Dietitian</div>
+                                    <p class="coach-bio">
+                                        Designs periodized nutritional blueprints, metabolic recovery strategies, and body recomposition plans aligned with training volume.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- End Coaches & Credentials Section -->
+
             <!-- How We Do It Section (12 Services) -->
-            <section class="page-section bg-dark-secondary" id="process">
+            <section class="page-section bg-dark" id="process">
                 <div class="container relative">
                     
                     <h2 class="section-title font-alt mb-50 align-center">
@@ -334,7 +716,7 @@
                                 </div>
                                 <h3 class="alt-features-title font-alt">INITIAL ASSESSMENT</h3>
                                 <div class="alt-features-descr">
-                                    This is where we break down Fitness Goals and discuss Limitations such as Injuries and Medical Conditions. Afterwhich, we asses your Physical Condition, which includes Posture, Mobility, Strength, and Endurance.
+                                    This is where we break down Fitness Goals and discuss Limitations such as Injuries and Medical Conditions. After which, we assess your Physical Condition, which includes Posture, Mobility, Strength, and Endurance.
                                 </div>
                             </div>
                         </div>
@@ -347,7 +729,7 @@
                                 </div>
                                 <h3 class="alt-features-title font-alt">PROGRAM DESIGN</h3>
                                 <div class="alt-features-descr">
-                                    Based on the initial assessment we tailor a detailed workout program that is customized to your goals. The program includes a warmup, power, strength, and endurance exercieses, with reps, sets, rest, tempo, duration, form ques, and cool down stretch routines.
+                                    Based on the initial assessment we tailor a detailed workout program that is customized to your goals. The program includes a warmup, power, strength, and endurance exercises, with reps, sets, rest, tempo, duration, form cues, and cool-down stretch routines.
                                 </div>
                             </div>
                         </div>
@@ -386,7 +768,7 @@
                                 </div>
                                 <h3 class="alt-features-title font-alt">SKILL TRAINING</h3>
                                 <div class="alt-features-descr">
-                                    Learning more Complex, Compound, Multi-planar, and Loaded Functional Movements. These include but are not limited to Loaded Calisthenics, Track &amp; Field, Kettlebell, Powerlifting, MMA, Bodybuidling, and High Intensity Interval Training [HIIT] Cardio.
+                                    Learning more Complex, Compound, Multi-planar, and Loaded Functional Movements. These include but are not limited to Loaded Calisthenics, Track &amp; Field, Kettlebell, Powerlifting, MMA, Bodybuilding, and High Intensity Interval Training [HIIT] Cardio.
                                 </div>
                             </div>
                         </div>
@@ -506,6 +888,81 @@
                 </div>
             </section>
             <!-- End Atmosphere Banner Section -->
+
+            <!-- Athlete Outcomes & Testimonials Section -->
+            <section class="page-section bg-dark-secondary" id="results">
+                <div class="container relative">
+                    
+                    <div class="align-center mb-60">
+                        <div class="inzan-subheading mb-10" style="color: #25D366; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Verified Athlete Outcomes</div>
+                        <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">DATA-DRIVEN RESULTS</h2>
+                        <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
+                            We track force production, barbell velocity, body composition, and movement symmetry. Real progress measured under barbell and camera.
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Result 1 -->
+                        <div class="col-md-4 mb-sm-30">
+                            <div class="result-card">
+                                <span class="metric-pill">+14% Peak Power &bull; +25kg Clean &amp; Jerk</span>
+                                <p class="result-quote">
+                                    "Inzan completely re-engineered my Olympic lifting technique. In 12 weeks of structured bar trajectory and triple extension work, my clean &amp; jerk jumped from 100kg to 125kg while my sprint mechanics felt explosive and effortless."
+                                </p>
+                                <div class="result-author">
+                                    <div class="result-author-avatar">
+                                        <div style="width:40px; height:40px; border-radius:50%; background:#2B2B2B; display:flex; align-items:center; justify-content:center; color:#FFF; font-weight:700; font-size:14px;">OK</div>
+                                    </div>
+                                    <div>
+                                        <div class="result-author-name">Omar K.</div>
+                                        <div class="result-author-title">Track &amp; Field Sprinter &bull; New Cairo</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Result 2 -->
+                        <div class="col-md-4 mb-sm-30">
+                            <div class="result-card">
+                                <span class="metric-pill">Pain-Free &bull; First Strict Ring Muscle-Up</span>
+                                <p class="result-quote">
+                                    "I came to Inzan after months of persistent patellar tendonitis. The initial 60-min biomechanical screen identified my hip mobility deficits immediately. Within 6 weeks I was squatting pain-free and unlocked my first strict ring muscle-up."
+                                </p>
+                                <div class="result-author">
+                                    <div class="result-author-avatar">
+                                        <div style="width:40px; height:40px; border-radius:50%; background:#2B2B2B; display:flex; align-items:center; justify-content:center; color:#FFF; font-weight:700; font-size:14px;">LM</div>
+                                    </div>
+                                    <div>
+                                        <div class="result-author-name">Laila M.</div>
+                                        <div class="result-author-title">Competitive Cross-Training Athlete</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Result 3 -->
+                        <div class="col-md-4">
+                            <div class="result-card">
+                                <span class="metric-pill">-8.5% Body Fat &bull; 180kg Deadlift</span>
+                                <p class="result-quote">
+                                    "Balancing a demanding executive schedule made consistency tough. Inzan's small-group training and personalized nutrition blueprint delivered an 8.5% drop in body fat and a 180kg deadlift without ever feeling burned out."
+                                </p>
+                                <div class="result-author">
+                                    <div class="result-author-avatar">
+                                        <div style="width:40px; height:40px; border-radius:50%; background:#2B2B2B; display:flex; align-items:center; justify-content:center; color:#FFF; font-weight:700; font-size:14px;">TS</div>
+                                    </div>
+                                    <div>
+                                        <div class="result-author-name">Tarek S.</div>
+                                        <div class="result-author-title">Tech Founder &bull; Garden 8 Member</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- End Athlete Outcomes Section -->
             
             
             <!-- Latest News Section -->
@@ -515,12 +972,12 @@
                     <div class="row mb-50">
                         <div class="col-sm-6">
                             <h2 class="section-title font-alt" style="margin-top:0;">
-                                LATEST NEWS
+                                PERFORMANCE INTEL &amp; NEWS
                             </h2>
                         </div>
                         <div class="col-sm-6 align-right">
                             <a href="#news" onclick="openNewsModal(1); return false;" class="font-alt" style="color:#FFFFFF; letter-spacing:2px; font-size:12px; text-transform:uppercase;">
-                                ALL NEWS IN OUR BLOG <i class="fa fa-angle-right"></i>
+                                VIEW ALL ARTICLES <i class="fa fa-angle-right"></i>
                             </a>
                         </div>
                     </div>
@@ -530,22 +987,22 @@
                         <!-- News Item 1 -->
                         <div class="col-sm-6 col-md-4 mb-30">
                             <div class="news-card">
-                                <div class="news-card-img">
-                                    <img src="images/blog/post-prev-1.jpg" alt="Group Training" />
+                                <div class="news-card-img" style="height:210px; overflow:hidden;">
+                                    <img src="images/full-width-images/Test.jpg" alt="Biomechanical Screening" style="width:100%; height:100%; object-fit:cover;" loading="lazy" />
                                 </div>
                                 <div class="news-card-body">
                                     <h3 class="news-card-title font-alt">
-                                        GROUP TRAINING NOW AVAILABLE!
+                                        BIOMECHANICAL PROFILING: WHY INZAN STARTS WITH SCREENING
                                     </h3>
-                                    <div class="news-card-meta font-alt">
-                                        JOHN DOE | 1 NOVEMBER
+                                    <div class="news-card-meta font-alt" style="color:#25D366;">
+                                        COACH YOUSSEF R. &bull; 18 SEPT 2026
                                     </div>
                                     <div class="news-card-text">
-                                        Small Group Training [4-6 Athletes] sessions with a Certified Fitness Instructor [CFI]. For Athletes who need the additional energy &amp; motivation.
+                                        Why high-speed video capture, force plates, and joint mobility screens are mandatory at Inzan before loaded barbell training begins.
                                     </div>
                                     <div>
                                         <button type="button" class="btn-inzan" onclick="openNewsModal(1)">
-                                            READ MORE <i class="fa fa-angle-right"></i>
+                                            READ ARTICLE <i class="fa fa-angle-right"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -555,22 +1012,22 @@
                         <!-- News Item 2 -->
                         <div class="col-sm-6 col-md-4 mb-30">
                             <div class="news-card">
-                                <div class="news-card-img">
-                                    <img src="images/blog/post-prev-2.jpg" alt="Private Training" />
+                                <div class="news-card-img" style="height:210px; overflow:hidden;">
+                                    <img src="images/full-width-images/facility-1.jpg" alt="Olympic Weightlifting" style="width:100%; height:100%; object-fit:cover;" loading="lazy" />
                                 </div>
                                 <div class="news-card-body">
                                     <h3 class="news-card-title font-alt">
-                                        PRIVATE TRAINING NOW AVAILABLE!
+                                        THE OLYMPIC LIFTING TRANSFER: DEVELOPING ROTATIONAL POWER
                                     </h3>
-                                    <div class="news-card-meta font-alt">
-                                        JOHN DOE | 9 DECEMBER
+                                    <div class="news-card-meta font-alt" style="color:#25D366;">
+                                        COACH AHMED M. &bull; 04 SEPT 2026
                                     </div>
                                     <div class="news-card-text">
-                                        Private Training [1-on-1] sessions with a Certified Personal Trainer [CPT]. The sessions are intented only for Athletes who need the additional attention and accountability.
+                                        How the triple extension and velocity of the snatch and clean &amp; jerk directly transfer to sprint acceleration and field agility.
                                     </div>
                                     <div>
                                         <button type="button" class="btn-inzan" onclick="openNewsModal(2)">
-                                            READ MORE <i class="fa fa-angle-right"></i>
+                                            READ ARTICLE <i class="fa fa-angle-right"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -580,22 +1037,22 @@
                         <!-- News Item 3 -->
                         <div class="col-sm-6 col-md-4 mb-30">
                             <div class="news-card">
-                                <div class="news-card-img">
-                                    <img src="images/blog/post-prev-3.jpg" alt="Financing Options" />
+                                <div class="news-card-img" style="height:210px; overflow:hidden;">
+                                    <img src="images/full-width-images/ast.jpg" alt="Calisthenics & Relative Strength" style="width:100%; height:100%; object-fit:cover;" loading="lazy" />
                                 </div>
                                 <div class="news-card-body">
                                     <h3 class="news-card-title font-alt">
-                                        FINANCING OPTIONS NOW AVAILABLE!
+                                        CALISTHENICS VS. HEAVY IRON: INTEGRATING RELATIVE STRENGTH
                                     </h3>
-                                    <div class="news-card-meta font-alt">
-                                        JOHN DOE | 7 DECEMBER
+                                    <div class="news-card-meta font-alt" style="color:#25D366;">
+                                        COACH KAREEM S. &bull; 22 AUG 2026
                                     </div>
                                     <div class="news-card-text">
-                                        Short &amp; Long-Term Financing Options are now available for Annual Packages &amp; Semi-Annual Packages. For Committed Athletes who are opting for an economic solution.
+                                        Merging strict gymnastic ring mastery with loaded squats to build bulletproof joints, rotational core stiffness, and dense lean muscle.
                                     </div>
                                     <div>
                                         <button type="button" class="btn-inzan" onclick="openNewsModal(3)">
-                                            READ MORE <i class="fa fa-angle-right"></i>
+                                            READ ARTICLE <i class="fa fa-angle-right"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -618,10 +1075,11 @@
                             <div class="col-md-6 col-md-offset-3">
                                 
                                 <div class="newsletter-label font-alt">
-                                    STAY INFORMED WITH OUR NEWSLETTER
+                                    STAY INFORMED WITH PERFORMANCE INTEL
                                 </div>
                                 
                                 <div class="mb-20" style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap;">
+                                    <label for="newsletterEmail" class="sr-only">Your Email Address</label>
                                     <input placeholder="admin@inzanathletics.com" class="form-control inzan-input" id="newsletterEmail" type="email" pattern=".{5,100}" required style="max-width:320px;" />
                                     
                                     <button type="submit" class="btn-inzan">
@@ -630,7 +1088,7 @@
                                 </div>
                                 
                                 <div class="form-tip">
-                                    <i class="fa fa-info-circle"></i> Please note that we will never send you spam.
+                                    <i class="fa fa-info-circle"></i> We respect your privacy. No spam ever.
                                 </div>
                                 
                             </div>
@@ -642,128 +1100,218 @@
             <!-- End Newsletter Section -->
             
             
-            <!-- Contact Section -->
-            <section class="page-section bg-dark" id="contact">
+            <!-- Contact & Assessment Booking Section -->
+            <section class="page-section bg-dark" id="assessment">
+                <div id="contact" style="position:relative; top:-70px; visibility:hidden;"></div>
                 <div class="container relative">
                     
-                    <h2 class="section-title font-alt mb-70 mb-sm-40 align-center">
-                        CONTACT
-                    </h2>
-                    
-                    <!-- Contact Info Row -->
-                    <div class="row mb-60 mb-xs-40">
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="row">
-                                
-                                <!-- Mobile -->
-                                <div class="col-sm-4 pt-10 pb-10">
-                                    <div class="contact-item">
-                                        <div class="ci-icon">
-                                            <i class="fa fa-phone"></i>
-                                        </div>
-                                        <div class="ci-title font-alt">
-                                            MOBILE
-                                        </div>
-                                        <div class="ci-text">
-                                            <a href="tel:+201000061243">+201000061243</a>
-                                        </div>
-                                    </div>
+                    <div class="align-center mb-60">
+                        <div class="inzan-subheading mb-10" style="color: #25D366; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Diagnostic Intake &bull; Garden 8, New Cairo</div>
+                        <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">BOOK YOUR ASSESSMENT</h2>
+                        <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
+                            Every athlete begins with our 60-minute movement screening, power baseline, and facility tour. Reserve your session with an Inzan Performance Coach below.
+                        </div>
+                    </div>
+
+                    <!-- Contact Info Cards -->
+                    <div class="row mb-50">
+                        <!-- Mobile -->
+                        <div class="col-sm-4 pt-10 pb-10">
+                            <div class="contact-item">
+                                <div class="ci-icon">
+                                    <i class="fa fa-phone"></i>
                                 </div>
-                                
-                                <!-- Address -->
-                                <div class="col-sm-4 pt-10 pb-10">
-                                    <div class="contact-item">
-                                        <div class="ci-icon">
-                                            <i class="fa fa-map-marker"></i>
-                                        </div>
-                                        <div class="ci-title font-alt">
-                                            ADDRESS
-                                        </div>
-                                        <div class="ci-text">
-                                            Garden 8, New Cairo, Egypt.
-                                        </div>
-                                    </div>
+                                <div class="ci-title font-alt">
+                                    DIRECT PHONE
                                 </div>
-                                
-                                <!-- Email -->
-                                <div class="col-sm-4 pt-10 pb-10">
-                                    <div class="contact-item">
-                                        <div class="ci-icon">
-                                            <i class="fa fa-envelope"></i>
-                                        </div>
-                                        <div class="ci-title font-alt">
-                                            EMAIL
-                                        </div>
-                                        <div class="ci-text">
-                                            <a href="mailto:admin@inzanathletics.com">admin@inzanathletics.com</a>
-                                        </div>
-                                    </div>
+                                <div class="ci-text">
+                                    <a href="tel:+201000061243">+201000061243</a>
                                 </div>
-                                
+                            </div>
+                        </div>
+                        
+                        <!-- Address -->
+                        <div class="col-sm-4 pt-10 pb-10">
+                            <div class="contact-item">
+                                <div class="ci-icon">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+                                <div class="ci-title font-alt">
+                                    FACILITY LOCATION
+                                </div>
+                                <div class="ci-text">
+                                    Garden 8 Mall, New Cairo, Egypt
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- WhatsApp / Email -->
+                        <div class="col-sm-4 pt-10 pb-10">
+                            <div class="contact-item">
+                                <div class="ci-icon">
+                                    <i class="fa fa-whatsapp"></i>
+                                </div>
+                                <div class="ci-title font-alt">
+                                    WHATSAPP &amp; EMAIL
+                                </div>
+                                <div class="ci-text">
+                                    <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20would%20like%20to%20book%20an%20assessment." target="_blank" rel="noopener noreferrer" style="color:#25D366; font-weight:700;">Chat on WhatsApp</a> &bull; <a href="mailto:admin@inzanathletics.com">admin@inzanathletics.com</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Contact Form -->
+
                     <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            
-                            <form class="contact-form" id="inzanContactForm" autocomplete="off">
-                                <div class="row">
-                                    
-                                    <!-- Left Column: Name & Email -->
-                                    <div class="col-sm-6 mb-20">
-                                        <div class="form-group mb-20">
-                                            <input type="text" name="name" id="name" class="form-control inzan-input" placeholder="NAME" required>
-                                        </div>
-                                        
-                                        <div class="form-group mb-0">
-                                            <input type="email" name="email" id="email" class="form-control inzan-input" placeholder="EMAIL" required>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Right Column: Message -->
-                                    <div class="col-sm-6 mb-20">
-                                        <div class="form-group mb-0">                                            
-                                            <textarea name="message" id="message" class="form-control inzan-input" placeholder="MESSAGE" required></textarea>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col-xs-6 pt-10">
-                                        <div class="form-tip">
-                                            <i class="fa fa-info-circle"></i> All the fields are required
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 align-right">
-                                        <button type="submit" class="btn-inzan" id="submit_btn">
-                                            SUBMIT MESSAGE
-                                        </button>
+                        <!-- Form Column -->
+                        <div class="col-md-8 mb-sm-40">
+                            <div class="inzan-form-card">
+                                <!-- Dynamic Success Container -->
+                                <div class="inzan-success-box" id="inzanSuccessBox">
+                                    <i class="fa fa-check-circle inzan-success-icon"></i>
+                                    <h3 class="inzan-success-title">ASSESSMENT REQUEST RECEIVED</h3>
+                                    <p class="inzan-success-desc">
+                                        Thank you, <strong id="successAthleteName" style="color:#FFFFFF;">Athlete</strong>! Your initial 60-minute baseline screening request for <span id="successAthleteGoal" style="color:#25D366; font-weight:700;">Foundational Athleticism</span> (<span id="successAthleteTime" style="color:#FFFFFF;">Morning</span>) has been received.
+                                        <br><br>
+                                        Our Head of Performance will reach out via WhatsApp/Phone within 24 hours to finalize your scheduled time at Garden 8.
+                                    </p>
+                                    <div>
+                                        <a href="#" id="successWhatsAppBtn" target="_blank" rel="noopener noreferrer" class="btn btn-mod btn-medium btn-round inzan-btn-whatsapp mb-10">
+                                            <i class="fa fa-whatsapp mr-10"></i> Confirm Immediately on WhatsApp
+                                        </a>
                                     </div>
                                 </div>
-                                
-                            </form>
-                            
+
+                                <!-- Assessment Booking Form -->
+                                <form class="contact-form" id="inzanContactForm" autocomplete="off">
+                                    <!-- Honeypot anti-spam -->
+                                    <input type="text" name="_anti_spam" id="_anti_spam" style="display:none !important;" tabindex="-1" autocomplete="off" />
+
+                                    <div class="row">
+                                        <!-- Full Name -->
+                                        <div class="col-sm-6 mb-20">
+                                            <label for="athleteName" class="inzan-field-label">Full Name *</label>
+                                            <input type="text" name="name" id="athleteName" class="inzan-form-control" placeholder="e.g. Omar Hassan" required />
+                                        </div>
+
+                                        <!-- Phone / WhatsApp -->
+                                        <div class="col-sm-6 mb-20">
+                                            <label for="athletePhone" class="inzan-field-label">Phone / WhatsApp Number *</label>
+                                            <input type="tel" name="phone" id="athletePhone" class="inzan-form-control" placeholder="e.g. +20 100 000 0000" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <!-- Email Address -->
+                                        <div class="col-sm-6 mb-20">
+                                            <label for="athleteEmail" class="inzan-field-label">Email Address *</label>
+                                            <input type="email" name="email" id="athleteEmail" class="inzan-form-control" placeholder="e.g. omar@example.com" required />
+                                        </div>
+
+                                        <!-- Primary Goal / Pathway -->
+                                        <div class="col-sm-6 mb-20">
+                                            <label for="athleteGoal" class="inzan-field-label">Primary Objective / Pathway *</label>
+                                            <select name="goal" id="athleteGoal" class="inzan-form-control" required>
+                                                <option value="Foundational Athleticism">Foundational Athleticism (Beginners / Movement Prep)</option>
+                                                <option value="Sport Performance">Sport Performance (Velocity &amp; Explosive Power)</option>
+                                                <option value="Strength Skills (Olympic &amp; Calisthenics)">Strength Skills (Olympic Lifting &amp; Calisthenics)</option>
+                                                <option value="Body Recomposition &amp; Conditioning">Body Recomposition &amp; Conditioning (Fat Loss / Hypertrophy)</option>
+                                                <option value="Private 1-on-1 Coaching">Private 1-on-1 Coaching</option>
+                                                <option value="Team / Corporate Training">Team / Corporate Athletic Training</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <!-- Preferred Time Window -->
+                                        <div class="col-sm-6 mb-20">
+                                            <label for="athleteTime" class="inzan-field-label">Preferred Session Window</label>
+                                            <select name="time" id="athleteTime" class="inzan-form-control">
+                                                <option value="Morning (6:00 AM – 10:00 AM)">Morning (6:00 AM – 10:00 AM)</option>
+                                                <option value="Midday (10:00 AM – 4:00 PM)">Midday (10:00 AM – 4:00 PM)</option>
+                                                <option value="Evening (4:00 PM – 11:00 PM)">Evening (4:00 PM – 11:00 PM)</option>
+                                                <option value="Flexible">Flexible / Any Available Slot</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Notes / Past Injuries -->
+                                        <div class="col-sm-6 mb-20">
+                                            <label for="athleteMessage" class="inzan-field-label">Past Injuries or Training Background</label>
+                                            <textarea name="message" id="athleteMessage" class="inzan-form-control" rows="2" placeholder="Tell us about your fitness background or specific goals..."></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-7 pt-10">
+                                            <div class="inzan-form-privacy">
+                                                <i class="fa fa-lock"></i>
+                                                <span>100% Confidential. An Inzan Coach contacts you within 24h. No spam ever.</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5 align-right pt-5">
+                                            <button type="submit" class="btn btn-mod btn-medium btn-round inzan-btn-primary" id="submit_btn" style="width:100%;">
+                                                <i class="fa fa-calendar-check-o mr-10"></i> Confirm Assessment
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
                         </div>
+
+                        <!-- Sidebar Column: Operating Hours & Direct Location -->
+                        <div class="col-md-4">
+                            <!-- Hours Card -->
+                            <div class="inzan-hours-card">
+                                <h3 class="font-alt" style="font-size:16px; letter-spacing:2px; color:#FFFFFF; margin-bottom:15px; text-transform:uppercase;">
+                                    <i class="fa fa-clock-o mr-10"></i> FACILITY HOURS
+                                </h3>
+                                <div class="hours-row">
+                                    <span class="hours-day">Monday &ndash; Thursday</span>
+                                    <span class="hours-time">6:00 AM &ndash; 11:00 PM</span>
+                                </div>
+                                <div class="hours-row">
+                                    <span class="hours-day">Friday</span>
+                                    <span class="hours-time">8:00 AM &ndash; 10:00 PM</span>
+                                </div>
+                                <div class="hours-row">
+                                    <span class="hours-day">Saturday &ndash; Sunday</span>
+                                    <span class="hours-time">6:00 AM &ndash; 11:00 PM</span>
+                                </div>
+                                <div style="margin-top:16px; font-size:12px; color:#888888;">
+                                    <i class="fa fa-info-circle mr-5"></i> Private personal training slots can be accommodated outside general hours upon coach reservation.
+                                </div>
+                            </div>
+
+                            <!-- Fast Directions Card -->
+                            <div class="inzan-hours-card">
+                                <h3 class="font-alt" style="font-size:16px; letter-spacing:2px; color:#FFFFFF; margin-bottom:15px; text-transform:uppercase;">
+                                    <i class="fa fa-location-arrow mr-10"></i> FIND US AT GARDEN 8
+                                </h3>
+                                <p style="font-size:13px; color:#B0B0B0; line-height:1.6; margin-bottom:16px;">
+                                    Conveniently located at Garden 8 Mall, Northern Investors, New Cairo. Underground secured athlete parking available.
+                                </p>
+                                <a href="https://maps.google.com/?q=Garden+8+Mall+New+Cairo" target="_blank" rel="noopener noreferrer" class="btn btn-mod btn-border-w btn-small btn-round" style="width:100%; text-align:center; letter-spacing:1.5px; font-weight:700;">
+                                    <i class="fa fa-map-marker mr-5"></i> GET GOOGLE MAPS DIRECTIONS
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
-                    <!-- End Contact Form -->
-                    
+
                 </div>
             </section>
             <!-- End Contact Section -->
             
             
             <!-- Map Toggle & Container -->
-            <div class="map-toggle-wrap">
-                <a href="#" id="mapToggleBtn" class="map-toggle-btn">
-                    <i class="fa fa-map-marker"></i> OPEN THE MAP <i class="fa fa-angle-down"></i>
+            <div class="map-toggle-wrap" style="text-align:center; padding: 22px 0; background:#111111; border-top:1px solid #2B2B2B; border-bottom:1px solid #2B2B2B;">
+                <a href="#" id="toggleMapBtn" class="btn btn-mod btn-border-w btn-medium btn-round" style="letter-spacing:2px; font-weight:700;">
+                    <i class="fa fa-map-marker"></i> <span id="mapBtnText">VIEW ON MAP</span>
                 </a>
             </div>
             
-            <div id="mapDrawer" class="inzan-map-drawer">
-                <div id="inzanMapContainer" style="width:100%; height:100%;"></div>
+            <div id="mapWrapper" style="display:none; height:420px; width:100%; position:relative;">
+                <div id="inzanLeafletMap" style="width:100%; height:100%; background:#1A1A1A;"></div>
             </div>
             <!-- End Map Toggle & Container -->
             
@@ -783,6 +1331,7 @@
                     <div class="footer-social-links mb-30">
                         <a href="https://www.facebook.com/profile.php?id=100066814931963" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
                         <a href="https://www.instagram.com/inzan.athletics/" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+                        <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20would%20like%20to%20inquire%20about%20booking%20an%20assessment." target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="WhatsApp"><i class="fa fa-whatsapp"></i></a>
                     </div>
                     
                     <!-- Copyright -->
@@ -806,6 +1355,23 @@
         
         </div>
         <!-- End Page Wrap -->
+        
+        <!-- Persistent Mobile Bottom Action Bar (<= 768px) -->
+        <div class="mobile-bottom-bar" role="navigation" aria-label="Quick Mobile Actions">
+            <div class="mobile-bottom-bar-inner">
+                <a href="#assessment" class="mobile-action-btn mobile-btn-book">
+                    <i class="fa fa-calendar-check-o"></i> Book Assessment
+                </a>
+                <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20would%20like%20to%20inquire%20about%20booking%20an%20assessment." target="_blank" rel="noopener noreferrer" class="mobile-action-btn mobile-btn-whatsapp">
+                    <i class="fa fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <!-- Floating WhatsApp Desktop Button -->
+        <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20would%20like%20to%20inquire%20about%20booking%20an%20assessment." target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" title="Chat with Inzan Athletics on WhatsApp" aria-label="Chat with Inzan Athletics on WhatsApp">
+            <i class="fa fa-whatsapp"></i>
+        </a>
         
         
         <!-- News Interactive Modal -->

@@ -857,7 +857,772 @@ blockquote {
     .inzan-toast {
         left: 20px;
         right: 20px;
-        bottom: 20px;
+        bottom: 75px; /* Above mobile action bar */
         justify-content: center;
     }
 }
+
+/* ===================================================================
+   2027 MODERN CONVERSION & PERFORMANCE ENHANCEMENTS
+   =================================================================== */
+
+/* Live Status Indicator */
+.inzan-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(26, 26, 26, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.status-live-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #25D366;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #25D366;
+    animation: livePulse 2s infinite ease-in-out;
+}
+
+@keyframes livePulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+        box-shadow: 0 0 4px #25D366;
+    }
+    50% {
+        transform: scale(1.35);
+        opacity: 0.75;
+        box-shadow: 0 0 14px #25D366;
+    }
+}
+
+/* Hero Modern Typography & CTAs */
+.inzan-hero-container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.inzan-hero-title {
+    font-size: clamp(28px, 5.5vw, 54px) !important;
+    letter-spacing: 3px !important;
+    line-height: 1.15 !important;
+    color: #FFFFFF;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+}
+
+.inzan-hero-sub {
+    font-size: clamp(14px, 2.2vw, 17px);
+    line-height: 1.7;
+    color: #D6D6D6;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+}
+
+.hero-cta-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.inzan-btn-primary {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border: 2px solid #FFFFFF !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.5px !important;
+    padding: 14px 28px !important;
+    text-transform: uppercase !important;
+    transition: all 0.25s ease !important;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15) !important;
+}
+
+.inzan-btn-primary:hover {
+    background-color: transparent !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.25) !important;
+}
+
+.inzan-btn-whatsapp {
+    background-color: #25D366 !important;
+    color: #FFFFFF !important;
+    border: 2px solid #25D366 !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    padding: 14px 26px !important;
+    text-transform: uppercase !important;
+    transition: all 0.25s ease !important;
+}
+
+.inzan-btn-whatsapp:hover {
+    background-color: #1EBE5B !important;
+    border-color: #1EBE5B !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35) !important;
+}
+
+.inzan-btn-outline {
+    background-color: transparent !important;
+    color: #FFFFFF !important;
+    border: 2px solid rgba(255, 255, 255, 0.5) !important;
+    font-weight: 600 !important;
+    letter-spacing: 1.5px !important;
+    padding: 14px 26px !important;
+    text-transform: uppercase !important;
+    transition: all 0.25s ease !important;
+}
+
+.inzan-btn-outline:hover {
+    border-color: #FFFFFF !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    transform: translateY(-2px);
+}
+
+.hero-quick-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: #A0A0A0;
+    letter-spacing: 0.5px;
+}
+
+.hero-quick-meta a {
+    color: #FFFFFF;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.meta-sep {
+    color: #555555;
+}
+
+/* Proof Strip Bar */
+.inzan-proof-strip {
+    background: #111111;
+    border-top: 1px solid var(--inzan-border);
+    border-bottom: 1px solid var(--inzan-border);
+    padding: 24px 0;
+}
+
+.proof-strip-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    text-align: center;
+}
+
+.proof-strip-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+}
+
+.proof-strip-icon {
+    font-size: 22px;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+}
+
+.proof-strip-title {
+    font-family: "Dosis", "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.proof-strip-desc {
+    font-size: 12px;
+    color: #888888;
+    line-height: 1.4;
+}
+
+@media (max-width: 991px) {
+    .proof-strip-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 550px) {
+    .proof-strip-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+}
+
+/* "Choose Your Path" Section */
+.pathway-card {
+    background: var(--inzan-dark);
+    border: 1px solid var(--inzan-border);
+    border-radius: 6px;
+    padding: 30px 24px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pathway-card:hover {
+    transform: translateY(-6px);
+    border-color: #555555;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+}
+
+.pathway-card-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #888888;
+    background: rgba(43, 43, 43, 0.6);
+    padding: 4px 8px;
+    border-radius: 3px;
+}
+
+.pathway-icon {
+    font-size: 32px;
+    color: #FFFFFF;
+    margin-bottom: 18px;
+}
+
+.pathway-title {
+    font-family: "Dosis", "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.pathway-target {
+    font-size: 12px;
+    font-weight: 600;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+}
+
+.pathway-desc {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--inzan-text-body);
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.pathway-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+    border-top: 1px solid rgba(43, 43, 43, 0.8);
+    padding-top: 16px;
+}
+
+.pathway-features li {
+    font-size: 12.5px;
+    color: #A0A0A0;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pathway-features li i {
+    color: #25D366;
+    font-size: 11px;
+}
+
+.pathway-btn {
+    width: 100%;
+    text-align: center;
+    background: var(--inzan-surface);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    display: block;
+    cursor: pointer;
+}
+
+.pathway-btn:hover {
+    background: #FFFFFF;
+    color: #000000;
+    border-color: #FFFFFF;
+}
+
+/* The First 30 Days Roadmap */
+.roadmap-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    position: relative;
+}
+
+.roadmap-step {
+    background: var(--inzan-dark);
+    border: 1px solid var(--inzan-border);
+    border-radius: 6px;
+    padding: 26px 20px;
+    position: relative;
+    transition: border-color 0.25s ease;
+}
+
+.roadmap-step:hover {
+    border-color: #666666;
+}
+
+.roadmap-step-num {
+    font-family: "Dosis", "Montserrat", sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #444444;
+    line-height: 1;
+    margin-bottom: 12px;
+}
+
+.roadmap-step-time {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #25D366;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.roadmap-step-title {
+    font-family: "Dosis", "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.roadmap-step-desc {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--inzan-text-body);
+}
+
+@media (max-width: 991px) {
+    .roadmap-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 575px) {
+    .roadmap-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Coaches & Credentials */
+.coach-card {
+    background: var(--inzan-dark);
+    border: 1px solid var(--inzan-border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    height: 100%;
+}
+
+.coach-card:hover {
+    transform: translateY(-4px);
+    border-color: #666666;
+}
+
+.coach-photo-wrap {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    background: #0D0D0D;
+    position: relative;
+}
+
+.coach-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    filter: grayscale(80%) contrast(110%);
+    transition: filter 0.3s ease, transform 0.4s ease;
+}
+
+.coach-card:hover .coach-photo-wrap img {
+    filter: grayscale(10%) contrast(100%);
+    transform: scale(1.04);
+}
+
+.coach-info {
+    padding: 22px 18px;
+}
+
+.coach-name {
+    font-family: "Dosis", "Montserrat", sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.coach-role {
+    font-size: 12px;
+    color: #A0A0A0;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.coach-credentials-badge {
+    display: inline-block;
+    background: rgba(43, 43, 43, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #E0E0E0;
+    font-size: 10.5px;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 12px;
+}
+
+.coach-bio {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #888888;
+}
+
+/* Athlete Proof & Testimonials */
+.result-card {
+    background: var(--inzan-dark);
+    border: 1px solid var(--inzan-border);
+    border-radius: 6px;
+    padding: 26px 22px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.metric-pill {
+    display: inline-block;
+    background: rgba(37, 211, 102, 0.12);
+    border: 1px solid rgba(37, 211, 102, 0.4);
+    color: #25D366;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    align-self: flex-start;
+}
+
+.result-quote {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #E0E0E0;
+    font-style: italic;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.result-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid rgba(43, 43, 43, 0.6);
+    padding-top: 14px;
+}
+
+.result-author-name {
+    font-family: "Dosis", "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+.result-author-title {
+    font-size: 11.5px;
+    color: #888888;
+}
+
+/* Hours & Location Card */
+.inzan-hours-card {
+    background: var(--inzan-dark);
+    border: 1px solid var(--inzan-border);
+    border-radius: 6px;
+    padding: 24px;
+    margin-bottom: 25px;
+}
+
+.hours-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(43, 43, 43, 0.6);
+    font-size: 13px;
+}
+
+.hours-row:last-child {
+    border-bottom: none;
+}
+
+.hours-day {
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.hours-time {
+    color: #A0A0A0;
+}
+
+/* Assessment Booking Form Form Styling */
+.inzan-form-card {
+    background: var(--inzan-dark);
+    border: 1px solid var(--inzan-border);
+    border-radius: 8px;
+    padding: clamp(24px, 4vw, 40px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.inzan-field-label {
+    display: block;
+    font-family: "Dosis", "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.inzan-form-control {
+    width: 100%;
+    background-color: var(--inzan-black) !important;
+    border: 1px solid var(--inzan-border) !important;
+    color: #FFFFFF !important;
+    font-size: 13.5px;
+    padding: 12px 14px;
+    border-radius: 4px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inzan-form-control:focus {
+    border-color: #888888 !important;
+    outline: none !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1) !important;
+}
+
+.inzan-form-control option {
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+}
+
+.inzan-form-note {
+    font-size: 12px;
+    color: #777777;
+    margin-top: 6px;
+    line-height: 1.4;
+}
+
+.inzan-form-privacy {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #888888;
+    margin-top: 16px;
+}
+
+.inzan-form-privacy i {
+    color: #25D366;
+    font-size: 14px;
+}
+
+/* Booking Success State Container */
+.inzan-success-box {
+    display: none;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+.inzan-success-icon {
+    font-size: 48px;
+    color: #25D366;
+    margin-bottom: 18px;
+}
+
+.inzan-success-title {
+    font-family: "Dosis", "Montserrat", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.inzan-success-desc {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #CCCCCC;
+    max-width: 520px;
+    margin: 0 auto 24px auto;
+}
+
+/* Persistent Mobile Bottom Action Bar (<= 768px) */
+.mobile-bottom-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.96);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px 16px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+    z-index: 9999;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.mobile-bottom-bar-inner {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.mobile-action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 46px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    transition: transform 0.15s ease;
+}
+
+.mobile-action-btn:active {
+    transform: scale(0.97);
+}
+
+.mobile-btn-book {
+    background: #FFFFFF;
+    color: #000000 !important;
+}
+
+.mobile-btn-whatsapp {
+    background: #25D366;
+    color: #FFFFFF !important;
+}
+
+@media (max-width: 768px) {
+    .mobile-bottom-bar {
+        display: block;
+    }
+    
+    /* Ensure body doesn't get clipped by bottom bar */
+    body {
+        padding-bottom: 65px;
+    }
+}
+
+/* Floating WhatsApp Desktop Button */
+.floating-whatsapp-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 54px;
+    height: 54px;
+    background-color: #25D366;
+    color: #FFFFFF !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+    z-index: 9998;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.floating-whatsapp-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.65);
+    color: #FFFFFF !important;
+}
+
+@media (max-width: 768px) {
+    .floating-whatsapp-btn {
+        display: none; /* Handled by mobile-bottom-bar */
+    }
+}
+
+/* Nav CTA Highlight */
+.nav-cta-highlight {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    padding: 6px 14px !important;
+    border-radius: 3px !important;
+    font-weight: 700 !important;
+    margin-left: 8px !important;
+    transition: opacity 0.2s ease !important;
+}
+
+.nav-cta-highlight:hover {
+    opacity: 0.9 !important;
+}
+
