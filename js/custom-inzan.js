@@ -178,7 +178,7 @@
             setTimeout(function() {
                 $submitBtn.prop("disabled", false).html("Submit Message");
                 $form[0].reset();
-                showToast("Thank you, " + name + "! Your inquiry has been sent to info@inzan.ca.", "fa fa-check");
+                showToast("Thank you, " + name + "! Your inquiry has been sent to admin@inzanathletics.com.", "fa fa-check");
             }, 800);
         });
 

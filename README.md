@@ -77,8 +77,8 @@ This repository contains the reconstructed commercial gym platform built with **
    - Education & Certification
 8. **Atmosphere Parallax Banner**: Motivational gym quote with high-contrast typography.
 9. **Latest News**: Editorial cards with interactive modal reading experience.
-10. **Newsletter**: Styled input with direct contact integration (`FT@INZAN.CA`).
-11. **Contact Section**: Phone (`+201148689669`), Address (`Garden 8, New Cairo, Egypt.`), Email (`info@inzan.ca`), and validation-backed AJAX form.
+10. **Newsletter**: Styled input with direct contact integration (`admin@inzanathletics.com`).
+11. **Contact Section**: Phone (`+201000061243`), Address (`Garden 8, New Cairo, Egypt.`), Email (`admin@inzanathletics.com`), and validation-backed AJAX form.
 12. **Collapsible Dark Map**: Leaflet + CartoDB Dark Matter tiles centered on Garden 8.
 13. **Footer**: Official brand mark, social links, copyright, and division tagline (*"A DIVISION OF INZAN."*).
 
