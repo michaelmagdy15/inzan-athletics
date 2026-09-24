@@ -619,26 +619,36 @@ function initWorkFilter(){
          isotope_mode = "fitRows"
      }
      
-     work_grid.imagesLoaded(function(){
-            work_grid.isotope({
-                itemSelector: '.mix',
-                layoutMode: isotope_mode,
-                filter: fselector
-            });
-        });
+     if (typeof work_grid.imagesLoaded === "function" && typeof work_grid.isotope === "function") {
+         work_grid.imagesLoaded(function(){
+             work_grid.isotope({
+                 itemSelector: '.mix',
+                 layoutMode: isotope_mode,
+                 filter: fselector
+             });
+         });
+     } else if (typeof work_grid.isotope === "function") {
+         work_grid.isotope({
+             itemSelector: '.mix',
+             layoutMode: isotope_mode,
+             filter: fselector
+         });
+     }
         
-        $(".filter").click(function(){
-            $(".filter").removeClass("active");
-            $(this).addClass("active");
-            fselector = $(this).attr('data-filter');
-            
-            work_grid.isotope({
-                itemSelector: '.mix',
-                layoutMode: isotope_mode,
-                filter: fselector
-            });
-            return false;
-        });
+     $(".filter").click(function(){
+         $(".filter").removeClass("active");
+         $(this).addClass("active");
+         fselector = $(this).attr('data-filter');
+         
+         if (typeof work_grid.isotope === "function") {
+             work_grid.isotope({
+                 itemSelector: '.mix',
+                 layoutMode: isotope_mode,
+                 filter: fselector
+             });
+         }
+         return false;
+     });
         
     })(jQuery);
 }
