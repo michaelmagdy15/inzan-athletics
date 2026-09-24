@@ -144,6 +144,9 @@
                                     <a href="#pathways" class="btn btn-mod btn-border-w btn-medium btn-round inzan-btn-outline">
                                         <i class="fa fa-compass mr-10"></i> Choose Your Path
                                     </a>
+                                    <a href="#facility-reel" class="btn btn-mod btn-border-w btn-medium btn-round inzan-btn-outline" onclick="openVideoReel(event)">
+                                        <i class="fa fa-play-circle mr-5" style="color:#25D366;"></i> Tour Reel
+                                    </a>
                                 </div>
                                 
                                 <!-- Mobile & Desktop Quick Info Bar -->
@@ -197,10 +200,12 @@
                         <ul class="clearlist scroll-nav local-scroll">
                             <li><a href="#about">About</a></li>
                             <li><a href="#zone-training">Zones</a></li>
+                            <li><a href="#schedule">Schedule</a></li>
                             <li><a href="#first30days">Process</a></li>
                             <li><a href="#coaches">Coaches</a></li>
                             <li><a href="#results">Results</a></li>
                             <li><a href="#news">News</a></li>
+                            <li><a href="#portal" class="nav-portal-btn" onclick="openPortalModal(event)"><i class="fa fa-user-circle-o mr-5"></i> Athlete Portal</a></li>
                             <li><a href="#assessment" class="nav-cta-highlight">Book Assessment</a></li>
                         </ul>
                     </div>
@@ -600,6 +605,51 @@
             </section>
             <!-- End The First 30 Days Roadmap Section -->
 
+            <!-- Weekly Performance Schedule Section -->
+            <section class="page-section bg-dark" id="schedule">
+                <div class="container relative">
+                    
+                    <div class="align-center mb-50">
+                        <div class="inzan-subheading mb-10" style="color: #25D366; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Live Facility Timetable &bull; Garden 8, New Cairo</div>
+                        <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">WEEKLY PERFORMANCE SCHEDULE</h2>
+                        <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
+                            Structured group sessions capped at a strict 1:6 coach-to-athlete ratio. Select your training day and discipline below to reserve your trial or member slot.
+                        </div>
+                    </div>
+
+                    <!-- Day Tabs -->
+                    <div class="schedule-tabs-wrap">
+                        <button type="button" class="schedule-day-tab active" data-day="mon" onclick="switchScheduleDay('mon')">Monday</button>
+                        <button type="button" class="schedule-day-tab" data-day="tue" onclick="switchScheduleDay('tue')">Tuesday</button>
+                        <button type="button" class="schedule-day-tab" data-day="wed" onclick="switchScheduleDay('wed')">Wednesday</button>
+                        <button type="button" class="schedule-day-tab" data-day="thu" onclick="switchScheduleDay('thu')">Thursday</button>
+                        <button type="button" class="schedule-day-tab" data-day="fri" onclick="switchScheduleDay('fri')">Friday</button>
+                        <button type="button" class="schedule-day-tab" data-day="sat" onclick="switchScheduleDay('sat')">Saturday</button>
+                        <button type="button" class="schedule-day-tab" data-day="sun" onclick="switchScheduleDay('sun')">Sunday</button>
+                    </div>
+
+                    <!-- Category Filter Pills -->
+                    <div class="schedule-filters-wrap">
+                        <button type="button" class="schedule-filter-pill active" data-filter="all" onclick="filterScheduleCategory('all')">All Disciplines</button>
+                        <button type="button" class="schedule-filter-pill" data-filter="sc" onclick="filterScheduleCategory('sc')">Strength &amp; Conditioning</button>
+                        <button type="button" class="schedule-filter-pill" data-filter="olympic" onclick="filterScheduleCategory('olympic')">Olympic Weightlifting</button>
+                        <button type="button" class="schedule-filter-pill" data-filter="calisthenics" onclick="filterScheduleCategory('calisthenics')">Calisthenics &amp; Movement</button>
+                        <button type="button" class="schedule-filter-pill" data-filter="open" onclick="filterScheduleCategory('open')">Open Gym Access</button>
+                    </div>
+
+                    <!-- Schedule Dynamic Grid -->
+                    <div class="schedule-grid" id="scheduleGridContainer">
+                        <!-- Populated dynamically by JS -->
+                    </div>
+
+                    <div style="text-align:center; margin-top:35px; color:#888888; font-size:13px;">
+                        <i class="fa fa-info-circle mr-5"></i> Private 1-on-1 coaching slots can be scheduled outside timetable hours upon coach reservation.
+                    </div>
+
+                </div>
+            </section>
+            <!-- End Weekly Performance Schedule Section -->
+
             <!-- Coaches & Credentials Section -->
             <section class="page-section bg-dark-secondary" id="coaches">
                 <div class="container relative">
@@ -879,8 +929,13 @@
                             <h3 class="font-alt" style="letter-spacing: 5px; color: #FFFFFF; font-size: 20px; margin-bottom: 15px;">
                                 ARCHITECTURE OF PERFORMANCE
                             </h3>
-                            <div style="letter-spacing: 3px; color: #888888; font-size: 13px; text-transform: uppercase;">
+                            <div style="letter-spacing: 3px; color: #888888; font-size: 13px; text-transform: uppercase; margin-bottom: 25px;">
                                 SCIENCE-BASED &bull; DATA-DRIVEN &bull; RELENTLESS
+                            </div>
+                            <div>
+                                <a href="#facility-reel" class="btn btn-mod btn-border-w btn-medium btn-round" style="letter-spacing:2px; font-weight:700;" onclick="openVideoReel(event)">
+                                    <i class="fa fa-play-circle mr-10" style="color:#25D366;"></i> WATCH FACILITY TOUR &amp; REEL
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -1097,8 +1152,253 @@
                 </div>
             </section>
             <!-- End Newsletter Section -->
-            
-            
+
+            <!-- Interactive 60-Second Athletic Diagnostic Section -->
+            <section class="page-section bg-dark-secondary" id="diagnostic-tool">
+                <div class="container relative">
+                    
+                    <div class="align-center mb-40">
+                        <div class="inzan-subheading mb-10" style="color: #25D366; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Biomechanical Intake Engine</div>
+                        <h2 class="section-title font-alt mb-15">60-SECOND ATHLETIC DIAGNOSTIC</h2>
+                        <div class="section-text" style="max-width: 650px; margin: 0 auto; color: #A0A0A0; font-size: 14px;">
+                            Answer 4 quick performance indicators to calculate your recommended Inzan training protocol, assigned coach lead, and 12-week development benchmark.
+                        </div>
+                    </div>
+
+                    <div class="diagnostic-container">
+                        <!-- Progress Bar & Indicator -->
+                        <div class="diagnostic-progress">
+                            <div class="diagnostic-progress-bar-bg">
+                                <div class="diagnostic-progress-fill" id="diagProgressFill"></div>
+                            </div>
+                            <div class="diagnostic-step-dot active" id="dot1">1</div>
+                            <div class="diagnostic-step-dot" id="dot2">2</div>
+                            <div class="diagnostic-step-dot" id="dot3">3</div>
+                            <div class="diagnostic-step-dot" id="dot4">4</div>
+                        </div>
+
+                        <!-- Step 1: Goal -->
+                        <div class="diag-step-card active" id="diagStep1">
+                            <h3 class="diag-step-title">Step 1: Primary Athletic Objective</h3>
+                            <p class="diag-step-subtitle">What physical quality do you most want to develop or optimize?</p>
+                            <div class="diag-options-grid">
+                                <div class="diag-option-btn selected" onclick="selectDiagOption('goal', 'power', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">Explosive Power &amp; Speed</div>
+                                        <div class="diag-opt-desc">Rate of force development, vertical jump, sprint mechanics, and reactive velocity.</div>
+                                    </div>
+                                </div>
+                                <div class="diag-option-btn" onclick="selectDiagOption('goal', 'olympic', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">Olympic Weightlifting Mastery</div>
+                                        <div class="diag-opt-desc">Snatch, clean &amp; jerk technique, triple extension, bar trajectory, and max strength.</div>
+                                    </div>
+                                </div>
+                                <div class="diag-option-btn" onclick="selectDiagOption('goal', 'calisthenics', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">Calisthenics &amp; Gymnastic Rings</div>
+                                        <div class="diag-opt-desc">Relative bodyweight strength, strict levers, muscle-ups, and scapular stabilization.</div>
+                                    </div>
+                                </div>
+                                <div class="diag-option-btn" onclick="selectDiagOption('goal', 'hypertrophy', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">Hypertrophy &amp; Recomposition</div>
+                                        <div class="diag-opt-desc">Athletic muscle building, metabolic conditioning, body fat reduction, and nutritional periodization.</div>
+                                    </div>
+                                </div>
+                                <div class="diag-option-btn" onclick="selectDiagOption('goal', 'rehab', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">Injury Rehab &amp; Return to Play</div>
+                                        <div class="diag-opt-desc">Post-injury joint rebuilding, tendon resilience, kinetic symmetry, and pain-free movement.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="diag-nav-actions" style="justify-content: flex-end;">
+                                <button type="button" class="btn btn-mod btn-small btn-round inzan-btn-primary" onclick="nextDiagStep()">
+                                    Next: Training Age <i class="fa fa-arrow-right ml-5"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Experience / Training Age -->
+                        <div class="diag-step-card" id="diagStep2">
+                            <h3 class="diag-step-title">Step 2: Training Age &amp; Background</h3>
+                            <p class="diag-step-subtitle">How long have you been consistently training with barbells or structured athletics?</p>
+                            <div class="diag-options-grid">
+                                <div class="diag-option-btn" onclick="selectDiagOption('experience', 'beginner', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">Novice (&lt; 1 Year)</div>
+                                        <div class="diag-opt-desc">New to structured athletic training or returning after a multi-year hiatus.</div>
+                                    </div>
+                                </div>
+                                <div class="diag-option-btn selected" onclick="selectDiagOption('experience', 'intermediate', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">Intermediate (1 – 3 Years)</div>
+                                        <div class="diag-opt-desc">Consistent lifting background, familiar with basic compound movements.</div>
+                                    </div>
+                                </div>
+                                <div class="diag-option-btn" onclick="selectDiagOption('experience', 'advanced', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">Advanced (3 – 5+ Years)</div>
+                                        <div class="diag-opt-desc">Extensive strength foundation seeking velocity profiling and specialized coaching.</div>
+                                    </div>
+                                </div>
+                                <div class="diag-option-btn" onclick="selectDiagOption('experience', 'competitive', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">Competitive Athlete</div>
+                                        <div class="diag-opt-desc">Collegiate, professional, or competitive sport athlete requiring peak season prep.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="diag-nav-actions">
+                                <button type="button" class="btn btn-mod btn-border-w btn-small btn-round" onclick="prevDiagStep()">
+                                    <i class="fa fa-arrow-left mr-5"></i> Back
+                                </button>
+                                <button type="button" class="btn btn-mod btn-small btn-round inzan-btn-primary" onclick="nextDiagStep()">
+                                    Next: Weekly Commitment <i class="fa fa-arrow-right ml-5"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Frequency -->
+                        <div class="diag-step-card" id="diagStep3">
+                            <h3 class="diag-step-title">Step 3: Weekly Training Commitment</h3>
+                            <p class="diag-step-subtitle">How many training sessions can you realistically commit to each week at Garden 8?</p>
+                            <div class="diag-options-grid">
+                                <div class="diag-option-btn" onclick="selectDiagOption('frequency', '2-3', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">2 &ndash; 3 Sessions / Week</div>
+                                        <div class="diag-opt-desc">Ideal for busy professionals or maintenance phases combined with other sports.</div>
+                                    </div>
+                                </div>
+                                <div class="diag-option-btn selected" onclick="selectDiagOption('frequency', '4-5', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">4 &ndash; 5 Sessions / Week (Optimal)</div>
+                                        <div class="diag-opt-desc">The gold-standard frequency for maximum neuromuscular adaptation and rapid body composition shifts.</div>
+                                    </div>
+                                </div>
+                                <div class="diag-option-btn" onclick="selectDiagOption('frequency', '6+', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">6 Sessions / Week (High Performance)</div>
+                                        <div class="diag-opt-desc">Full periodized split with dedicated active recovery, mobility, and cold plunge regeneration.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="diag-nav-actions">
+                                <button type="button" class="btn btn-mod btn-border-w btn-small btn-round" onclick="prevDiagStep()">
+                                    <i class="fa fa-arrow-left mr-5"></i> Back
+                                </button>
+                                <button type="button" class="btn btn-mod btn-small btn-round inzan-btn-primary" onclick="nextDiagStep()">
+                                    Next: Kinetic Health <i class="fa fa-arrow-right ml-5"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Kinetic Focus & Past Injuries -->
+                        <div class="diag-step-card" id="diagStep4">
+                            <h3 class="diag-step-title">Step 4: Kinetic Health &amp; Joint Focus</h3>
+                            <p class="diag-step-subtitle">Do you have specific joints requiring bulletproofing or past injuries?</p>
+                            <div class="diag-options-grid">
+                                <div class="diag-option-btn selected" onclick="selectDiagOption('focus', 'none', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">100% Healthy / Full Body Focus</div>
+                                        <div class="diag-opt-desc">Zero chronic limitations; ready for unrestricted progressive overload.</div>
+                                    </div>
+                                </div>
+                                <div class="diag-option-btn" onclick="selectDiagOption('focus', 'shoulders', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">Shoulder &amp; Scapular Care</div>
+                                        <div class="diag-opt-desc">History of rotator cuff, impingement, or overhead mobility restrictions.</div>
+                                    </div>
+                                </div>
+                                <div class="diag-option-btn" onclick="selectDiagOption('focus', 'back', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">Lower Back &amp; Lumbar Care</div>
+                                        <div class="diag-opt-desc">Requires core bracing optimization and pelvic alignment focus.</div>
+                                    </div>
+                                </div>
+                                <div class="diag-option-btn" onclick="selectDiagOption('focus', 'knees', this)">
+                                    <div class="diag-opt-radio"></div>
+                                    <div>
+                                        <div class="diag-opt-title">Knee &amp; Ankle Mobility</div>
+                                        <div class="diag-opt-desc">Patellar tendon resilience, ankle dorsiflexion, or ACL return-to-play prep.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="diag-nav-actions">
+                                <button type="button" class="btn btn-mod btn-border-w btn-small btn-round" onclick="prevDiagStep()">
+                                    <i class="fa fa-arrow-left mr-5"></i> Back
+                                </button>
+                                <button type="button" class="btn btn-mod btn-small btn-round inzan-btn-primary" onclick="nextDiagStep()">
+                                    <i class="fa fa-cogs mr-5"></i> Generate My Protocol
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 5: Generated Protocol Results -->
+                        <div class="diag-step-card" id="diagStep5">
+                            <div class="diag-result-card">
+                                <div class="diag-result-header">
+                                    <i class="fa fa-shield"></i> INZAN PRESCRIPTION &bull; BIOMECHANICAL MATCH
+                                </div>
+                                <h3 class="diag-result-protocol" id="diagResultProtocol">INZAN TRI-PHASIC EXPLOSIVE POWER PROTOCOL</h3>
+                                
+                                <div class="diag-metrics-grid">
+                                    <div class="diag-metric-box">
+                                        <div class="diag-metric-label">Assigned Coach Lead</div>
+                                        <div class="diag-metric-val" id="diagMetricCoach">Coach Youssef R.</div>
+                                    </div>
+                                    <div class="diag-metric-box">
+                                        <div class="diag-metric-label">Phase 1 Focus</div>
+                                        <div class="diag-metric-val" id="diagMetricPhase">Force-Velocity Baseline</div>
+                                    </div>
+                                    <div class="diag-metric-box">
+                                        <div class="diag-metric-label">Prescribed Frequency</div>
+                                        <div class="diag-metric-val" id="diagMetricFreq">4 Sessions / Week (1:6 Ratio)</div>
+                                    </div>
+                                    <div class="diag-metric-box">
+                                        <div class="diag-metric-label">Target 12-Wk Benchmark</div>
+                                        <div class="diag-metric-val" id="diagMetricMilestone" style="color:#25D366;">+15–22% RFD</div>
+                                    </div>
+                                </div>
+
+                                <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
+                                    <button type="button" class="btn btn-mod btn-medium btn-round inzan-btn-primary" style="flex:1; min-width:240px;" onclick="applyDiagnosticToForm()">
+                                        <i class="fa fa-calendar-check-o mr-10"></i> Apply To Assessment Booking
+                                    </button>
+                                    <button type="button" class="btn btn-mod btn-medium btn-round inzan-btn-whatsapp" style="flex:1; min-width:240px;" onclick="consultDiagnosticWhatsApp()">
+                                        <i class="fa fa-whatsapp mr-10"></i> Send Results via WhatsApp
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="text-align:center;">
+                                <a href="#" onclick="diagState.step=1; updateDiagUI(); return false;" style="color:#777777; font-size:12px; text-decoration:underline;">
+                                    &larr; Retake Diagnostic Test
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+            <!-- End Interactive 60-Second Athletic Diagnostic Section -->
+
             <!-- Contact & Assessment Booking Section -->
             <section class="page-section bg-dark" id="assessment">
                 <div id="contact" style="position:relative; top:-70px; visibility:hidden;"></div>
@@ -1387,6 +1687,125 @@
                 <div style="margin-top:25px; text-align:right;">
                     <button type="button" class="btn-inzan" onclick="closeNewsModal()">CLOSE</button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Facility Video Tour Cinema Modal -->
+        <div id="inzanVideoModal" class="inzan-cinema-modal">
+            <div class="inzan-cinema-dialog">
+                <div class="inzan-cinema-close" onclick="closeVideoReel()">&times;</div>
+                <div class="video-player-wrap">
+                    <img src="images/full-width-images/facility-1.jpg" alt="Inzan Athletics Facility" class="video-player-bg" />
+                    <div class="video-player-overlay">
+                        <div style="color:#25D366; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">
+                            <i class="fa fa-play-circle mr-5"></i> Facility Walkthrough &bull; Garden 8, New Cairo
+                        </div>
+                        <h3 class="font-alt" style="color:#FFFFFF; font-size:24px; letter-spacing:2px; margin-bottom:12px;">
+                            THE ARCHITECTURE OF ELITE PERFORMANCE
+                        </h3>
+                        <p style="color:#C0C0C0; font-size:13px; max-width:680px; line-height:1.6; margin-bottom:20px;">
+                            Explore Egypt's leading science-based training centre: dedicated Eleiko competition lifting platforms, bespoke gymnastic rig, 25-meter indoor sprint turf, and comprehensive biomechanical testing lab.
+                        </p>
+                        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                            <a href="#assessment" class="btn btn-mod btn-small btn-round inzan-btn-primary" onclick="closeVideoReel()">
+                                <i class="fa fa-calendar-check-o mr-5"></i> Book In-Person Screening
+                            </a>
+                            <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20would%20like%20to%20schedule%20a%20facility%20tour%20at%20Garden%208." target="_blank" rel="noopener noreferrer" class="btn btn-mod btn-small btn-round inzan-btn-whatsapp">
+                                <i class="fa fa-whatsapp mr-5"></i> WhatsApp Concierge
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Athlete Portal Gateway Modal -->
+        <div id="inzanPortalModal" class="inzan-cinema-modal">
+            <div class="inzan-cinema-dialog" style="max-width:740px;">
+                <div class="inzan-cinema-close" onclick="closePortalModal()">&times;</div>
+                <div class="portal-tabs">
+                    <button type="button" class="portal-tab-btn active" data-tab="login" onclick="switchPortalTab('login')">
+                        <i class="fa fa-lock mr-5"></i> Athlete Sign In
+                    </button>
+                    <button type="button" class="portal-tab-btn" data-tab="features" onclick="switchPortalTab('features')">
+                        <i class="fa fa-th-large mr-5"></i> Platform Ecosystem
+                    </button>
+                </div>
+
+                <!-- Sign In Tab -->
+                <div class="portal-tab-body" id="portalTabLogin">
+                    <div style="text-align:center; margin-bottom:25px;">
+                        <img src="images/inzan-logo.png" srcset="images/inzan-logo@2x.png 2x" height="26" alt="INZAN ATHLETICS" style="margin-bottom:12px;" />
+                        <h3 class="font-alt" style="font-size:18px; letter-spacing:2px; color:#FFFFFF; margin-bottom:6px;">ATHLETE PERFORMANCE CLOUD</h3>
+                        <p style="font-size:12px; color:#888888;">Access class reservations, velocity tracking, and personalized nutritional blueprints.</p>
+                    </div>
+
+                    <form onsubmit="handlePortalDemoLogin(event)">
+                        <div class="mb-20">
+                            <label class="inzan-field-label" for="portalEmail">Athlete Email or Member ID</label>
+                            <input type="text" id="portalEmail" class="inzan-form-control" placeholder="e.g. omar@inzan.me or INZ-2026-084" value="athlete.demo@inzanathletics.com" required />
+                        </div>
+                        <div class="mb-25">
+                            <label class="inzan-field-label" for="portalPassword">Athlete Password</label>
+                            <input type="password" id="portalPassword" class="inzan-form-control" placeholder="••••••••••••" value="password123" required />
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; font-size:12px; color:#888888;">
+                            <label style="cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+                                <input type="checkbox" checked style="accent-color:#25D366;" /> Remember credentials
+                            </label>
+                            <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20need%20help%20with%20my%20Athlete%20Portal%20password." target="_blank" rel="noopener noreferrer" style="color:#25D366;">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-mod btn-medium btn-round inzan-btn-primary" id="portalLoginBtn" style="width:100%;">
+                            <i class="fa fa-sign-in mr-5"></i> Access Athlete Dashboard
+                        </button>
+                    </form>
+
+                    <div id="portalLoginFeedback"></div>
+
+                    <div style="text-align:center; margin-top:25px; padding-top:20px; border-top:1px solid #222222; font-size:12px; color:#888888;">
+                        Not an active member yet? <a href="#assessment" onclick="closePortalModal()" style="color:#25D366; font-weight:700;">Book an intake assessment</a> to activate member credentials.
+                    </div>
+                </div>
+
+                <!-- Features Tab -->
+                <div class="portal-tab-body" id="portalTabFeatures" style="display:none;">
+                    <div style="text-align:center; margin-bottom:25px;">
+                        <h3 class="font-alt" style="font-size:18px; letter-spacing:2px; color:#FFFFFF; margin-bottom:6px;">CONNECTED ATHLETIC ECOSYSTEM</h3>
+                        <p style="font-size:12px; color:#888888;">Seamless digital coaching tools built directly for Inzan members.</p>
+                    </div>
+
+                    <div class="portal-feature-grid">
+                        <div class="portal-feature-card">
+                            <div class="portal-feature-icon"><i class="fa fa-heartbeat"></i></div>
+                            <h4 class="portal-feature-title">Wearable Health Sync</h4>
+                            <p class="portal-feature-desc">Automatic bi-directional sync with Apple Health, Whoop 4.0, Garmin, and Oura ring recovery data.</p>
+                        </div>
+                        <div class="portal-feature-card">
+                            <div class="portal-feature-icon"><i class="fa fa-line-chart"></i></div>
+                            <h4 class="portal-feature-title">Barbell Velocity Tracking</h4>
+                            <p class="portal-feature-desc">Log mean concentric velocity, estimated 1RM, and load progression per session.</p>
+                        </div>
+                        <div class="portal-feature-card">
+                            <div class="portal-feature-icon"><i class="fa fa-cutlery"></i></div>
+                            <h4 class="portal-feature-title">Inzan Kitchen Ordering</h4>
+                            <p class="portal-feature-desc">Pre-order precision macro meals, recovery shakes, and hydration ready right as your session finishes.</p>
+                        </div>
+                        <div class="portal-feature-card">
+                            <div class="portal-feature-icon"><i class="fa fa-shield"></i></div>
+                            <h4 class="portal-feature-title">Athletic Passport</h4>
+                            <p class="portal-feature-desc">Gamified progress badges, movement screening milestones, and periodized training phases.</p>
+                        </div>
+                    </div>
+
+                    <div style="text-align:center; margin-top:20px;">
+                        <a href="#assessment" class="btn btn-mod btn-medium btn-round inzan-btn-primary" onclick="closePortalModal()">
+                            <i class="fa fa-calendar-check-o mr-5"></i> Join Inzan Athletics
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
         
