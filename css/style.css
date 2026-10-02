@@ -228,7 +228,7 @@ img:not([draggable]), embed, object, video {
 	position: fixed;
 	top: 0;
 	left: 0;
-	background: #fefefe;
+	background: #000000;
 	z-index: 100000;	
 }
 

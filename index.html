@@ -99,21 +99,54 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
         
         <!-- Inzan Athletics Custom Commercial Gym Styling -->
-        <link rel="stylesheet" href="css/custom-inzan.css?v=3">
+        <link rel="stylesheet" href="css/custom-inzan.css?v=4">
     </head>
     <body class="appear-animate">
         
-        <!-- Page Loader -->        
-        <div class="page-loader">
-            <div class="loader">Loading...</div>
+        <!-- Desktop Precision Cursor -->
+        <div id="inzanCursorDot"></div>
+        <div id="inzanCursorRing"></div>
+        
+        <!-- Inzan Cinematic Telemetry Preloader -->
+        <div id="inzanPreloader">
+            <div class="preloader-curtain-top"></div>
+            <div class="preloader-curtain-bottom"></div>
+            <div class="preloader-hud-content">
+                <div class="hud-corner hud-corner-tl"></div>
+                <div class="hud-corner hud-corner-tr"></div>
+                <div class="hud-corner hud-corner-bl"></div>
+                <div class="hud-corner hud-corner-br"></div>
+                
+                <div class="preloader-brand-mark">
+                    <div class="preloader-ring"></div>
+                    <div class="preloader-ring-outer"></div>
+                    <img src="images/inzan-logo.png" alt="Inzan Athletics" style="max-height: 28px; filter: brightness(1.2) drop-shadow(0 0 10px rgba(37,211,102,0.6));" />
+                </div>
+
+                <div class="preloader-counter"><span id="preloaderNum">00</span><span>%</span></div>
+                
+                <div class="preloader-progress-track">
+                    <div class="preloader-progress-bar" id="preloaderBar"></div>
+                </div>
+                
+                <div class="preloader-status-text" id="preloaderStatus">INITIALIZING KINETIC SYSTEMS...</div>
+
+                <div class="preloader-meta-strip">
+                    <span>INZAN-OS v4.0</span>
+                    <span>GARDEN 8 &bull; NEW CAIRO</span>
+                    <span>ONLINE</span>
+                </div>
+            </div>
         </div>
-        <!-- End Page Loader -->
+        <!-- End Inzan Cinematic Telemetry Preloader -->
         
         <!-- Page Wrap -->
         <div class="page" id="top">
             
             <!-- Home Section -->
             <section class="home-section bg-dark-alfa-90 parallax-2" data-background="images/full-width-images/Test.jpg" id="home">
+                <!-- Ambient Kinetic Mesh Canvas -->
+                <canvas id="heroParticleCanvas"></canvas>
                 <div class="js-height-full">
                     
                     <!-- Hero Content -->
@@ -178,6 +211,51 @@
                 </div>
             </section>
             <!-- End Home Section -->
+            
+            <!-- Athletic Story Highlights Reel -->
+            <div class="inzan-stories-section">
+                <div class="container relative">
+                    <div class="inzan-stories-wrap">
+                        <button type="button" class="story-pill-item" onclick="openStoryModal('facility')">
+                            <div class="story-ring">
+                                <img src="images/full-width-images/facility-1.jpg" alt="Facility Tour" class="story-avatar" />
+                            </div>
+                            <span class="story-label">Facility</span>
+                        </button>
+                        <button type="button" class="story-pill-item" onclick="openStoryModal('olympic')">
+                            <div class="story-ring">
+                                <img src="images/portfolio/projects-4.jpg" alt="Olympic Weightlifting" class="story-avatar" />
+                            </div>
+                            <span class="story-label">Olympic</span>
+                        </button>
+                        <button type="button" class="story-pill-item" onclick="openStoryModal('sc')">
+                            <div class="story-ring">
+                                <img src="images/full-width-images/fac.jpg" alt="S&C Power" class="story-avatar" />
+                            </div>
+                            <span class="story-label">S&amp;C Lab</span>
+                        </button>
+                        <button type="button" class="story-pill-item" onclick="openStoryModal('calisthenics')">
+                            <div class="story-ring">
+                                <img src="images/portfolio/projects-5.jpg" alt="Calisthenics" class="story-avatar" />
+                            </div>
+                            <span class="story-label">Calisthenics</span>
+                        </button>
+                        <button type="button" class="story-pill-item" onclick="openStoryModal('diagnostic')">
+                            <div class="story-ring">
+                                <img src="images/full-width-images/Test.jpg" alt="Biomechanical Screening" class="story-avatar" />
+                            </div>
+                            <span class="story-label">Screening</span>
+                        </button>
+                        <button type="button" class="story-pill-item" onclick="openStoryModal('nutrition')">
+                            <div class="story-ring">
+                                <img src="images/full-width-images/ast.jpg" alt="Nutrition" class="story-avatar" />
+                            </div>
+                            <span class="story-label">Nutrition</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- End Athletic Story Highlights Reel -->
             
             <!-- Navigation panel -->
             <nav class="main-nav dark transparent stick-fixed">
@@ -1809,6 +1887,105 @@
             </div>
         </div>
         
+        <!-- Athletic Story Lightbox Modal -->
+        <div id="inzanStoryModal">
+            <div class="story-modal-card">
+                <div class="story-progress-row">
+                    <div class="story-progress-seg"><div class="story-progress-fill" id="storyProgressFill"></div></div>
+                </div>
+                <div class="story-header-bar">
+                    <div class="story-author-info">
+                        <img src="images/logo-dark.png" alt="Inzan Athletics" class="story-author-img" id="storyAuthorImg" />
+                        <div>
+                            <div class="story-author-name" id="storyAuthorName">INZAN ATHLETICS</div>
+                            <div style="font-size:10px; color:#25D366; letter-spacing:1px; text-transform:uppercase;" id="storyCategory">FACILITY TOUR</div>
+                        </div>
+                    </div>
+                    <button type="button" class="story-close-btn" onclick="closeStoryModal()">&times;</button>
+                </div>
+                
+                <img src="images/full-width-images/facility-1.jpg" alt="Story Media" class="story-media-view" id="storyMediaView" />
+                
+                <div class="story-nav-tap story-tap-prev" onclick="prevStorySlide()"></div>
+                <div class="story-nav-tap story-tap-next" onclick="nextStorySlide()"></div>
+                
+                <div class="story-caption-overlay">
+                    <h4 class="story-caption-title" id="storyCaptionTitle">GARDEN 8 HIGH PERFORMANCE FACILITY</h4>
+                    <p class="story-caption-desc" id="storyCaptionDesc">Dedicated Eleiko competition platforms, custom gymnastic rig, 25-meter indoor sprint turf, and biomechanical testing lab in New Cairo.</p>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <a href="#assessment" class="btn btn-mod btn-small btn-round inzan-btn-primary" style="flex:1;" onclick="closeStoryModal()">
+                            <i class="fa fa-calendar-check-o mr-5"></i> Book Screening
+                        </a>
+                        <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20am%20watching%20your%20story%20highlights%20and%20want%20to%20inquire." target="_blank" rel="noopener noreferrer" class="btn btn-mod btn-small btn-round inzan-btn-whatsapp" style="flex:1;">
+                            <i class="fa fa-whatsapp mr-5"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Quick Action Floating Bottom Bar (< 768px) -->
+        <div class="inzan-mobile-bottom-bar" id="inzanMobileBottomBar">
+            <button type="button" class="inzan-mob-bar-btn" onclick="toggleBottomDrawer()">
+                <i class="fa fa-th-large"></i>
+                <span>Explore</span>
+            </button>
+            <a href="#schedule" class="inzan-mob-bar-btn">
+                <i class="fa fa-calendar"></i>
+                <span>Schedule</span>
+            </a>
+            <a href="#assessment" class="inzan-mob-bar-btn inzan-mob-bar-cta">
+                <i class="fa fa-bolt"></i>
+                <span>Book</span>
+            </a>
+            <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20would%20like%20to%20inquire%20about%20membership." target="_blank" rel="noopener noreferrer" class="inzan-mob-bar-btn" style="color:#25D366;">
+                <i class="fa fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+        </div>
+
+        <!-- Mobile Quick Navigation Drawer Sheet -->
+        <div id="inzanBottomDrawer" onclick="handleDrawerBackdropClick(event)">
+            <div class="inzan-drawer-panel">
+                <div class="drawer-drag-handle"></div>
+                <div style="text-align:center; margin-bottom:18px;">
+                    <h3 class="font-alt" style="font-size:16px; letter-spacing:2px; color:#FFFFFF; margin-bottom:4px;">INZAN ATHLETICS &bull; QUICK ACCESS</h3>
+                    <p style="font-size:11px; color:#888888;">Garden 8, Northern Investors, New Cairo</p>
+                </div>
+                <div class="drawer-links-grid">
+                    <a href="#diagnostic-tool" class="drawer-action-card" onclick="closeBottomDrawer()">
+                        <i class="fa fa-sliders"></i>
+                        <div class="drawer-action-title">60s Diagnostic</div>
+                        <div class="drawer-action-sub">Calculate Protocol</div>
+                    </a>
+                    <a href="#schedule" class="drawer-action-card" onclick="closeBottomDrawer()">
+                        <i class="fa fa-calendar-check-o"></i>
+                        <div class="drawer-action-title">Live Timetable</div>
+                        <div class="drawer-action-sub">Mon &ndash; Sun Slots</div>
+                    </a>
+                    <a href="#coaches" class="drawer-action-card" onclick="closeBottomDrawer()">
+                        <i class="fa fa-user-circle"></i>
+                        <div class="drawer-action-title">Master Coaches</div>
+                        <div class="drawer-action-sub">Credentials &amp; Bio</div>
+                    </a>
+                    <a href="https://maps.google.com/?q=Garden+8+Mall+New+Cairo" target="_blank" rel="noopener noreferrer" class="drawer-action-card">
+                        <i class="fa fa-map-marker"></i>
+                        <div class="drawer-action-title">Get Directions</div>
+                        <div class="drawer-action-sub">Google Maps</div>
+                    </a>
+                </div>
+                <button type="button" class="btn btn-mod btn-medium btn-round inzan-btn-primary" style="width:100%;" onclick="closeBottomDrawer(); selectPathway('Sport Performance');">
+                    <i class="fa fa-calendar mr-5"></i> Book 60-Min Intake Assessment
+                </button>
+            </div>
+        </div>
+
+        <!-- Synthesized Tactile Sound Toggle (Opt-In) -->
+        <button type="button" id="inzanSoundToggle" onclick="toggleInzanSound()" aria-label="Toggle interface sound effects">
+            <i class="fa fa-volume-off" id="soundToggleIcon"></i>
+            <span id="soundToggleText">Audio: Off</span>
+        </button>
+        
         <!-- Toast Notification -->
         <div id="inzanToast" class="inzan-toast"></div>
         
@@ -1835,10 +2012,10 @@
         <script type="text/javascript" src="js/jquery.fitvids.js"></script>
         
         <!-- Core Template JS -->
-        <script type="text/javascript" src="js/all.js?v=3"></script>
+        <script type="text/javascript" src="js/all.js?v=4"></script>
         
         <!-- Custom Inzan Athletics JS -->
-        <script type="text/javascript" src="js/custom-inzan.js?v=3"></script>
+        <script type="text/javascript" src="js/custom-inzan.js?v=4"></script>
         
     </body>
 </html>

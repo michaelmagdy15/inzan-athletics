@@ -1,12 +1,560 @@
 /**
  * INZAN ATHLETICS - Custom Commercial Gym Interactions & Scripts
- * Version: 3.0.0
+ * Version: 4.0.0 (Immersive Next-Level Suite)
  */
 
 (function($) {
     "use strict";
 
-    // News Data for interactive modal reader (Sports Science & Coaching Articles)
+    // ==========================================================================
+    // 1. Synthesized Web Audio Engine (Tactile UI Micro-Feedback, Opt-In)
+    // ==========================================================================
+    var audioCtx = null;
+    var soundEnabled = false;
+
+    // Check localStorage preference
+    try {
+        if (localStorage.getItem("inzan_sound") === "true") {
+            soundEnabled = true;
+        }
+    } catch(e) {}
+
+    function getAudioContext() {
+        if (!audioCtx) {
+            var AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            if (AudioContextClass) {
+                audioCtx = new AudioContextClass();
+            }
+        }
+        if (audioCtx && audioCtx.state === "suspended") {
+            audioCtx.resume();
+        }
+        return audioCtx;
+    }
+
+    function playSyntheticTone(freq, duration, type) {
+        if (!soundEnabled) return;
+        try {
+            var ctx = getAudioContext();
+            if (!ctx) return;
+            var osc = ctx.createOscillator();
+            var gain = ctx.createGain();
+            osc.type = type || "sine";
+            osc.frequency.setValueAtTime(freq || 1050, ctx.currentTime);
+            gain.gain.setValueAtTime(0.04, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + (duration || 0.04));
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + (duration || 0.04));
+        } catch(e) {}
+    }
+
+    window.toggleInzanSound = function() {
+        soundEnabled = !soundEnabled;
+        try {
+            localStorage.setItem("inzan_sound", soundEnabled ? "true" : "false");
+        } catch(e) {}
+
+        var $btn = $("#inzanSoundToggle");
+        var $icon = $("#soundToggleIcon");
+        var $text = $("#soundToggleText");
+
+        if (soundEnabled) {
+            $btn.addClass("sound-on");
+            $icon.attr("class", "fa fa-volume-up");
+            $text.text("Audio: On");
+            playSyntheticTone(1200, 0.08, "triangle");
+            showToast("Tactile Audio Enabled", "fa fa-volume-up");
+        } else {
+            $btn.removeClass("sound-on");
+            $icon.attr("class", "fa fa-volume-off");
+            $text.text("Audio: Off");
+            showToast("Tactile Audio Muted", "fa fa-volume-off");
+        }
+    };
+
+    function updateSoundToggleUI() {
+        var $btn = $("#inzanSoundToggle");
+        var $icon = $("#soundToggleIcon");
+        var $text = $("#soundToggleText");
+        if (soundEnabled) {
+            $btn.addClass("sound-on");
+            $icon.attr("class", "fa fa-volume-up");
+            $text.text("Audio: On");
+        } else {
+            $btn.removeClass("sound-on");
+            $icon.attr("class", "fa fa-volume-off");
+            $text.text("Audio: Off");
+        }
+    }
+
+    // ==========================================================================
+    // 2. Cinematic Telemetry Preloader Engine
+    // ==========================================================================
+    function initCinematicPreloader() {
+        var $preloader = $("#inzanPreloader");
+        if ($preloader.length === 0) return;
+
+        var hasLoadedBefore = false;
+        try {
+            hasLoadedBefore = sessionStorage.getItem("inzan_preloaded") === "true";
+        } catch(e) {}
+
+        var $num = $("#preloaderNum");
+        var $bar = $("#preloaderBar");
+        var $status = $("#preloaderStatus");
+
+        var progress = 0;
+        var targetDuration = hasLoadedBefore ? 350 : 1350;
+        var startTime = null;
+
+        var statusMessages = [
+            { pct: 0, msg: "INITIALIZING KINETIC SYSTEMS..." },
+            { pct: 28, msg: "CALIBRATING ELEIKO PLATFORMS..." },
+            { pct: 58, msg: "SYNCHRONIZING NEW CAIRO TIMETABLE..." },
+            { pct: 88, msg: "CONFIGURING ATHLETE CLOUD..." },
+            { pct: 100, msg: "SYSTEM READY &bull; ACCESS GRANTED" }
+        ];
+
+        function getStatusMessage(p) {
+            var current = statusMessages[0].msg;
+            for (var i = 0; i < statusMessages.length; i++) {
+                if (p >= statusMessages[i].pct) {
+                    current = statusMessages[i].msg;
+                }
+            }
+            return current;
+        }
+
+        function stepPreloader(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var elapsed = timestamp - startTime;
+            var rawPct = Math.min(100, Math.floor((elapsed / targetDuration) * 100));
+
+            if (rawPct > progress) {
+                progress = rawPct;
+                $num.text(progress < 10 ? "0" + progress : progress);
+                $bar.css("width", progress + "%");
+                $status.html(getStatusMessage(progress));
+
+                if (progress % 20 === 0 && soundEnabled) {
+                    playSyntheticTone(800 + progress * 4, 0.02, "sine");
+                }
+            }
+
+            if (progress < 100) {
+                requestAnimationFrame(stepPreloader);
+            } else {
+                // Preloader 100% complete: Trigger shutter curtain reveal
+                try {
+                    sessionStorage.setItem("inzan_preloaded", "true");
+                } catch(e) {}
+
+                if (soundEnabled) {
+                    playSyntheticTone(1450, 0.1, "triangle");
+                }
+
+                setTimeout(function() {
+                    $preloader.addClass("loaded");
+                    $("body").addClass("preloader-finished");
+
+                    // Hide completely after curtain animation
+                    setTimeout(function() {
+                        $preloader.addClass("hidden-complete");
+                    }, 850);
+                }, 150);
+            }
+        }
+
+        requestAnimationFrame(stepPreloader);
+    }
+
+    // ==========================================================================
+    // 3. Hero Ambient Kinetic Mesh Canvas
+    // ==========================================================================
+    function initHeroParticles() {
+        var canvas = document.getElementById("heroParticleCanvas");
+        if (!canvas) return;
+        var ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
+        var width = 0;
+        var height = 0;
+        var particles = [];
+        var maxParticles = window.innerWidth <= 768 ? 22 : 45;
+        var maxDistance = window.innerWidth <= 768 ? 80 : 120;
+        var animFrameId = null;
+        var isCanvasVisible = true;
+
+        var pointer = { x: null, y: null, radius: 140 };
+
+        function resizeCanvas() {
+            var parent = canvas.parentElement;
+            if (!parent) return;
+            width = canvas.width = parent.offsetWidth;
+            height = canvas.height = parent.offsetHeight;
+        }
+
+        function createParticles() {
+            particles = [];
+            for (var i = 0; i < maxParticles; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.6,
+                    vy: (Math.random() - 0.5) * 0.6,
+                    radius: Math.random() * 1.8 + 1,
+                    alpha: Math.random() * 0.5 + 0.3
+                });
+            }
+        }
+
+        function draw() {
+            if (!isCanvasVisible) return;
+            ctx.clearRect(0, 0, width, height);
+
+            // Connect nearby particles
+            for (var a = 0; a < particles.length; a++) {
+                var p1 = particles[a];
+
+                // Pointer interaction
+                if (pointer.x !== null && pointer.y !== null) {
+                    var dxp = pointer.x - p1.x;
+                    var dyp = pointer.y - p1.y;
+                    var distP = Math.sqrt(dxp * dxp + dyp * dyp);
+                    if (distP < pointer.radius) {
+                        var force = (pointer.radius - distP) / pointer.radius;
+                        p1.x -= (dxp / distP) * force * 1.5;
+                        p1.y -= (dyp / distP) * force * 1.5;
+                    }
+                }
+
+                // Move particle
+                p1.x += p1.vx;
+                p1.y += p1.vy;
+
+                // Bounce off edges
+                if (p1.x < 0 || p1.x > width) p1.vx *= -1;
+                if (p1.y < 0 || p1.y > height) p1.vy *= -1;
+
+                // Draw dot
+                ctx.beginPath();
+                ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(37, 211, 102, " + p1.alpha + ")";
+                ctx.fill();
+
+                // Draw lines between particles
+                for (var b = a + 1; b < particles.length; b++) {
+                    var p2 = particles[b];
+                    var dx = p1.x - p2.x;
+                    var dy = p1.y - p2.y;
+                    var dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < maxDistance) {
+                        var lineAlpha = (1 - dist / maxDistance) * 0.22;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = "rgba(37, 211, 102, " + lineAlpha + ")";
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            animFrameId = requestAnimationFrame(draw);
+        }
+
+        // Pointer listeners
+        window.addEventListener("mousemove", function(e) {
+            var rect = canvas.getBoundingClientRect();
+            if (e.clientY <= rect.bottom && e.clientY >= rect.top) {
+                pointer.x = e.clientX - rect.left;
+                pointer.y = e.clientY - rect.top;
+            } else {
+                pointer.x = null;
+                pointer.y = null;
+            }
+        });
+
+        window.addEventListener("mouseleave", function() {
+            pointer.x = null;
+            pointer.y = null;
+        });
+
+        // Optimize performance: pause canvas when hero is out of view
+        if ("IntersectionObserver" in window) {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        if (!isCanvasVisible) {
+                            isCanvasVisible = true;
+                            draw();
+                        }
+                    } else {
+                        isCanvasVisible = false;
+                        cancelAnimationFrame(animFrameId);
+                    }
+                });
+            }, { threshold: 0.05 });
+            observer.observe(canvas.parentElement || canvas);
+        }
+
+        resizeCanvas();
+        createParticles();
+        draw();
+
+        window.addEventListener("resize", function() {
+            resizeCanvas();
+        });
+    }
+
+    // ==========================================================================
+    // 4. Desktop Precision Dual-Ring Cursor
+    // ==========================================================================
+    function initPrecisionCursor() {
+        if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) {
+            return; // Touch devices use native tap
+        }
+
+        var $dot = $("#inzanCursorDot");
+        var $ring = $("#inzanCursorRing");
+        if ($dot.length === 0 || $ring.length === 0) return;
+
+        var mouseX = -100;
+        var mouseY = -100;
+        var ringX = -100;
+        var ringY = -100;
+        var isCursorInWindow = false;
+
+        document.addEventListener("mousemove", function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            if (!isCursorInWindow) {
+                isCursorInWindow = true;
+                $dot.css("opacity", "1");
+                $ring.css("opacity", "1");
+            }
+            $dot.css("transform", "translate3d(" + mouseX + "px, " + mouseY + "px, 0) translate(-50%, -50%)");
+        });
+
+        document.addEventListener("mouseleave", function() {
+            isCursorInWindow = false;
+            $dot.css("opacity", "0");
+            $ring.css("opacity", "0");
+        });
+
+        // Hover expand on interactive elements
+        var interactiveSelector = "a, button, .btn, .story-pill-item, .schedule-day-tab, .schedule-filter-pill, .diag-option-btn, .tilt-card, .inzan-mob-bar-btn";
+        $(document).on("mouseenter", interactiveSelector, function() {
+            $("body").addClass("cursor-active");
+            if (soundEnabled) {
+                playSyntheticTone(1400, 0.015, "sine");
+            }
+        });
+        $(document).on("mouseleave", interactiveSelector, function() {
+            $("body").removeClass("cursor-active");
+        });
+
+        // Butter-smooth lerp loop for the outer ring
+        function renderCursorRing() {
+            ringX += (mouseX - ringX) * 0.18;
+            ringY += (mouseY - ringY) * 0.18;
+            $ring.css("transform", "translate3d(" + ringX + "px, " + ringY + "px, 0) translate(-50%, -50%)");
+            requestAnimationFrame(renderCursorRing);
+        }
+        renderCursorRing();
+    }
+
+    // ==========================================================================
+    // 5. 3D Perspective Card Tilt & Dynamic Spotlight Sheen
+    // ==========================================================================
+    function init3DTilt() {
+        if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) {
+            return;
+        }
+
+        $(document).on("mousemove", ".tilt-card", function(e) {
+            var card = this;
+            var rect = card.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+
+            // Set CSS vars for radial spotlight sheen
+            card.style.setProperty("--mouse-x", x + "px");
+            card.style.setProperty("--mouse-y", y + "px");
+
+            // Compute 3D rotation
+            var centerX = rect.width / 2;
+            var centerY = rect.height / 2;
+            var rotateX = ((y - centerY) / centerY) * -6; // Max 6 deg
+            var rotateY = ((x - centerX) / centerX) * 6;  // Max 6 deg
+
+            card.style.transform = "perspective(800px) rotateX(" + rotateX.toFixed(2) + "deg) rotateY(" + rotateY.toFixed(2) + "deg) scale3d(1.02, 1.02, 1.02)";
+        });
+
+        $(document).on("mouseleave", ".tilt-card", function() {
+            var card = this;
+            card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+        });
+    }
+
+    // ==========================================================================
+    // 6. Mobile Athletic Story Highlights Reel Controller
+    // ==========================================================================
+    var storyData = {
+        facility: {
+            author: "GARDEN 8 FACILITY",
+            category: "HIGH PERFORMANCE CENTRE",
+            title: "THE ARCHITECTURE OF ELITE TRAINING",
+            desc: "Explore Egypt's leading sports science venue: competition Eleiko barbell platforms, custom gymnastic rig, 25-meter indoor sprint turf, and biomechanical testing lab.",
+            image: "images/full-width-images/facility-1.jpg"
+        },
+        olympic: {
+            author: "COACH AHMED M.",
+            category: "OLYMPIC WEIGHTLIFTING",
+            title: "TRIPLE EXTENSION & BAR VELOCITY",
+            desc: "Technical progressions in the snatch and clean & jerk. High-speed video analysis and barbell trajectory tracking on Eleiko platforms.",
+            image: "images/portfolio/projects-4.jpg"
+        },
+        sc: {
+            author: "COACH YOUSSEF R.",
+            category: "STRENGTH & CONDITIONING",
+            title: "FORCE-VELOCITY & RFD LAB",
+            desc: "Tri-phasic velocity-based power development. Measure explosive ground reaction force and anaerobic threshold.",
+            image: "images/full-width-images/fac.jpg"
+        },
+        calisthenics: {
+            author: "COACH KAREEM S.",
+            category: "CALISTHENICS & RINGS",
+            title: "RELATIVE BODYWEIGHT MASTERY",
+            desc: "Strict gymnastic ring strength, front levers, handstand balance, and bulletproof scapular stabilization.",
+            image: "images/portfolio/projects-5.jpg"
+        },
+        diagnostic: {
+            author: "SPORTS SCIENCE TEAM",
+            category: "MOVEMENT DIAGNOSTIC",
+            title: "60-MIN BIOMECHANICAL SCREEN",
+            desc: "Every athlete undergoes our joint mobility screen, kinetic asymmetry test, and force baseline before loaded programming.",
+            image: "images/full-width-images/Test.jpg"
+        },
+        nutrition: {
+            author: "HANADI H. (RD, CISSN)",
+            category: "PERFORMANCE NUTRITION",
+            title: "PERIODIZED FUEL & RECOMPOSITION",
+            desc: "Custom macronutrient blueprints and intra-workout fueling to maximize neuromuscular output and recovery.",
+            image: "images/full-width-images/ast.jpg"
+        }
+    };
+
+    var storyKeys = ["facility", "olympic", "sc", "calisthenics", "diagnostic", "nutrition"];
+    var currentStoryIdx = 0;
+    var storyTimer = null;
+    var storyProgressVal = 0;
+    var storyDuration = 5000;
+    var isStoryPaused = false;
+
+    window.openStoryModal = function(key) {
+        var idx = storyKeys.indexOf(key);
+        currentStoryIdx = idx >= 0 ? idx : 0;
+        $("#inzanStoryModal").css("display", "flex").hide().fadeIn(250);
+        $("body").css("overflow", "hidden");
+        loadStorySlide(currentStoryIdx);
+        if (soundEnabled) playSyntheticTone(1150, 0.04, "sine");
+    };
+
+    window.closeStoryModal = function() {
+        clearInterval(storyTimer);
+        $("#inzanStoryModal").fadeOut(200);
+        $("body").css("overflow", "auto");
+    };
+
+    function loadStorySlide(idx) {
+        clearInterval(storyTimer);
+        storyProgressVal = 0;
+        $("#storyProgressFill").css("width", "0%");
+
+        var key = storyKeys[idx];
+        var item = storyData[key];
+        if (!item) return;
+
+        $("#storyAuthorName").text(item.author);
+        $("#storyCategory").text(item.category);
+        $("#storyCaptionTitle").text(item.title);
+        $("#storyCaptionDesc").text(item.desc);
+        $("#storyMediaView").attr("src", item.image);
+
+        // Animate story progress bar
+        var intervalTime = 50;
+        var stepAmount = (intervalTime / storyDuration) * 100;
+
+        storyTimer = setInterval(function() {
+            if (!isStoryPaused) {
+                storyProgressVal += stepAmount;
+                $("#storyProgressFill").css("width", Math.min(100, storyProgressVal) + "%");
+                if (storyProgressVal >= 100) {
+                    clearInterval(storyTimer);
+                    window.nextStorySlide();
+                }
+            }
+        }, intervalTime);
+    }
+
+    window.nextStorySlide = function() {
+        if (currentStoryIdx < storyKeys.length - 1) {
+            currentStoryIdx++;
+            loadStorySlide(currentStoryIdx);
+            if (soundEnabled) playSyntheticTone(1250, 0.03, "sine");
+        } else {
+            window.closeStoryModal();
+        }
+    };
+
+    window.prevStorySlide = function() {
+        if (currentStoryIdx > 0) {
+            currentStoryIdx--;
+            loadStorySlide(currentStoryIdx);
+            if (soundEnabled) playSyntheticTone(950, 0.03, "sine");
+        }
+    };
+
+    // Pause story timer on touch/hold
+    $(document).on("mousedown touchstart", ".story-media-view, .story-caption-overlay", function() {
+        isStoryPaused = true;
+    });
+    $(document).on("mouseup touchend", ".story-media-view, .story-caption-overlay", function() {
+        isStoryPaused = false;
+    });
+
+    // ==========================================================================
+    // 7. Mobile Quick Action Bottom Drawer Controller
+    // ==========================================================================
+    window.toggleBottomDrawer = function() {
+        var $drawer = $("#inzanBottomDrawer");
+        if ($drawer.is(":visible")) {
+            window.closeBottomDrawer();
+        } else {
+            $drawer.css("display", "flex").hide().fadeIn(250);
+            $("body").css("overflow", "hidden");
+            if (soundEnabled) playSyntheticTone(1100, 0.04, "sine");
+        }
+    };
+
+    window.closeBottomDrawer = function() {
+        $("#inzanBottomDrawer").fadeOut(200);
+        $("body").css("overflow", "auto");
+    };
+
+    window.handleDrawerBackdropClick = function(e) {
+        if ($(e.target).closest(".inzan-drawer-panel").length === 0) {
+            window.closeBottomDrawer();
+        }
+    };
+
+    // ==========================================================================
+    // 8. Core Content Data & Handlers (Articles, Schedule, Diagnostic)
+    // ==========================================================================
     var newsArticles = {
         1: {
             title: "BIOMECHANICAL PROFILING: WHY INZAN STARTS EVERY ATHLETE WITH MOVEMENT SCREENING",
@@ -31,7 +579,6 @@
         }
     };
 
-    // Toast notification helper
     function showToast(message, iconClass) {
         iconClass = iconClass || "fa fa-check-circle";
         var $toast = $("#inzanToast");
@@ -41,7 +588,6 @@
     }
     window.showToast = showToast;
 
-    // Pathway selector helper: pre-selects goal dropdown and scrolls smoothly to assessment form
     window.selectPathway = function(goalValue) {
         var $select = $("#athleteGoal");
         if ($select.length > 0 && goalValue) {
@@ -55,9 +601,9 @@
                 $("#athleteName").focus();
             });
         }
+        if (soundEnabled) playSyntheticTone(1100, 0.04, "sine");
     };
 
-    // Modal helpers
     window.openNewsModal = function(id) {
         var article = newsArticles[id];
         if (!article) return;
@@ -69,6 +615,7 @@
         $("#modalBody").html(article.content);
         $("#inzanNewsModal").fadeIn(250);
         $("body").css("overflow", "hidden");
+        if (soundEnabled) playSyntheticTone(1050, 0.04, "sine");
     };
 
     window.closeNewsModal = function() {
@@ -76,9 +623,7 @@
         $("body").css("overflow", "auto");
     };
 
-    // ==========================================================================
-    // Weekly Performance Schedule Data & Controller
-    // ==========================================================================
+    // Schedule Timetable Dataset
     var scheduleData = {
         mon: [
             { time: "06:30 AM – 07:45 AM", cat: "sc", catName: "S&C", title: "Early Dawn Strength & Velocity", coach: "Coach Youssef R.", ratio: "1:6 Ratio", intensity: "High Intensity" },
@@ -153,7 +698,8 @@
 
         var html = "";
         items.forEach(function(item) {
-            html += '<div class="schedule-card">' +
+            html += '<div class="schedule-card tilt-card">' +
+                '<div class="card-spotlight"></div>' +
                 '<div>' +
                     '<div class="schedule-card-top">' +
                         '<span class="schedule-time-badge"><i class="fa fa-clock-o mr-5"></i> ' + item.time + '</span>' +
@@ -181,6 +727,7 @@
         $(".schedule-day-tab").removeClass("active");
         $(".schedule-day-tab[data-day='" + day + "']").addClass("active");
         renderSchedule();
+        if (soundEnabled) playSyntheticTone(1200, 0.03, "sine");
     };
 
     window.filterScheduleCategory = function(cat) {
@@ -188,6 +735,7 @@
         $(".schedule-filter-pill").removeClass("active");
         $(".schedule-filter-pill[data-filter='" + cat + "']").addClass("active");
         renderSchedule();
+        if (soundEnabled) playSyntheticTone(1300, 0.03, "sine");
     };
 
     window.bookScheduleSlot = function(sessionName, day, time) {
@@ -215,12 +763,11 @@
             });
         }
 
+        if (soundEnabled) playSyntheticTone(1400, 0.08, "triangle");
         showToast("Selected: " + sessionName + " (" + fullDay + "). Complete your profile below!", "fa fa-calendar-check-o");
     };
 
-    // ==========================================================================
-    // Interactive 60s Diagnostic Assessment Calculator
-    // ==========================================================================
+    // Diagnostic Assessment Calculator Dataset
     var diagState = {
         step: 1,
         goal: "power",
@@ -277,6 +824,7 @@
         var $stepCard = $(el).closest(".diag-step-card");
         $stepCard.find(".diag-option-btn").removeClass("selected");
         $(el).addClass("selected");
+        if (soundEnabled) playSyntheticTone(1250, 0.03, "sine");
     };
 
     function updateDiagUI() {
@@ -317,6 +865,7 @@
             updateDiagUI();
             renderDiagResult();
         }
+        if (soundEnabled) playSyntheticTone(1350, 0.04, "sine");
     };
 
     window.prevDiagStep = function() {
@@ -324,6 +873,7 @@
             diagState.step--;
             updateDiagUI();
         }
+        if (soundEnabled) playSyntheticTone(1000, 0.04, "sine");
     };
 
     window.applyDiagnosticToForm = function() {
@@ -348,6 +898,7 @@
             });
         }
 
+        if (soundEnabled) playSyntheticTone(1500, 0.1, "triangle");
         showToast("Diagnostic Applied! Your customized pathway is ready below.", "fa fa-check-circle");
     };
 
@@ -363,13 +914,12 @@
         window.open("https://wa.me/201000061243?text=" + text, "_blank");
     };
 
-    // ==========================================================================
-    // Facility Tour Video Reel Modal
-    // ==========================================================================
+    // Video Tour Cinema Lightbox
     window.openVideoReel = function(e) {
         if (e && e.preventDefault) e.preventDefault();
         $("#inzanVideoModal").fadeIn(300);
         $("body").css("overflow", "hidden");
+        if (soundEnabled) playSyntheticTone(1100, 0.04, "sine");
     };
 
     window.closeVideoReel = function() {
@@ -377,13 +927,12 @@
         $("body").css("overflow", "auto");
     };
 
-    // ==========================================================================
     // Athlete Portal Gateway Modal
-    // ==========================================================================
     window.openPortalModal = function(e) {
         if (e && e.preventDefault) e.preventDefault();
         $("#inzanPortalModal").fadeIn(300);
         $("body").css("overflow", "hidden");
+        if (soundEnabled) playSyntheticTone(1200, 0.04, "sine");
     };
 
     window.closePortalModal = function() {
@@ -401,6 +950,7 @@
             $("#portalTabLogin").hide();
             $("#portalTabFeatures").show();
         }
+        if (soundEnabled) playSyntheticTone(1300, 0.03, "sine");
     };
 
     window.handlePortalDemoLogin = function(e) {
@@ -418,12 +968,13 @@
                     'Next Session: <strong>Today 6:30 PM &bull; S&C Team (Garden 8)</strong>' +
                 '</div>'
             );
+            if (soundEnabled) playSyntheticTone(1500, 0.12, "triangle");
             showToast("Connected to Inzan Athlete Cloud Demo!", "fa fa-bolt");
         }, 900);
     };
 
     // ==========================================================================
-    // Core Initializer
+    // 9. Core Initializer
     // ==========================================================================
     var inzanInitialized = false;
 
@@ -431,14 +982,30 @@
         if (inzanInitialized) return;
         inzanInitialized = true;
 
-        // Render schedule immediately
+        // Initialize Immersive Suite
+        initCinematicPreloader();
+        initHeroParticles();
+        initPrecisionCursor();
+        init3DTilt();
+        updateSoundToggleUI();
+
+        // Render initial timetable & diagnostic
         renderSchedule();
         updateDiagUI();
 
-        // Close modal on background click or ESC
-        $("#inzanNewsModal").on("click", function(e) {
-            if ($(e.target).closest(".inzan-modal-dialog").length === 0) {
+        // Add spotlight divs to static tilt cards
+        $(".roadmap-step, .coach-card").each(function() {
+            $(this).addClass("tilt-card");
+            if ($(this).find(".card-spotlight").length === 0) {
+                $(this).prepend('<div class="card-spotlight"></div>');
+            }
+        });
+
+        // Close modals on background click or ESC
+        $("#inzanNewsModal, #inzanStoryModal").on("click", function(e) {
+            if ($(e.target).closest(".inzan-modal-dialog, .story-modal-card").length === 0) {
                 closeNewsModal();
+                closeStoryModal();
             }
         });
 
@@ -452,12 +1019,18 @@
         $(document).on("keydown", function(e) {
             if (e.key === "Escape") {
                 closeNewsModal();
+                closeStoryModal();
                 closeVideoReel();
                 closePortalModal();
+                closeBottomDrawer();
+            } else if (e.key === "ArrowRight") {
+                if ($("#inzanStoryModal").is(":visible")) nextStorySlide();
+            } else if (e.key === "ArrowLeft") {
+                if ($("#inzanStoryModal").is(":visible")) prevStorySlide();
             }
         });
 
-        // Initialize Facility Carousel
+        // Facility Carousel
         if ($(".facility-slider").length > 0 && typeof $.fn.owlCarousel === "function") {
             $(".facility-slider").owlCarousel({
                 slideSpeed: 400,
@@ -470,7 +1043,7 @@
             });
         }
 
-        // Initialize Magnific Popup for Zone Training Works Grid
+        // Zone Lightbox Grid
         if (typeof $.fn.magnificPopup === "function") {
             $(".work-lightbox-link").magnificPopup({
                 type: "image",
@@ -489,7 +1062,7 @@
             });
         }
 
-        // Interactive Map Toggle & Leaflet Map
+        // Dark Map Drawer & Leaflet Map
         var mapInitialized = false;
         var inzanMap = null;
 
@@ -540,7 +1113,7 @@
             }
         });
 
-        // Assessment Booking & Inquiry Form Interactive Handling
+        // Assessment Booking Form
         $("#inzanContactForm").on("submit", function(e) {
             e.preventDefault();
             var $form = $(this);
@@ -585,11 +1158,12 @@
                     $("#inzanSuccessBox").slideDown(350);
                 });
 
+                if (soundEnabled) playSyntheticTone(1500, 0.15, "triangle");
                 showToast("Assessment booked! Welcome to Inzan Athletics, " + name + ".", "fa fa-check-circle");
             }, 800);
         });
 
-        // Newsletter Interactive Handling
+        // Newsletter Form
         $("#newsletterForm").on("submit", function(e) {
             e.preventDefault();
             var email = $("#newsletterEmail").val().trim();
@@ -602,11 +1176,12 @@
             setTimeout(function() {
                 $btn.prop("disabled", false).html("Subscribe");
                 $("#newsletterEmail").val("");
+                if (soundEnabled) playSyntheticTone(1400, 0.08, "triangle");
                 showToast("Subscribed! Performance Intel will be sent to " + email, "fa fa-check-circle");
             }, 600);
         });
 
-        // Mobile Nav Drawer Toggle with Accessibility
+        // Mobile Nav Drawer Toggle
         $(".mobile-nav").on("click", function() {
             var $nav = $(".desktop-nav");
             var isExpanded = $(this).attr("aria-expanded") === "true";
@@ -617,6 +1192,7 @@
             } else {
                 $nav.addClass("mobile-open").slideDown(250);
             }
+            if (soundEnabled) playSyntheticTone(1100, 0.03, "sine");
         });
 
         $(".desktop-nav a").on("click", function() {
@@ -626,7 +1202,7 @@
             }
         });
 
-        // Navbar ScrollSpy active class handling
+        // ScrollSpy Navbar
         var sections = $("section[id], div[id='home']");
         var navLinks = $(".desktop-nav ul li a");
 
