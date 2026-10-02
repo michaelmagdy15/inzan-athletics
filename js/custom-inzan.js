@@ -61,6 +61,8 @@
         var $text = $("#soundToggleText");
         var $mobIcon = $("#mobileSoundIcon");
         var $mobBadge = $("#mobileSoundBadge");
+        var $deskBtn = $(".desktop-nav-sound-btn");
+        var $deskIcon = $("#desktopSoundIcon");
 
         if (soundEnabled) {
             $btn.addClass("sound-on");
@@ -68,6 +70,8 @@
             $text.text("Audio: On");
             $mobIcon.attr("class", "fa fa-volume-up");
             $mobBadge.text("ON").addClass("active");
+            $deskBtn.addClass("sound-on");
+            $deskIcon.attr("class", "fa fa-volume-up");
             playSyntheticTone(1200, 0.08, "triangle");
             showToast("Tactile Audio Enabled", "fa fa-volume-up");
         } else {
@@ -76,6 +80,8 @@
             $text.text("Audio: Off");
             $mobIcon.attr("class", "fa fa-volume-off");
             $mobBadge.text("OFF").removeClass("active");
+            $deskBtn.removeClass("sound-on");
+            $deskIcon.attr("class", "fa fa-volume-off");
             showToast("Tactile Audio Muted", "fa fa-volume-off");
         }
     };
@@ -86,6 +92,8 @@
         var $text = $("#soundToggleText");
         var $mobIcon = $("#mobileSoundIcon");
         var $mobBadge = $("#mobileSoundBadge");
+        var $deskBtn = $(".desktop-nav-sound-btn");
+        var $deskIcon = $("#desktopSoundIcon");
 
         if (soundEnabled) {
             $btn.addClass("sound-on");
@@ -93,12 +101,16 @@
             $text.text("Audio: On");
             $mobIcon.attr("class", "fa fa-volume-up");
             $mobBadge.text("ON").addClass("active");
+            $deskBtn.addClass("sound-on");
+            $deskIcon.attr("class", "fa fa-volume-up");
         } else {
             $btn.removeClass("sound-on");
             $icon.attr("class", "fa fa-volume-off");
             $text.text("Audio: Off");
             $mobIcon.attr("class", "fa fa-volume-off");
             $mobBadge.text("OFF").removeClass("active");
+            $deskBtn.removeClass("sound-on");
+            $deskIcon.attr("class", "fa fa-volume-off");
         }
     }
 
