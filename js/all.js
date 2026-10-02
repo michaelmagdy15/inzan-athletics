@@ -752,11 +752,13 @@ function init_wow(){
 
 function init_masonry(){
     (function($){    
-    
-        $(".masonry").imagesLoaded(function(){
-            $(".masonry").masonry();
-        });
-        
+        if ($(".masonry").length && typeof $.fn.imagesLoaded === "function") {
+            $(".masonry").imagesLoaded(function(){
+                if (typeof $.fn.masonry === "function") {
+                    $(".masonry").masonry();
+                }
+            });
+        }
     })(jQuery);
 }
         
