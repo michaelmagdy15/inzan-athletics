@@ -99,7 +99,7 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
         
         <!-- Inzan Athletics Custom Commercial Gym Styling -->
-        <link rel="stylesheet" href="css/custom-inzan.css?v=4">
+        <link rel="stylesheet" href="css/custom-inzan.css?v=5">
     </head>
     <body class="appear-animate">
         
@@ -120,7 +120,7 @@
                 <div class="preloader-brand-mark">
                     <div class="preloader-ring"></div>
                     <div class="preloader-ring-outer"></div>
-                    <img src="images/inzan-logo.png" alt="Inzan Athletics" style="max-height: 28px; filter: brightness(1.2) drop-shadow(0 0 10px rgba(37,211,102,0.6));" />
+                    <img src="images/inzan-logo.png" alt="Inzan Athletics" style="max-height: 28px; filter: brightness(1.2) drop-shadow(0 0 10px rgba(255,255,255,0.3));" />
                 </div>
 
                 <div class="preloader-counter"><span id="preloaderNum">00</span><span>%</span></div>
@@ -178,7 +178,7 @@
                                         <i class="fa fa-compass mr-10"></i> Choose Your Path
                                     </a>
                                     <a href="#facility-reel" class="btn btn-mod btn-border-w btn-medium btn-round inzan-btn-outline" onclick="openVideoReel(event)">
-                                        <i class="fa fa-play-circle mr-5" style="color:#25D366;"></i> Tour Reel
+                                        <i class="fa fa-play-circle mr-5" style="color:#FFFFFF;"></i> Tour Reel
                                     </a>
                                 </div>
                                 
@@ -284,7 +284,15 @@
                             <li><a href="#results">Results</a></li>
                             <li><a href="#news">News</a></li>
                             <li><a href="#portal" class="nav-portal-btn" onclick="openPortalModal(event)"><i class="fa fa-user-circle-o mr-5"></i> Athlete Portal</a></li>
-                            <li><a href="#assessment" class="nav-cta-highlight">Book Assessment</a></li>
+                            <li class="desktop-only-item"><a href="#assessment" class="nav-cta-highlight">Book Assessment</a></li>
+                            <li class="mobile-menu-cta-item">
+                                <a href="#assessment" class="btn btn-mod btn-medium btn-round inzan-btn-primary" style="display:block; text-align:center; padding:12px; color:#000000 !important; background:#FFFFFF; font-weight:700; margin-top:14px;">
+                                    <i class="fa fa-calendar-check-o mr-5"></i> Book 60-Min Assessment
+                                </a>
+                            </li>
+                            <li class="mobile-menu-info-item">
+                                <span>Garden 8 &bull; New Cairo &bull; <a href="tel:+201000061243" style="color:#888888; display:inline; padding:0;">+201000061243</a></span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -325,7 +333,7 @@
                 <div class="container relative">
                     
                     <div class="align-center mb-50">
-                        <div class="inzan-subheading mb-10" style="color: #25D366; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Find Your Starting Point</div>
+                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">Find Your Starting Point</div>
                         <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">CHOOSE YOUR PATH</h2>
                         <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
                             Every athlete enters Inzan through an assessment-driven pathway tailored to their current baseline, sport demands, and physiological targets.
@@ -624,7 +632,7 @@
                 <div class="container relative">
                     
                     <div class="align-center mb-60">
-                        <div class="inzan-subheading mb-10" style="color: #25D366; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Structured Athlete Progression</div>
+                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">Structured Athlete Progression</div>
                         <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">THE FIRST 30 DAYS AT INZAN</h2>
                         <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
                             We remove guesswork from athletic development. Here is the exact milestone sequence every athlete experiences from day one.
@@ -688,7 +696,7 @@
                 <div class="container relative">
                     
                     <div class="align-center mb-50">
-                        <div class="inzan-subheading mb-10" style="color: #25D366; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Live Facility Timetable &bull; Garden 8, New Cairo</div>
+                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">Live Facility Timetable &bull; Garden 8, New Cairo</div>
                         <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">WEEKLY PERFORMANCE SCHEDULE</h2>
                         <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
                             Structured group sessions capped at a strict 1:6 coach-to-athlete ratio. Select your training day and discipline below to reserve your trial or member slot.
@@ -733,7 +741,7 @@
                 <div class="container relative">
                     
                     <div class="align-center mb-60">
-                        <div class="inzan-subheading mb-10" style="color: #25D366; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Master Practitioners</div>
+                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">Master Practitioners</div>
                         <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">PERFORMANCE COACHES &amp; CREDENTIALS</h2>
                         <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
                             "Science-based &bull; data-driven &bull; relentless" is backed by elite coaching qualifications, collegiate athletic experience, and international sports science credentials.
@@ -1012,7 +1020,7 @@
                             </div>
                             <div>
                                 <a href="#facility-reel" class="btn btn-mod btn-border-w btn-medium btn-round" style="letter-spacing:2px; font-weight:700;" onclick="openVideoReel(event)">
-                                    <i class="fa fa-play-circle mr-10" style="color:#25D366;"></i> WATCH FACILITY TOUR &amp; REEL
+                                    <i class="fa fa-play-circle mr-10" style="color:#FFFFFF;"></i> WATCH FACILITY TOUR &amp; REEL
                                 </a>
                             </div>
                         </div>
@@ -1026,7 +1034,7 @@
                 <div class="container relative">
                     
                     <div class="align-center mb-60">
-                        <div class="inzan-subheading mb-10" style="color: #25D366; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Verified Athlete Outcomes</div>
+                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">Verified Athlete Outcomes</div>
                         <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">DATA-DRIVEN RESULTS</h2>
                         <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
                             We track force production, barbell velocity, body composition, and movement symmetry. Real progress measured under barbell and camera.
@@ -1126,7 +1134,7 @@
                                     <h3 class="news-card-title font-alt">
                                         BIOMECHANICAL PROFILING: WHY INZAN STARTS WITH SCREENING
                                     </h3>
-                                    <div class="news-card-meta font-alt" style="color:#25D366;">
+                                    <div class="news-card-meta font-alt" style="color:#A0A0A0;">
                                         COACH YOUSSEF R. &bull; 18 SEPT 2026
                                     </div>
                                     <div class="news-card-text">
@@ -1151,7 +1159,7 @@
                                     <h3 class="news-card-title font-alt">
                                         THE OLYMPIC LIFTING TRANSFER: DEVELOPING ROTATIONAL POWER
                                     </h3>
-                                    <div class="news-card-meta font-alt" style="color:#25D366;">
+                                    <div class="news-card-meta font-alt" style="color:#A0A0A0;">
                                         COACH AHMED M. &bull; 04 SEPT 2026
                                     </div>
                                     <div class="news-card-text">
@@ -1176,7 +1184,7 @@
                                     <h3 class="news-card-title font-alt">
                                         CALISTHENICS VS. HEAVY IRON: INTEGRATING RELATIVE STRENGTH
                                     </h3>
-                                    <div class="news-card-meta font-alt" style="color:#25D366;">
+                                    <div class="news-card-meta font-alt" style="color:#A0A0A0;">
                                         COACH KAREEM S. &bull; 22 AUG 2026
                                     </div>
                                     <div class="news-card-text">
@@ -1236,7 +1244,7 @@
                 <div class="container relative">
                     
                     <div class="align-center mb-40">
-                        <div class="inzan-subheading mb-10" style="color: #25D366; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Biomechanical Intake Engine</div>
+                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">Biomechanical Intake Engine</div>
                         <h2 class="section-title font-alt mb-15">60-SECOND ATHLETIC DIAGNOSTIC</h2>
                         <div class="section-text" style="max-width: 650px; margin: 0 auto; color: #A0A0A0; font-size: 14px;">
                             Answer 4 quick performance indicators to calculate your recommended Inzan training protocol, assigned coach lead, and 12-week development benchmark.
@@ -1451,7 +1459,7 @@
                                     </div>
                                     <div class="diag-metric-box">
                                         <div class="diag-metric-label">Target 12-Wk Benchmark</div>
-                                        <div class="diag-metric-val" id="diagMetricMilestone" style="color:#25D366;">+15–22% RFD</div>
+                                        <div class="diag-metric-val" id="diagMetricMilestone" style="color:#FFFFFF;">+15–22% RFD</div>
                                     </div>
                                 </div>
 
@@ -1483,7 +1491,7 @@
                 <div class="container relative">
                     
                     <div class="align-center mb-60">
-                        <div class="inzan-subheading mb-10" style="color: #25D366; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Diagnostic Intake &bull; Garden 8, New Cairo</div>
+                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">Diagnostic Intake &bull; Garden 8, New Cairo</div>
                         <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">BOOK YOUR ASSESSMENT</h2>
                         <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
                             Every athlete begins with our 60-minute movement screening, power baseline, and facility tour. Reserve your session with an Inzan Performance Coach below.
@@ -1532,7 +1540,7 @@
                                     WHATSAPP &amp; EMAIL
                                 </div>
                                 <div class="ci-text">
-                                    <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20would%20like%20to%20book%20an%20assessment." target="_blank" rel="noopener noreferrer" style="color:#25D366; font-weight:700;">Chat on WhatsApp</a> &bull; <a href="mailto:admin@inzanathletics.com">admin@inzanathletics.com</a>
+                                    <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20would%20like%20to%20book%20an%20assessment." target="_blank" rel="noopener noreferrer" style="color:#FFFFFF; font-weight:700;">Chat on WhatsApp</a> &bull; <a href="mailto:admin@inzanathletics.com">admin@inzanathletics.com</a>
                                 </div>
                             </div>
                         </div>
@@ -1547,7 +1555,7 @@
                                     <i class="fa fa-check-circle inzan-success-icon"></i>
                                     <h3 class="inzan-success-title">ASSESSMENT REQUEST RECEIVED</h3>
                                     <p class="inzan-success-desc">
-                                        Thank you, <strong id="successAthleteName" style="color:#FFFFFF;">Athlete</strong>! Your initial 60-minute baseline screening request for <span id="successAthleteGoal" style="color:#25D366; font-weight:700;">Foundational Athleticism</span> (<span id="successAthleteTime" style="color:#FFFFFF;">Morning</span>) has been received.
+                                        Thank you, <strong id="successAthleteName" style="color:#FFFFFF;">Athlete</strong>! Your initial 60-minute baseline screening request for <span id="successAthleteGoal" style="color:#FFFFFF; font-weight:700;">Foundational Athleticism</span> (<span id="successAthleteTime" style="color:#FFFFFF;">Morning</span>) has been received.
                                         <br><br>
                                         Our Head of Performance will reach out via WhatsApp/Phone within 24 hours to finalize your scheduled time at Garden 8.
                                     </p>
@@ -1775,7 +1783,7 @@
                 <div class="video-player-wrap">
                     <img src="images/full-width-images/facility-1.jpg" alt="Inzan Athletics Facility" class="video-player-bg" />
                     <div class="video-player-overlay">
-                        <div style="color:#25D366; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">
+                        <div style="color:#FFFFFF; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">
                             <i class="fa fa-play-circle mr-5"></i> Facility Walkthrough &bull; Garden 8, New Cairo
                         </div>
                         <h3 class="font-alt" style="color:#FFFFFF; font-size:24px; letter-spacing:2px; margin-bottom:12px;">
@@ -1830,9 +1838,9 @@
 
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; font-size:12px; color:#888888;">
                             <label style="cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
-                                <input type="checkbox" checked style="accent-color:#25D366;" /> Remember credentials
+                                <input type="checkbox" checked style="accent-color:#FFFFFF;" /> Remember credentials
                             </label>
-                            <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20need%20help%20with%20my%20Athlete%20Portal%20password." target="_blank" rel="noopener noreferrer" style="color:#25D366;">Forgot password?</a>
+                            <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20need%20help%20with%20my%20Athlete%20Portal%20password." target="_blank" rel="noopener noreferrer" style="color:#888888;">Forgot password?</a>
                         </div>
 
                         <button type="submit" class="btn btn-mod btn-medium btn-round inzan-btn-primary" id="portalLoginBtn" style="width:100%;">
@@ -1843,7 +1851,7 @@
                     <div id="portalLoginFeedback"></div>
 
                     <div style="text-align:center; margin-top:25px; padding-top:20px; border-top:1px solid #222222; font-size:12px; color:#888888;">
-                        Not an active member yet? <a href="#assessment" onclick="closePortalModal()" style="color:#25D366; font-weight:700;">Book an intake assessment</a> to activate member credentials.
+                        Not an active member yet? <a href="#assessment" onclick="closePortalModal()" style="color:#FFFFFF; font-weight:700;">Book an intake assessment</a> to activate member credentials.
                     </div>
                 </div>
 
@@ -1898,7 +1906,7 @@
                         <img src="images/logo-dark.png" alt="Inzan Athletics" class="story-author-img" id="storyAuthorImg" />
                         <div>
                             <div class="story-author-name" id="storyAuthorName">INZAN ATHLETICS</div>
-                            <div style="font-size:10px; color:#25D366; letter-spacing:1px; text-transform:uppercase;" id="storyCategory">FACILITY TOUR</div>
+                            <div style="font-size:10px; color:#A0A0A0; letter-spacing:1px; text-transform:uppercase;" id="storyCategory">FACILITY TOUR</div>
                         </div>
                     </div>
                     <button type="button" class="story-close-btn" onclick="closeStoryModal()">&times;</button>
@@ -1931,14 +1939,14 @@
                 <span>Explore</span>
             </button>
             <a href="#schedule" class="inzan-mob-bar-btn">
-                <i class="fa fa-calendar"></i>
+                <i class="fa fa-calendar-check-o"></i>
                 <span>Schedule</span>
             </a>
             <a href="#assessment" class="inzan-mob-bar-btn inzan-mob-bar-cta">
-                <i class="fa fa-bolt"></i>
+                <i class="fa fa-calendar-check-o"></i>
                 <span>Book</span>
             </a>
-            <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20would%20like%20to%20inquire%20about%20membership." target="_blank" rel="noopener noreferrer" class="inzan-mob-bar-btn" style="color:#25D366;">
+            <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20would%20like%20to%20inquire%20about%20membership." target="_blank" rel="noopener noreferrer" class="inzan-mob-bar-btn">
                 <i class="fa fa-whatsapp"></i>
                 <span>WhatsApp</span>
             </a>
@@ -2012,10 +2020,10 @@
         <script type="text/javascript" src="js/jquery.fitvids.js"></script>
         
         <!-- Core Template JS -->
-        <script type="text/javascript" src="js/all.js?v=4"></script>
+        <script type="text/javascript" src="js/all.js?v=5"></script>
         
         <!-- Custom Inzan Athletics JS -->
-        <script type="text/javascript" src="js/custom-inzan.js?v=4"></script>
+        <script type="text/javascript" src="js/custom-inzan.js?v=5"></script>
         
     </body>
 </html>

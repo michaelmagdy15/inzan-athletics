@@ -241,7 +241,7 @@
                 // Draw dot
                 ctx.beginPath();
                 ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
-                ctx.fillStyle = "rgba(37, 211, 102, " + p1.alpha + ")";
+                ctx.fillStyle = "rgba(255, 255, 255, " + (p1.alpha * 0.7) + ")";
                 ctx.fill();
 
                 // Draw lines between particles
@@ -256,7 +256,7 @@
                         ctx.beginPath();
                         ctx.moveTo(p1.x, p1.y);
                         ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = "rgba(37, 211, 102, " + lineAlpha + ")";
+                        ctx.strokeStyle = "rgba(255, 255, 255, " + (lineAlpha * 0.25) + ")";
                         ctx.lineWidth = 0.8;
                         ctx.stroke();
                     }
@@ -583,7 +583,7 @@
         iconClass = iconClass || "fa fa-check-circle";
         var $toast = $("#inzanToast");
         if ($toast.length === 0) return;
-        $toast.html('<i class="' + iconClass + '" style="color:#25D366; font-size:18px;"></i> <span>' + message + '</span>');
+        $toast.html('<i class="' + iconClass + '" style="color:#FFFFFF; font-size:18px;"></i> <span>' + message + '</span>');
         $toast.stop(true, true).fadeIn(300).delay(4000).fadeOut(400);
     }
     window.showToast = showToast;
@@ -709,7 +709,7 @@
                     '<div class="schedule-card-meta">' +
                         '<span><i class="fa fa-user-circle"></i> ' + item.coach + '</span>' +
                         '<span><i class="fa fa-users"></i> ' + item.ratio + '</span>' +
-                        '<span><i class="fa fa-bolt" style="color:#25D366;"></i> ' + item.intensity + '</span>' +
+                        '<span><i class="fa fa-bolt" style="color:#AAAAAA;"></i> ' + item.intensity + '</span>' +
                     '</div>' +
                 '</div>' +
                 '<button type="button" class="schedule-reserve-btn" onclick="bookScheduleSlot(\'' + item.title.replace(/'/g, "\\'") + '\', \'' + currentScheduleDay + '\', \'' + item.time + '\')">' +
@@ -961,10 +961,10 @@
         setTimeout(function() {
             $btn.prop("disabled", false).html('<i class="fa fa-sign-in mr-5"></i> Access Athlete Dashboard');
             $("#portalLoginFeedback").html(
-                '<div style="background:rgba(37,211,102,0.1); border:1px solid #25D366; border-radius:4px; padding:14px; margin-top:15px; color:#FFFFFF; font-size:12px; line-height:1.6;">' +
-                    '<div style="color:#25D366; font-weight:700; font-size:13px; margin-bottom:4px;"><i class="fa fa-check-circle"></i> DEMO ATHLETE PROFILE LOADED</div>' +
+                '<div style="background:rgba(255,255,255,0.06); border:1px solid #444444; border-radius:4px; padding:14px; margin-top:15px; color:#FFFFFF; font-size:12px; line-height:1.6;">' +
+                    '<div style="color:#FFFFFF; font-weight:700; font-size:13px; margin-bottom:4px;"><i class="fa fa-check-circle mr-5"></i> DEMO ATHLETE PROFILE LOADED</div>' +
                     'Athlete: <strong>Omar H. (ID: INZ-2026-084)</strong><br>' +
-                    'Strain Today: <strong>14.2</strong> &bull; Recovery: <strong>88% (Green)</strong><br>' +
+                    'Strain Today: <strong>14.2</strong> &bull; Recovery: <strong>88% (Optimal)</strong><br>' +
                     'Next Session: <strong>Today 6:30 PM &bull; S&C Team (Garden 8)</strong>' +
                 '</div>'
             );
@@ -1181,24 +1181,32 @@
             }, 600);
         });
 
-        // Mobile Nav Drawer Toggle
-        $(".mobile-nav").on("click", function() {
+        // Mobile Nav Drawer Toggle (Ultra-smooth luxury slide)
+        $(".mobile-nav").off("click").on("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             var $nav = $(".desktop-nav");
             var isExpanded = $(this).attr("aria-expanded") === "true";
             $(this).attr("aria-expanded", !isExpanded);
 
-            if ($nav.hasClass("mobile-open")) {
-                $nav.removeClass("mobile-open").slideUp(250);
+            if ($nav.hasClass("mobile-open") || $nav.hasClass("js-opened")) {
+                $nav.removeClass("mobile-open js-opened").slideUp(220);
+                $(this).removeClass("active").find("i").removeClass("fa-times").addClass("fa-bars");
+                $("body").css("overflow", "");
             } else {
-                $nav.addClass("mobile-open").slideDown(250);
+                $nav.addClass("mobile-open js-opened").slideDown(260);
+                $(this).addClass("active").find("i").removeClass("fa-bars").addClass("fa-times");
+                $("body").css("overflow", "hidden");
             }
             if (soundEnabled) playSyntheticTone(1100, 0.03, "sine");
         });
 
         $(".desktop-nav a").on("click", function() {
             if ($(window).width() <= 1024) {
-                $(".mobile-nav").attr("aria-expanded", "false");
-                $(".desktop-nav").removeClass("mobile-open").slideUp(200);
+                $(".mobile-nav").attr("aria-expanded", "false").removeClass("active");
+                $(".mobile-nav").find("i").removeClass("fa-times").addClass("fa-bars");
+                $(".desktop-nav").removeClass("mobile-open js-opened").slideUp(200);
+                $("body").css("overflow", "");
             }
         });
 
