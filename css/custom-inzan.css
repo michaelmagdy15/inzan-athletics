@@ -15,6 +15,10 @@
     --inzan-text-body: #C4C4C4;
 }
 
+html {
+    scroll-padding-top: 72px;
+}
+
 html, body {
     width: 100%;
     max-width: 100%;
@@ -152,6 +156,7 @@ html, body {
 
 @media (min-width: 1025px) {
     .mobile-menu-cta-item,
+    .mobile-menu-sound-item,
     .mobile-menu-info-item {
         display: none !important;
     }
@@ -167,9 +172,9 @@ html, body {
     .main-nav {
         height: 60px !important;
         line-height: 60px !important;
-        background: rgba(8, 8, 8, 0.96) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
+        background: rgba(6, 6, 6, 0.95) !important;
+        backdrop-filter: blur(24px) !important;
+        -webkit-backdrop-filter: blur(24px) !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
         position: fixed !important;
         top: 0 !important;
@@ -194,35 +199,68 @@ html, body {
     }
     
     .nav-logo-wrap .logo img {
-        height: 20px !important;
-        max-height: 20px !important;
+        height: 24px !important;
+        max-height: 24px !important;
         width: auto !important;
         object-fit: contain !important;
     }
     
-    .mobile-nav {
+    /* Architectural Minimalist Hamburger Button */
+    .mobile-nav.inzan-hamburger {
         display: flex !important;
-        align-items: center !important;
+        flex-direction: column !important;
         justify-content: center !important;
-        width: 48px !important;
-        height: 60px !important;
+        align-items: center !important;
+        gap: 5px !important;
+        width: 44px !important;
+        height: 44px !important;
         position: absolute !important;
-        right: 12px !important;
-        top: 0 !important;
+        right: 14px !important;
+        top: 8px !important;
         cursor: pointer !important;
-        color: #FFFFFF !important;
-        font-size: 20px !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 4px !important;
+        background: rgba(255, 255, 255, 0.03) !important;
         z-index: 100002 !important;
-        border: none !important;
-        background: transparent !important;
-        transition: transform 0.2s ease !important;
+        padding: 0 !important;
+        transition: all 0.25s ease !important;
     }
     
-    .mobile-nav:active {
+    .mobile-nav.inzan-hamburger:active {
         transform: scale(0.92);
+        background: rgba(255, 255, 255, 0.08) !important;
     }
     
-    .desktop-nav {
+    .mobile-nav.inzan-hamburger .ham-line {
+        display: block !important;
+        width: 20px !important;
+        height: 1.5px !important;
+        background: #FFFFFF !important;
+        transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease !important;
+        transform-origin: center !important;
+    }
+    
+    .mobile-nav.inzan-hamburger.is-active {
+        border-color: rgba(255, 255, 255, 0.3) !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+    }
+    
+    .mobile-nav.inzan-hamburger.is-active .ham-top {
+        transform: translateY(6.5px) rotate(45deg) !important;
+    }
+    
+    .mobile-nav.inzan-hamburger.is-active .ham-mid {
+        opacity: 0 !important;
+        transform: scaleX(0) !important;
+    }
+    
+    .mobile-nav.inzan-hamburger.is-active .ham-bot {
+        transform: translateY(-6.5px) rotate(-45deg) !important;
+    }
+    
+    /* Full-Screen Luxury Mobile Drawer */
+    .desktop-nav,
+    .mobile-on .desktop-nav {
         display: none;
         float: none !important;
         position: fixed !important;
@@ -230,15 +268,19 @@ html, body {
         left: 0 !important;
         right: 0 !important;
         bottom: 0 !important;
-        width: 100% !important;
+        width: 100vw !important;
         height: calc(100vh - 60px) !important;
-        background: rgba(6, 6, 6, 0.98) !important;
-        backdrop-filter: blur(24px) !important;
-        -webkit-backdrop-filter: blur(24px) !important;
+        height: calc(100dvh - 60px) !important;
+        max-height: none !important;
+        background: #080808 !important;
+        backdrop-filter: blur(28px) !important;
+        -webkit-backdrop-filter: blur(28px) !important;
         overflow-y: auto !important;
-        padding: 16px 24px 100px !important;
-        z-index: 99999 !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding: 20px 24px 90px !important;
+        z-index: 999999 !important;
         border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+        box-sizing: border-box !important;
     }
     
     .desktop-nav.mobile-open {
@@ -251,12 +293,14 @@ html, body {
         to { opacity: 1; transform: translateY(0); }
     }
     
-    .desktop-nav ul {
+    .desktop-nav ul,
+    .mobile-on .desktop-nav ul {
         display: flex !important;
         flex-direction: column !important;
         width: 100% !important;
         margin: 0 !important;
         padding: 0 !important;
+        background: transparent !important;
     }
     
     .desktop-nav ul li {
@@ -264,21 +308,30 @@ html, body {
         width: 100% !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
         line-height: normal !important;
+        padding: 0 !important;
     }
     
     .desktop-nav ul li a {
         display: flex !important;
-        justify-content: space-between !important;
         align-items: center !important;
-        padding: 16px 4px !important;
-        font-family: 'Dosis', sans-serif !important;
-        font-size: 14px !important;
+        padding: 15px 4px !important;
+        font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+        font-size: 13px !important;
         font-weight: 600 !important;
-        letter-spacing: 2.5px !important;
+        letter-spacing: 2px !important;
         text-transform: uppercase !important;
         color: #CCCCCC !important;
         text-align: left !important;
-        transition: all 0.2s ease !important;
+        transition: color 0.2s ease, padding-left 0.2s ease !important;
+    }
+    
+    .desktop-nav ul li a .nav-idx {
+        font-family: monospace, sans-serif !important;
+        font-size: 10px !important;
+        color: #666666 !important;
+        letter-spacing: 1px !important;
+        margin-right: 14px !important;
+        font-weight: 400 !important;
     }
     
     .desktop-nav ul li a:hover,
@@ -288,23 +341,115 @@ html, body {
         padding-left: 8px !important;
     }
     
+    .desktop-nav ul li a:hover .nav-idx,
+    .desktop-nav ul li a.active .nav-idx {
+        color: #FFFFFF !important;
+    }
+    
     .desktop-nav ul li a.active::after {
         display: none !important;
     }
     
+    /* Luxury Architectural Drawer CTA */
     .mobile-menu-cta-item {
         display: block !important;
         border: none !important;
-        padding: 20px 0 10px !important;
+        padding: 24px 0 10px !important;
+    }
+    
+    .desktop-nav ul li a.inzan-menu-cta-btn,
+    .inzan-menu-cta-btn {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        padding: 14px 18px !important;
+        background: #FFFFFF !important;
+        color: #000000 !important;
+        border: 1px solid #FFFFFF !important;
+        border-radius: 2px !important;
+        font-family: 'Dosis', sans-serif !important;
+        font-size: 12px !important;
+        font-weight: 800 !important;
+        letter-spacing: 2px !important;
+        text-transform: uppercase !important;
+        text-decoration: none !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15) !important;
+    }
+    
+    .desktop-nav ul li a.inzan-menu-cta-btn:hover,
+    .desktop-nav ul li a.inzan-menu-cta-btn:active,
+    .inzan-menu-cta-btn:active {
+        background: #E5E5E5 !important;
+        color: #000000 !important;
+        padding-left: 18px !important;
+        transform: scale(0.98);
+    }
+
+    .desktop-nav ul li a.inzan-menu-cta-btn svg,
+    .inzan-menu-cta-btn svg {
+        color: #000000 !important;
+        fill: #000000 !important;
+    }
+    
+    /* Integrated Audio Toggle inside Mobile Menu Drawer */
+    .mobile-menu-sound-item {
+        display: block !important;
+        border: none !important;
+        padding: 6px 0 10px !important;
+    }
+    
+    .mobile-menu-sound-btn {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        padding: 12px 14px !important;
+        background: rgba(255, 255, 255, 0.04) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 2px !important;
+        color: #AAAAAA !important;
+        cursor: pointer !important;
+        font-size: 11px !important;
+        letter-spacing: 1.5px !important;
+        text-transform: uppercase !important;
+        transition: all 0.2s ease !important;
+    }
+    
+    .mobile-menu-sound-btn:hover {
+        color: #FFFFFF !important;
+        border-color: rgba(255, 255, 255, 0.3) !important;
+    }
+    
+    .sound-label-group {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+    }
+    
+    .sound-badge {
+        font-size: 9px !important;
+        font-weight: 700 !important;
+        padding: 2px 7px !important;
+        border-radius: 2px !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+        color: #888888 !important;
+        letter-spacing: 1px !important;
+    }
+    
+    .sound-badge.active {
+        background: #FFFFFF !important;
+        color: #000000 !important;
     }
     
     .mobile-menu-info-item {
         display: block !important;
         border: none !important;
-        padding-top: 12px !important;
+        padding: 12px 0 0 !important;
         text-align: center !important;
-        color: #777777 !important;
-        font-size: 11px !important;
+        color: #666666 !important;
+        font-size: 10px !important;
         letter-spacing: 1.5px !important;
         text-transform: uppercase !important;
     }
@@ -1069,11 +1214,11 @@ blockquote {
 }
 
 .inzan-btn-whatsapp:hover {
-    background-color: #1EBE5B !important;
-    border-color: #1EBE5B !important;
-    color: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    border-color: #FFFFFF !important;
+    color: #000000 !important;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2) !important;
 }
 
 .inzan-btn-outline {
@@ -1613,100 +1758,37 @@ blockquote {
     margin: 0 auto 24px auto;
 }
 
-/* Persistent Mobile Bottom Action Bar (<= 768px) */
-.mobile-bottom-bar {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(10, 10, 10, 0.96);
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 10px 16px;
-    padding-bottom: max(10px, env(safe-area-inset-bottom));
-    z-index: 9999;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8);
-}
-
-.mobile-bottom-bar-inner {
-    display: flex;
-    gap: 10px;
-    width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
-}
-
-.mobile-action-btn {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    height: 46px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-decoration: none !important;
-    transition: transform 0.15s ease;
-}
-
-.mobile-action-btn:active {
-    transform: scale(0.97);
-}
-
-.mobile-btn-book {
-    background: #FFFFFF;
-    color: #000000 !important;
-}
-
-.mobile-btn-whatsapp {
-    background: #FFFFFF;
-    color: #FFFFFF !important;
-}
-
-@media (max-width: 768px) {
-    .mobile-bottom-bar {
-        display: block;
-    }
-    
-    /* Ensure body doesn't get clipped by bottom bar */
-    body {
-        padding-bottom: 65px;
-    }
-}
-
-/* Floating WhatsApp Desktop Button */
+/* Floating WhatsApp Desktop Button (Hidden on Mobile, replaced by docked nav) */
 .floating-whatsapp-btn {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 54px;
-    height: 54px;
+    bottom: 28px;
+    right: 28px;
+    width: 50px;
+    height: 50px;
     background-color: #FFFFFF;
-    color: #FFFFFF !important;
+    color: #000000 !important;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
     z-index: 9998;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.floating-whatsapp-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.25);
-    color: #FFFFFF !important;
+.floating-whatsapp-btn svg {
+    fill: #000000;
 }
 
-@media (max-width: 768px) {
+.floating-whatsapp-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.35);
+    background-color: #E5E5E5;
+}
+
+@media (max-width: 1024px) {
     .floating-whatsapp-btn {
-        display: none; /* Handled by mobile-bottom-bar */
+        display: none !important;
     }
 }
 
@@ -2831,17 +2913,24 @@ body.cursor-active #inzanCursorDot {
         bottom: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        height: auto !important;
+        height: 56px !important;
         min-height: 56px !important;
-        background: rgba(8, 8, 8, 0.96) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-        box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.85) !important;
+        background: rgba(8, 8, 8, 0.97) !important;
+        backdrop-filter: blur(24px) !important;
+        -webkit-backdrop-filter: blur(24px) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8) !important;
         z-index: 99990 !important;
         align-items: center !important;
         justify-content: space-around !important;
-        padding: 6px 12px calc(6px + env(safe-area-inset-bottom, 0px)) !important;
+        padding: 0 8px calc(4px + env(safe-area-inset-bottom, 0px)) !important;
+        transition: transform 0.25s ease, opacity 0.25s ease !important;
+    }
+
+    body.mobile-nav-open .inzan-mobile-bottom-bar {
+        transform: translateY(100%) !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
     }
 
     .inzan-mob-bar-btn {
@@ -2849,23 +2938,30 @@ body.cursor-active #inzanCursorDot {
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
+        flex: 1 1 0 !important;
+        height: 50px !important;
         color: #888888 !important;
         background: transparent !important;
         border: none !important;
         font-size: 9px !important;
         font-weight: 600 !important;
-        letter-spacing: 1px !important;
+        letter-spacing: 1.2px !important;
         text-transform: uppercase !important;
         cursor: pointer !important;
-        padding: 4px 6px !important;
-        min-width: 52px !important;
+        padding: 4px 2px !important;
         text-decoration: none !important;
-        transition: color 0.2s ease !important;
+        transition: color 0.2s ease, transform 0.15s ease !important;
+        gap: 3px !important;
     }
 
-    .inzan-mob-bar-btn i {
-        font-size: 16px !important;
-        margin-bottom: 2px !important;
+    .inzan-mob-bar-btn:active {
+        transform: scale(0.92);
+    }
+
+    .inzan-mob-bar-btn .mob-dock-icon {
+        display: block !important;
+        color: inherit !important;
+        transition: color 0.2s ease, transform 0.2s ease !important;
     }
 
     .inzan-mob-bar-btn:hover,
@@ -2873,39 +2969,60 @@ body.cursor-active #inzanCursorDot {
         color: #FFFFFF !important;
     }
 
+    .inzan-mob-bar-btn:hover .mob-dock-icon,
+    .inzan-mob-bar-btn.active .mob-dock-icon {
+        color: #FFFFFF !important;
+    }
+
     /* Architectural luxury white Book CTA button */
-    .inzan-mob-bar-cta {
+    .inzan-mob-bar-cta,
+    .inzan-mob-bar-btn.inzan-mob-bar-cta,
+    .inzan-mob-bar-btn.inzan-mob-bar-cta.active {
         background: #FFFFFF !important;
         color: #000000 !important;
-        border-radius: 4px !important;
-        padding: 8px 18px !important;
+        border-radius: 3px !important;
+        height: 38px !important;
+        max-height: 38px !important;
+        padding: 0 10px !important;
         font-weight: 700 !important;
         font-size: 10px !important;
         letter-spacing: 1.5px !important;
         text-transform: uppercase !important;
-        box-shadow: 0 2px 12px rgba(255, 255, 255, 0.15) !important;
-        margin: 0 4px !important;
+        box-shadow: 0 2px 10px rgba(255, 255, 255, 0.18) !important;
+        margin: 0 6px !important;
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
-        gap: 6px !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        flex: 1.15 1 0 !important;
     }
 
-    .inzan-mob-bar-cta i {
-        font-size: 12px !important;
-        margin: 0 !important;
+    .inzan-mob-bar-cta .mob-dock-icon,
+    .inzan-mob-bar-btn.inzan-mob-bar-cta .mob-dock-icon,
+    .inzan-mob-bar-btn.inzan-mob-bar-cta.active .mob-dock-icon,
+    .inzan-mob-bar-cta span,
+    .inzan-mob-bar-btn.inzan-mob-bar-cta span,
+    .inzan-mob-bar-btn.inzan-mob-bar-cta.active span {
+        color: #000000 !important;
+        fill: #000000 !important;
     }
 
-    .inzan-mob-bar-cta:hover {
+    .inzan-mob-bar-cta:hover,
+    .inzan-mob-bar-btn.inzan-mob-bar-cta:hover {
         background: #E5E5E5 !important;
         color: #000000 !important;
     }
 
     body {
-        padding-bottom: 64px !important;
+        padding-bottom: 60px !important;
     }
 
     .inzan-fab-whatsapp {
+        display: none !important;
+    }
+
+    #inzanSoundToggle {
         display: none !important;
     }
 }
@@ -3026,12 +3143,9 @@ body.cursor-active #inzanCursorDot {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     #inzanSoundToggle {
-        bottom: 74px;
-        left: 14px;
-        padding: 5px 11px;
-        font-size: 10px;
+        display: none !important;
     }
 }
 

@@ -258,40 +258,56 @@
             <!-- End Athletic Story Highlights Reel -->
             
             <!-- Navigation panel -->
-            <nav class="main-nav dark transparent stick-fixed">
+            <nav class="main-nav dark transparent stick-fixed" id="inzanMainNav">
                 <div class="full-wrapper relative clearfix">
                     
                     <!-- Logo -->
-                    <div class="nav-logo-wrap local-scroll">
-                        <a href="#top" class="logo">
+                    <div class="nav-logo-wrap">
+                        <a href="#top" class="logo" aria-label="Inzan Athletics Home">
                             <img src="images/inzan-logo.png" srcset="images/inzan-logo@2x.png 2x" height="30" alt="INZAN | ATHLETICS" />
                         </a>
                     </div>
                     
-                    <!-- Mobile Hamburger -->
-                    <div class="mobile-nav" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false">
-                        <i class="fa fa-bars"></i>
-                    </div>
+                    <!-- Architectural Minimalist Hamburger Button -->
+                    <button type="button" class="mobile-nav inzan-hamburger" id="inzanHamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+                        <span class="ham-line ham-top"></span>
+                        <span class="ham-line ham-mid"></span>
+                        <span class="ham-line ham-bot"></span>
+                    </button>
                     
-                    <!-- Main Menu -->
-                    <div class="inner-nav desktop-nav">
-                        <ul class="clearlist scroll-nav local-scroll">
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#zone-training">Zones</a></li>
-                            <li><a href="#schedule">Schedule</a></li>
-                            <li><a href="#first30days">Process</a></li>
-                            <li><a href="#coaches">Coaches</a></li>
-                            <li><a href="#results">Results</a></li>
-                            <li><a href="#news">News</a></li>
-                            <li><a href="#portal" class="nav-portal-btn" onclick="openPortalModal(event)"><i class="fa fa-user-circle-o mr-5"></i> Athlete Portal</a></li>
+                    <!-- Main Menu & Full-Screen Mobile Drawer -->
+                    <div class="inner-nav desktop-nav" id="inzanDesktopNav">
+                        <ul class="clearlist scroll-nav inzan-nav-list">
+                            <li><a href="#about"><span class="nav-idx">01</span> About</a></li>
+                            <li><a href="#zone-training"><span class="nav-idx">02</span> Zones</a></li>
+                            <li><a href="#schedule"><span class="nav-idx">03</span> Schedule</a></li>
+                            <li><a href="#first30days"><span class="nav-idx">04</span> Process</a></li>
+                            <li><a href="#coaches"><span class="nav-idx">05</span> Coaches</a></li>
+                            <li><a href="#results"><span class="nav-idx">06</span> Results</a></li>
+                            <li><a href="#news"><span class="nav-idx">07</span> News</a></li>
+                            <li><a href="#portal" class="nav-portal-btn" onclick="openPortalModal(event)"><span class="nav-idx">08</span> <i class="fa fa-user-circle-o mr-5"></i> Athlete Portal</a></li>
                             <li class="desktop-only-item"><a href="#assessment" class="nav-cta-highlight">Book Assessment</a></li>
+                            
+                            <!-- Mobile Menu Drawer Action & Info Footer -->
                             <li class="mobile-menu-cta-item">
-                                <a href="#assessment" class="btn btn-mod btn-medium btn-round inzan-btn-primary" style="display:block; text-align:center; padding:12px; color:#000000 !important; background:#FFFFFF; font-weight:700; margin-top:14px;">
-                                    <i class="fa fa-calendar-check-o mr-5"></i> Book 60-Min Assessment
+                                <a href="#assessment" class="inzan-menu-cta-btn">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display:inline-block; vertical-align:middle; margin-right:6px;">
+                                        <path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z"></path>
+                                    </svg>
+                                    Book 60-Min Assessment
                                 </a>
                             </li>
+                            <li class="mobile-menu-sound-item">
+                                <button type="button" class="mobile-menu-sound-btn" onclick="toggleInzanSound()" aria-label="Toggle tactile audio feedback">
+                                    <span class="sound-label-group">
+                                        <i class="fa fa-volume-off" id="mobileSoundIcon"></i>
+                                        <span>Tactile Audio</span>
+                                    </span>
+                                    <span class="sound-badge" id="mobileSoundBadge">OFF</span>
+                                </button>
+                            </li>
                             <li class="mobile-menu-info-item">
-                                <span>Garden 8 &bull; New Cairo &bull; <a href="tel:+201000061243" style="color:#888888; display:inline; padding:0;">+201000061243</a></span>
+                                <span>Garden 8 &bull; New Cairo &bull; <a href="tel:+201000061243">+20 100 006 1243</a></span>
                             </li>
                         </ul>
                     </div>
@@ -1741,21 +1757,11 @@
         </div>
         <!-- End Page Wrap -->
         
-        <!-- Persistent Mobile Bottom Action Bar (<= 768px) -->
-        <div class="mobile-bottom-bar" role="navigation" aria-label="Quick Mobile Actions">
-            <div class="mobile-bottom-bar-inner">
-                <a href="#assessment" class="mobile-action-btn mobile-btn-book">
-                    <i class="fa fa-calendar-check-o"></i> Book Assessment
-                </a>
-                <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20would%20like%20to%20inquire%20about%20booking%20an%20assessment." target="_blank" rel="noopener noreferrer" class="mobile-action-btn mobile-btn-whatsapp">
-                    <i class="fa fa-whatsapp"></i> WhatsApp
-                </a>
-            </div>
-        </div>
-
         <!-- Floating WhatsApp Desktop Button -->
         <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20would%20like%20to%20inquire%20about%20booking%20an%20assessment." target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" title="Chat with Inzan Athletics on WhatsApp" aria-label="Chat with Inzan Athletics on WhatsApp">
-            <i class="fa fa-whatsapp"></i>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.075-.301-.15-1.272-.469-2.424-1.496-.897-.799-1.503-1.786-1.678-2.087-.176-.301-.019-.464.132-.614.136-.134.301-.351.452-.526.15-.176.2-.301.301-.502.1-.201.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.234-.244-.588-.492-.508-.677-.518-.175-.008-.376-.01-.577-.01-.201 0-.527.075-.802.376-.276.301-1.053 1.029-1.053 2.509 0 1.48 1.078 2.909 1.229 3.11.15.201 2.122 3.24 5.141 4.544.718.311 1.279.497 1.716.636.722.23 1.378.197 1.898.12.578-.087 1.782-.728 2.032-1.431.251-.703.251-1.305.176-1.431-.075-.126-.276-.201-.577-.351zM12.042 21.688A9.626 9.626 0 0 1 7.12 20.35l-.352-.209-3.666.961.978-3.573-.23-.366a9.643 9.643 0 0 1-1.481-5.121c0-5.328 4.336-9.663 9.673-9.663 2.583 0 5.011 1.006 6.837 2.833 1.826 1.827 2.831 4.256 2.83 6.84 0 5.33-4.336 9.664-9.668 9.664zm0-18.005c-4.599 0-8.341 3.742-8.341 8.343a8.318 8.318 0 0 0 1.277 4.417l.142.227-.604 2.207 2.261-.593.22.131a8.317 8.317 0 0 0 4.045 1.052h.004c4.6 0 8.343-3.743 8.343-8.344 0-2.228-.868-4.323-2.445-5.901a8.298 8.298 0 0 0-5.9-2.442z"/>
+            </svg>
         </a>
         
         
@@ -1921,11 +1927,14 @@
                     <h4 class="story-caption-title" id="storyCaptionTitle">GARDEN 8 HIGH PERFORMANCE FACILITY</h4>
                     <p class="story-caption-desc" id="storyCaptionDesc">Dedicated Eleiko competition platforms, custom gymnastic rig, 25-meter indoor sprint turf, and biomechanical testing lab in New Cairo.</p>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <a href="#assessment" class="btn btn-mod btn-small btn-round inzan-btn-primary" style="flex:1;" onclick="closeStoryModal()">
-                            <i class="fa fa-calendar-check-o mr-5"></i> Book Screening
+                        <a href="#assessment" class="btn btn-mod btn-small inzan-btn-primary" style="flex:1; border-radius:2px;" onclick="closeStoryModal()">
+                            <i class="fa fa-calendar mr-5"></i> Book Screening
                         </a>
-                        <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20am%20watching%20your%20story%20highlights%20and%20want%20to%20inquire." target="_blank" rel="noopener noreferrer" class="btn btn-mod btn-small btn-round inzan-btn-whatsapp" style="flex:1;">
-                            <i class="fa fa-whatsapp mr-5"></i> WhatsApp
+                        <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20am%20watching%20your%20story%20highlights%20and%20want%20to%20inquire." target="_blank" rel="noopener noreferrer" class="btn btn-mod btn-small inzan-btn-outline" style="flex:1; border-radius:2px;">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                                <path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.075-.301-.15-1.272-.469-2.424-1.496-.897-.799-1.503-1.786-1.678-2.087-.176-.301-.019-.464.132-.614.136-.134.301-.351.452-.526.15-.176.2-.301.301-.502.1-.201.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.234-.244-.588-.492-.508-.677-.518-.175-.008-.376-.01-.577-.01-.201 0-.527.075-.802.376-.276.301-1.053 1.029-1.053 2.509 0 1.48 1.078 2.909 1.229 3.11.15.201 2.122 3.24 5.141 4.544.718.311 1.279.497 1.716.636.722.23 1.378.197 1.898.12.578-.087 1.782-.728 2.032-1.431.251-.703.251-1.305.176-1.431-.075-.126-.276-.201-.577-.351zM12.042 21.688A9.626 9.626 0 0 1 7.12 20.35l-.352-.209-3.666.961.978-3.573-.23-.366a9.643 9.643 0 0 1-1.481-5.121c0-5.328 4.336-9.663 9.673-9.663 2.583 0 5.011 1.006 6.837 2.833 1.826 1.827 2.831 4.256 2.83 6.84 0 5.33-4.336 9.664-9.668 9.664zm0-18.005c-4.599 0-8.341 3.742-8.341 8.343a8.318 8.318 0 0 0 1.277 4.417l.142.227-.604 2.207 2.261-.593.22.131a8.317 8.317 0 0 0 4.045 1.052h.004c4.6 0 8.343-3.743 8.343-8.344 0-2.228-.868-4.323-2.445-5.901a8.298 8.298 0 0 0-5.9-2.442z"/>
+                            </svg>
+                            WhatsApp
                         </a>
                     </div>
                 </div>
@@ -1933,32 +1942,46 @@
         </div>
 
         <!-- Mobile Quick Action Floating Bottom Bar (< 768px) -->
-        <div class="inzan-mobile-bottom-bar" id="inzanMobileBottomBar">
-            <button type="button" class="inzan-mob-bar-btn" onclick="toggleBottomDrawer()">
-                <i class="fa fa-th-large"></i>
-                <span>Explore</span>
+        <nav class="inzan-mobile-bottom-bar" id="inzanMobileBottomBar" aria-label="Mobile Navigation Dock">
+            <button type="button" class="inzan-mob-bar-btn" onclick="toggleBottomDrawer()" aria-label="Explore Zones and Diagnostic">
+                <svg class="mob-dock-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                <span>Zones</span>
             </button>
-            <a href="#schedule" class="inzan-mob-bar-btn">
-                <i class="fa fa-calendar-check-o"></i>
+            <a href="#schedule" class="inzan-mob-bar-btn" aria-label="Timetable Schedule">
+                <svg class="mob-dock-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
                 <span>Schedule</span>
             </a>
-            <a href="#assessment" class="inzan-mob-bar-btn inzan-mob-bar-cta">
-                <i class="fa fa-calendar-check-o"></i>
+            <a href="#assessment" class="inzan-mob-bar-btn inzan-mob-bar-cta" aria-label="Book 60-Minute Assessment">
+                <svg class="mob-dock-icon" viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+                    <path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z"></path>
+                </svg>
                 <span>Book</span>
             </a>
-            <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20would%20like%20to%20inquire%20about%20membership." target="_blank" rel="noopener noreferrer" class="inzan-mob-bar-btn">
-                <i class="fa fa-whatsapp"></i>
+            <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20would%20like%20to%20inquire%20about%20membership." target="_blank" rel="noopener noreferrer" class="inzan-mob-bar-btn" aria-label="WhatsApp Concierge">
+                <svg class="mob-dock-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.075-.301-.15-1.272-.469-2.424-1.496-.897-.799-1.503-1.786-1.678-2.087-.176-.301-.019-.464.132-.614.136-.134.301-.351.452-.526.15-.176.2-.301.301-.502.1-.201.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.234-.244-.588-.492-.508-.677-.518-.175-.008-.376-.01-.577-.01-.201 0-.527.075-.802.376-.276.301-1.053 1.029-1.053 2.509 0 1.48 1.078 2.909 1.229 3.11.15.201 2.122 3.24 5.141 4.544.718.311 1.279.497 1.716.636.722.23 1.378.197 1.898.12.578-.087 1.782-.728 2.032-1.431.251-.703.251-1.305.176-1.431-.075-.126-.276-.201-.577-.351zM12.042 21.688A9.626 9.626 0 0 1 7.12 20.35l-.352-.209-3.666.961.978-3.573-.23-.366a9.643 9.643 0 0 1-1.481-5.121c0-5.328 4.336-9.663 9.673-9.663 2.583 0 5.011 1.006 6.837 2.833 1.826 1.827 2.831 4.256 2.83 6.84 0 5.33-4.336 9.664-9.668 9.664zm0-18.005c-4.599 0-8.341 3.742-8.341 8.343a8.318 8.318 0 0 0 1.277 4.417l.142.227-.604 2.207 2.261-.593.22.131a8.317 8.317 0 0 0 4.045 1.052h.004c4.6 0 8.343-3.743 8.343-8.344 0-2.228-.868-4.323-2.445-5.901a8.298 8.298 0 0 0-5.9-2.442z"/>
+                </svg>
                 <span>WhatsApp</span>
             </a>
-        </div>
+        </nav>
 
         <!-- Mobile Quick Navigation Drawer Sheet -->
         <div id="inzanBottomDrawer" onclick="handleDrawerBackdropClick(event)">
             <div class="inzan-drawer-panel">
                 <div class="drawer-drag-handle"></div>
                 <div style="text-align:center; margin-bottom:18px;">
-                    <h3 class="font-alt" style="font-size:16px; letter-spacing:2px; color:#FFFFFF; margin-bottom:4px;">INZAN ATHLETICS &bull; QUICK ACCESS</h3>
-                    <p style="font-size:11px; color:#888888;">Garden 8, Northern Investors, New Cairo</p>
+                    <h3 class="font-alt" style="font-size:15px; letter-spacing:2px; color:#FFFFFF; margin-bottom:4px; text-transform:uppercase;">INZAN ATHLETICS &bull; QUICK ACCESS</h3>
+                    <p style="font-size:11px; color:#888888; letter-spacing:0.5px;">Garden 8, Northern Investors, New Cairo</p>
                 </div>
                 <div class="drawer-links-grid">
                     <a href="#diagnostic-tool" class="drawer-action-card" onclick="closeBottomDrawer()">
@@ -1967,7 +1990,7 @@
                         <div class="drawer-action-sub">Calculate Protocol</div>
                     </a>
                     <a href="#schedule" class="drawer-action-card" onclick="closeBottomDrawer()">
-                        <i class="fa fa-calendar-check-o"></i>
+                        <i class="fa fa-calendar"></i>
                         <div class="drawer-action-title">Live Timetable</div>
                         <div class="drawer-action-sub">Mon &ndash; Sun Slots</div>
                     </a>
@@ -1982,7 +2005,7 @@
                         <div class="drawer-action-sub">Google Maps</div>
                     </a>
                 </div>
-                <button type="button" class="btn btn-mod btn-medium btn-round inzan-btn-primary" style="width:100%;" onclick="closeBottomDrawer(); selectPathway('Sport Performance');">
+                <button type="button" class="btn btn-mod inzan-btn-primary" style="width:100%; border-radius:2px; padding:13px; font-weight:700; letter-spacing:1.5px; font-size:11px;" onclick="closeBottomDrawer(); selectPathway('Sport Performance');">
                     <i class="fa fa-calendar mr-5"></i> Book 60-Min Intake Assessment
                 </button>
             </div>

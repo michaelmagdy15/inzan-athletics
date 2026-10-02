@@ -2111,14 +2111,14 @@ a.logo:hover{
 .bg-orange{ background-color: #f47631 !important; }
 .bg-yellow{  background-color: #ffce02 !important; }
 .bg-cyan{ background-color: #27c5c3 !important; }
-.bg-green{ background-color: #58bf44 !important; }
+.bg-green{ background-color: #1A1A1A !important; }
 .bg-blue{ background-color: #43a5de !important; }
 .bg-purple{ background-color: #375acc !important; }
 .bg-red{ background-color: #e13939 !important; }
 
 .section-title {
     margin-bottom: 15px;
-    color: #348200;
+    color: #FFFFFF;
     font-size: 24px;
     font-weight: 400;
     text-transform: uppercase;
@@ -2128,7 +2128,7 @@ a.logo:hover{
 }
 .section-title-blue {
     margin-bottom: 15px;
-    color: #1310CA;
+    color: #FFFFFF;
     font-size: 24px;
     font-weight: 400;
     text-transform: uppercase;
@@ -2138,7 +2138,7 @@ a.logo:hover{
 }
 .section-title-green {
     margin-bottom: 15px;
-    color: #348200;
+    color: #FFFFFF;
     font-size: 24px;
     font-weight: 400;
     text-transform: uppercase;

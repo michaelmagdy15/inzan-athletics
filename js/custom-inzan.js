@@ -59,17 +59,23 @@
         var $btn = $("#inzanSoundToggle");
         var $icon = $("#soundToggleIcon");
         var $text = $("#soundToggleText");
+        var $mobIcon = $("#mobileSoundIcon");
+        var $mobBadge = $("#mobileSoundBadge");
 
         if (soundEnabled) {
             $btn.addClass("sound-on");
             $icon.attr("class", "fa fa-volume-up");
             $text.text("Audio: On");
+            $mobIcon.attr("class", "fa fa-volume-up");
+            $mobBadge.text("ON").addClass("active");
             playSyntheticTone(1200, 0.08, "triangle");
             showToast("Tactile Audio Enabled", "fa fa-volume-up");
         } else {
             $btn.removeClass("sound-on");
             $icon.attr("class", "fa fa-volume-off");
             $text.text("Audio: Off");
+            $mobIcon.attr("class", "fa fa-volume-off");
+            $mobBadge.text("OFF").removeClass("active");
             showToast("Tactile Audio Muted", "fa fa-volume-off");
         }
     };
@@ -78,14 +84,21 @@
         var $btn = $("#inzanSoundToggle");
         var $icon = $("#soundToggleIcon");
         var $text = $("#soundToggleText");
+        var $mobIcon = $("#mobileSoundIcon");
+        var $mobBadge = $("#mobileSoundBadge");
+
         if (soundEnabled) {
             $btn.addClass("sound-on");
             $icon.attr("class", "fa fa-volume-up");
             $text.text("Audio: On");
+            $mobIcon.attr("class", "fa fa-volume-up");
+            $mobBadge.text("ON").addClass("active");
         } else {
             $btn.removeClass("sound-on");
             $icon.attr("class", "fa fa-volume-off");
             $text.text("Audio: Off");
+            $mobIcon.attr("class", "fa fa-volume-off");
+            $mobBadge.text("OFF").removeClass("active");
         }
     }
 
@@ -1181,56 +1194,133 @@
             }, 600);
         });
 
-        // Mobile Nav Drawer Toggle (Ultra-smooth luxury slide)
+        // Architectural Mobile Nav Drawer Controller
+        function openMobileMenu() {
+            var $nav = $(".desktop-nav");
+            var $btn = $(".mobile-nav");
+            $btn.addClass("is-active active").attr("aria-expanded", "true");
+            $nav.addClass("mobile-open js-opened").css("display", "block");
+            $("body").addClass("mobile-nav-open").css("overflow", "hidden");
+            if (soundEnabled) playSyntheticTone(1100, 0.03, "sine");
+        }
+
+        function closeMobileMenu() {
+            var $nav = $(".desktop-nav");
+            var $btn = $(".mobile-nav");
+            $btn.removeClass("is-active active").attr("aria-expanded", "false");
+            $nav.removeClass("mobile-open js-opened").css("display", "none");
+            $("body").removeClass("mobile-nav-open").css("overflow", "");
+        }
+
+        window.openMobileMenu = openMobileMenu;
+        window.closeMobileMenu = closeMobileMenu;
+
+        // Mobile Nav Drawer Toggle
         $(".mobile-nav").off("click").on("click", function(e) {
             e.preventDefault();
             e.stopPropagation();
-            var $nav = $(".desktop-nav");
-            var isExpanded = $(this).attr("aria-expanded") === "true";
-            $(this).attr("aria-expanded", !isExpanded);
-
-            if ($nav.hasClass("mobile-open") || $nav.hasClass("js-opened")) {
-                $nav.removeClass("mobile-open js-opened").slideUp(220);
-                $(this).removeClass("active").find("i").removeClass("fa-times").addClass("fa-bars");
-                $("body").css("overflow", "");
+            if ($(".desktop-nav").hasClass("mobile-open") || $(".desktop-nav").hasClass("js-opened")) {
+                closeMobileMenu();
             } else {
-                $nav.addClass("mobile-open js-opened").slideDown(260);
-                $(this).addClass("active").find("i").removeClass("fa-bars").addClass("fa-times");
-                $("body").css("overflow", "hidden");
-            }
-            if (soundEnabled) playSyntheticTone(1100, 0.03, "sine");
-        });
-
-        $(".desktop-nav a").on("click", function() {
-            if ($(window).width() <= 1024) {
-                $(".mobile-nav").attr("aria-expanded", "false").removeClass("active");
-                $(".mobile-nav").find("i").removeClass("fa-times").addClass("fa-bars");
-                $(".desktop-nav").removeClass("mobile-open js-opened").slideUp(200);
-                $("body").css("overflow", "");
+                openMobileMenu();
             }
         });
 
-        // ScrollSpy Navbar
-        var sections = $("section[id], div[id='home']");
-        var navLinks = $(".desktop-nav ul li a");
+        // Precision Smooth Scroll Navigation Engine
+        function smoothScrollToTarget(targetId) {
+            if (!targetId || targetId === "#") return;
+            var cleanId = targetId.replace(/^#/, "");
+            var $target = (cleanId === "top" || cleanId === "home") ? $("body") : $("#" + cleanId);
+
+            if ($target.length) {
+                // If mobile drawer is open, close it cleanly
+                if ($(".desktop-nav").hasClass("mobile-open") || $(".desktop-nav").hasClass("js-opened")) {
+                    closeMobileMenu();
+                }
+
+                var navHeight = $(".main-nav").outerHeight() || 60;
+                var targetTop = 0;
+
+                if (cleanId === "top" || cleanId === "home") {
+                    targetTop = 0;
+                } else {
+                    var $heading = $target.find(".section-title, .inzan-subheading, h2, h1").first();
+                    if ($heading.length) {
+                        targetTop = Math.max(0, $heading.offset().top - navHeight - 16);
+                    } else {
+                        targetTop = Math.max(0, $target.offset().top - navHeight - 10);
+                    }
+                }
+
+                try {
+                    window.scrollTo({
+                        top: targetTop,
+                        behavior: "smooth"
+                    });
+                } catch(e) {
+                    $("html, body").stop().animate({
+                        scrollTop: targetTop
+                    }, 450);
+                }
+            }
+        }
+
+        window.smoothScrollToTarget = smoothScrollToTarget;
+
+        // Intercept clicks on internal anchor links
+        $(document).on("click", "a[href^='#']", function(e) {
+            var href = $(this).attr("href");
+            if (href && href.charAt(0) === "#" && href.length > 1) {
+                // If button triggers modal or has custom JS, let its handler run
+                if ($(this).hasClass("nav-portal-btn") || $(this).hasClass("work-lightbox-link") || $(this).attr("onclick")) {
+                    if ($(".desktop-nav").hasClass("mobile-open")) {
+                        closeMobileMenu();
+                    }
+                    return;
+                }
+                e.preventDefault();
+                e.stopPropagation();
+                smoothScrollToTarget(href);
+            }
+        });
+
+        // Dual ScrollSpy (Desktop Navbar + Mobile Bottom Dock)
+        var spySections = $("section[id], div[id='home']");
+        var desktopNavLinks = $(".desktop-nav ul li a");
+        var mobileDockButtons = $(".inzan-mob-bar-btn");
 
         $(window).on("scroll", function() {
-            var curPos = $(this).scrollTop() + 120;
+            var scrollPos = $(this).scrollTop();
+            var headerHeight = $(".main-nav").outerHeight() || 60;
+            var curPos = scrollPos + headerHeight + 35;
 
-            sections.each(function() {
+            var activeSection = "home";
+            spySections.each(function() {
                 var top = $(this).offset().top;
                 var bottom = top + $(this).outerHeight();
                 var id = $(this).attr("id");
 
                 if (curPos >= top && curPos <= bottom) {
-                    navLinks.removeClass("active");
-                    $(".desktop-nav ul li a[href='#" + id + "']").addClass("active");
+                    activeSection = id;
                 }
             });
 
-            if ($(this).scrollTop() < 100) {
-                navLinks.removeClass("active");
-                $(".desktop-nav ul li a[href='#home']").addClass("active");
+            if (scrollPos < 100) {
+                activeSection = "home";
+            }
+
+            // Sync Desktop Nav Active State
+            desktopNavLinks.removeClass("active");
+            $(".desktop-nav ul li a[href='#" + activeSection + "']").addClass("active");
+
+            // Sync Mobile Dock Active State
+            mobileDockButtons.removeClass("active");
+            if (activeSection === "zone-training") {
+                $(".inzan-mob-bar-btn[onclick*='toggleBottomDrawer']").addClass("active");
+            } else if (activeSection === "schedule") {
+                $(".inzan-mob-bar-btn[href='#schedule']").addClass("active");
+            } else if (activeSection === "assessment") {
+                $(".inzan-mob-bar-btn[href='#assessment']").addClass("active");
             }
         });
     }
