@@ -2772,7 +2772,348 @@ blockquote {
     overflow: hidden;
 }
 
-/* 2. Leonardo Hero Showcase */
+/* 2. Leonardo Full-Screen Scene Hero */
+.leonardo-scene-section {
+    position: relative;
+    background-size: cover !important;
+    background-position: center 30% !important;
+    background-repeat: no-repeat !important;
+    overflow: hidden;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leonardo-scene-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(ellipse at 50% 50%, rgba(6, 7, 10, 0.3) 0%, rgba(6, 7, 10, 0.72) 60%, #08090d 100%),
+                linear-gradient(180deg, rgba(8, 9, 13, 0.5) 0%, transparent 25%, transparent 70%, #08090d 100%);
+    pointer-events: none;
+}
+
+.leonardo-scene-height {
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.leonardo-scene-vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(4, 5, 7, 0.6) 80%, rgba(4, 5, 7, 0.95) 100%);
+    z-index: 1;
+}
+
+.leonardo-scene-stage {
+    position: relative;
+    z-index: 3;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.leonardo-scene-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 20px;
+    border-radius: 999px;
+    background: rgba(16, 20, 28, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+}
+
+.scene-badge-pulse {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+    animation: sceneDotPulse 2s infinite ease-in-out;
+}
+
+@keyframes sceneDotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.35; transform: scale(0.7); }
+}
+
+.leonardo-scene-title {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: clamp(2.8rem, 6.8vw, 6.4rem) !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.035em !important;
+    line-height: 0.94 !important;
+    color: #FFFFFF !important;
+    text-transform: uppercase !important;
+    margin: 0 0 20px 0 !important;
+    text-shadow: 0 6px 40px rgba(0, 0, 0, 0.95);
+}
+
+.leonardo-scene-title .scene-title-top {
+    display: block;
+}
+
+.leonardo-scene-title .scene-title-gradient {
+    display: block;
+    background: linear-gradient(180deg, #FFFFFF 20%, #A5ABB8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.leonardo-scene-tagline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(14px, 1.8vw, 18px);
+    color: rgba(255, 255, 255, 0.82);
+    font-weight: 500;
+    letter-spacing: 0.6px;
+    margin: 0 auto 36px auto;
+    max-width: 640px;
+    line-height: 1.5;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
+}
+
+.leonardo-scene-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.leonardo-btn-glow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #FFFFFF;
+    color: #000000 !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border-radius: 999px;
+    text-decoration: none !important;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.35);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.leonardo-btn-glow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.7);
+    background: #FFFFFF;
+    color: #000000 !important;
+}
+
+.leonardo-btn-glass {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(14, 18, 26, 0.65);
+    color: #FFFFFF !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 15px 32px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    text-decoration: none !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.leonardo-btn-glass:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #FFFFFF !important;
+    transform: translateY(-2px);
+}
+
+.leonardo-scene-scroll {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    text-align: center;
+}
+
+.scene-scroll-link {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+}
+
+.scene-scroll-link:hover {
+    color: #FFFFFF;
+}
+
+.scene-scroll-mouse {
+    width: 22px;
+    height: 34px;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+}
+
+.scene-scroll-dot {
+    width: 3px;
+    height: 6px;
+    background: #FFFFFF;
+    border-radius: 2px;
+    animation: sceneWheelDot 2s infinite ease-in-out;
+}
+
+@keyframes sceneWheelDot {
+    0% { opacity: 0; transform: translateY(0); }
+    40% { opacity: 1; }
+    80% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 0; transform: translateY(10px); }
+}
+
+/* Dedicated Program Explorer Section (Below The Fold) */
+section[id] {
+    scroll-margin-top: 75px;
+}
+
+.inzan-program-explorer-section {
+    scroll-margin-top: 75px;
+    background: var(--inzan-obsidian-0);
+    padding: 100px 0 90px;
+    position: relative;
+    border-top: 1px solid var(--inzan-border-glass);
+    border-bottom: 1px solid var(--inzan-border-glass);
+    overflow: hidden;
+}
+
+.inzan-program-explorer-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 300px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.05), transparent 70%);
+    pointer-events: none;
+}
+
+.inzan-program-explorer-section .leonardo-hero-showcase {
+    margin-top: 24px;
+    max-width: 1040px;
+}
+
+.inzan-program-explorer-section .leonardo-showcase-pills {
+    margin-bottom: 24px;
+}
+
+.inzan-program-explorer-section .leonardo-showcase-card {
+    min-height: 340px;
+}
+
+.showcase-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.showcase-book-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+}
+
+.showcase-book-btn:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 767px) {
+    .leonardo-scene-title {
+        font-size: clamp(2.2rem, 9.5vw, 3.2rem) !important;
+        letter-spacing: -0.025em !important;
+        line-height: 1.05 !important;
+        margin-bottom: 14px !important;
+    }
+    .leonardo-scene-tagline {
+        font-size: 13px;
+        line-height: 1.6;
+        margin-bottom: 24px;
+    }
+    .leonardo-scene-actions {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+        gap: 10px;
+    }
+    .leonardo-btn-glow,
+    .leonardo-btn-glass {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 12px;
+    }
+    .inzan-program-explorer-section {
+        padding: 70px 0 60px;
+    }
+}
+
+/* 3. Leonardo Discipline Showcase */
 .leonardo-hero-showcase {
     margin-top: 36px;
     width: 100%;
