@@ -7,390 +7,15 @@
     "use strict";
 
     // ==========================================================================
-    // 1. Synthesized Web Audio Engine (Tactile UI Micro-Feedback, Opt-In)
+    // Clean, authentic gym interactions (zero synthetic audio or fake canvas/HUD)
     // ==========================================================================
-    var audioCtx = null;
     var soundEnabled = false;
-
-    // Check localStorage preference
-    try {
-        if (localStorage.getItem("inzan_sound") === "true") {
-            soundEnabled = true;
-        }
-    } catch(e) {}
-
-    function getAudioContext() {
-        if (!audioCtx) {
-            var AudioContextClass = window.AudioContext || window.webkitAudioContext;
-            if (AudioContextClass) {
-                audioCtx = new AudioContextClass();
-            }
-        }
-        if (audioCtx && audioCtx.state === "suspended") {
-            audioCtx.resume();
-        }
-        return audioCtx;
-    }
-
-    function playSyntheticTone(freq, duration, type) {
-        if (!soundEnabled) return;
-        try {
-            var ctx = getAudioContext();
-            if (!ctx) return;
-            var osc = ctx.createOscillator();
-            var gain = ctx.createGain();
-            osc.type = type || "sine";
-            osc.frequency.setValueAtTime(freq || 1050, ctx.currentTime);
-            gain.gain.setValueAtTime(0.04, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + (duration || 0.04));
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.start();
-            osc.stop(ctx.currentTime + (duration || 0.04));
-        } catch(e) {}
-    }
-
-    window.toggleInzanSound = function() {
-        soundEnabled = !soundEnabled;
-        try {
-            localStorage.setItem("inzan_sound", soundEnabled ? "true" : "false");
-        } catch(e) {}
-
-        var $btn = $("#inzanSoundToggle");
-        var $icon = $("#soundToggleIcon");
-        var $text = $("#soundToggleText");
-        var $mobIcon = $("#mobileSoundIcon");
-        var $mobBadge = $("#mobileSoundBadge");
-        var $deskBtn = $(".desktop-nav-sound-btn");
-        var $deskIcon = $("#desktopSoundIcon");
-
-        if (soundEnabled) {
-            $btn.addClass("sound-on");
-            $icon.attr("class", "fa fa-volume-up");
-            $text.text("Audio: On");
-            $mobIcon.attr("class", "fa fa-volume-up");
-            $mobBadge.text("ON").addClass("active");
-            $deskBtn.addClass("sound-on");
-            $deskIcon.attr("class", "fa fa-volume-up");
-            playSyntheticTone(1200, 0.08, "triangle");
-            showToast("Tactile Audio Enabled", "fa fa-volume-up");
-        } else {
-            $btn.removeClass("sound-on");
-            $icon.attr("class", "fa fa-volume-off");
-            $text.text("Audio: Off");
-            $mobIcon.attr("class", "fa fa-volume-off");
-            $mobBadge.text("OFF").removeClass("active");
-            $deskBtn.removeClass("sound-on");
-            $deskIcon.attr("class", "fa fa-volume-off");
-            showToast("Tactile Audio Muted", "fa fa-volume-off");
-        }
-    };
-
-    function updateSoundToggleUI() {
-        var $btn = $("#inzanSoundToggle");
-        var $icon = $("#soundToggleIcon");
-        var $text = $("#soundToggleText");
-        var $mobIcon = $("#mobileSoundIcon");
-        var $mobBadge = $("#mobileSoundBadge");
-        var $deskBtn = $(".desktop-nav-sound-btn");
-        var $deskIcon = $("#desktopSoundIcon");
-
-        if (soundEnabled) {
-            $btn.addClass("sound-on");
-            $icon.attr("class", "fa fa-volume-up");
-            $text.text("Audio: On");
-            $mobIcon.attr("class", "fa fa-volume-up");
-            $mobBadge.text("ON").addClass("active");
-            $deskBtn.addClass("sound-on");
-            $deskIcon.attr("class", "fa fa-volume-up");
-        } else {
-            $btn.removeClass("sound-on");
-            $icon.attr("class", "fa fa-volume-off");
-            $text.text("Audio: Off");
-            $mobIcon.attr("class", "fa fa-volume-off");
-            $mobBadge.text("OFF").removeClass("active");
-            $deskBtn.removeClass("sound-on");
-            $deskIcon.attr("class", "fa fa-volume-off");
-        }
-    }
-
-    // ==========================================================================
-    // 2. Cinematic Telemetry Preloader Engine
-    // ==========================================================================
-    function initCinematicPreloader() {
-        var $preloader = $("#inzanPreloader");
-        if ($preloader.length === 0) return;
-
-        var hasLoadedBefore = false;
-        try {
-            hasLoadedBefore = sessionStorage.getItem("inzan_preloaded") === "true";
-        } catch(e) {}
-
-        var $num = $("#preloaderNum");
-        var $bar = $("#preloaderBar");
-        var $status = $("#preloaderStatus");
-
-        var progress = 0;
-        var targetDuration = hasLoadedBefore ? 350 : 1350;
-        var startTime = null;
-
-        var statusMessages = [
-            { pct: 0, msg: "INITIALIZING KINETIC SYSTEMS..." },
-            { pct: 28, msg: "CALIBRATING ELEIKO PLATFORMS..." },
-            { pct: 58, msg: "SYNCHRONIZING NEW CAIRO TIMETABLE..." },
-            { pct: 88, msg: "CONFIGURING ATHLETE CLOUD..." },
-            { pct: 100, msg: "SYSTEM READY &bull; ACCESS GRANTED" }
-        ];
-
-        function getStatusMessage(p) {
-            var current = statusMessages[0].msg;
-            for (var i = 0; i < statusMessages.length; i++) {
-                if (p >= statusMessages[i].pct) {
-                    current = statusMessages[i].msg;
-                }
-            }
-            return current;
-        }
-
-        function stepPreloader(timestamp) {
-            if (!startTime) startTime = timestamp;
-            var elapsed = timestamp - startTime;
-            var rawPct = Math.min(100, Math.floor((elapsed / targetDuration) * 100));
-
-            if (rawPct > progress) {
-                progress = rawPct;
-                $num.text(progress < 10 ? "0" + progress : progress);
-                $bar.css("width", progress + "%");
-                $status.html(getStatusMessage(progress));
-
-                if (progress % 20 === 0 && soundEnabled) {
-                    playSyntheticTone(800 + progress * 4, 0.02, "sine");
-                }
-            }
-
-            if (progress < 100) {
-                requestAnimationFrame(stepPreloader);
-            } else {
-                // Preloader 100% complete: Trigger shutter curtain reveal
-                try {
-                    sessionStorage.setItem("inzan_preloaded", "true");
-                } catch(e) {}
-
-                if (soundEnabled) {
-                    playSyntheticTone(1450, 0.1, "triangle");
-                }
-
-                setTimeout(function() {
-                    $preloader.addClass("loaded");
-                    $("body").addClass("preloader-finished");
-
-                    // Hide completely after curtain animation
-                    setTimeout(function() {
-                        $preloader.addClass("hidden-complete");
-                    }, 850);
-                }, 150);
-            }
-        }
-
-        requestAnimationFrame(stepPreloader);
-    }
-
-    // ==========================================================================
-    // 3. Hero Ambient Kinetic Mesh Canvas
-    // ==========================================================================
-    function initHeroParticles() {
-        var canvas = document.getElementById("heroParticleCanvas");
-        if (!canvas) return;
-        var ctx = canvas.getContext("2d");
-        if (!ctx) return;
-
-        var width = 0;
-        var height = 0;
-        var particles = [];
-        var maxParticles = window.innerWidth <= 768 ? 22 : 45;
-        var maxDistance = window.innerWidth <= 768 ? 80 : 120;
-        var animFrameId = null;
-        var isCanvasVisible = true;
-
-        var pointer = { x: null, y: null, radius: 140 };
-
-        function resizeCanvas() {
-            var parent = canvas.parentElement;
-            if (!parent) return;
-            width = canvas.width = parent.offsetWidth;
-            height = canvas.height = parent.offsetHeight;
-        }
-
-        function createParticles() {
-            particles = [];
-            for (var i = 0; i < maxParticles; i++) {
-                particles.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 0.6,
-                    vy: (Math.random() - 0.5) * 0.6,
-                    radius: Math.random() * 1.8 + 1,
-                    alpha: Math.random() * 0.5 + 0.3
-                });
-            }
-        }
-
-        function draw() {
-            if (!isCanvasVisible) return;
-            ctx.clearRect(0, 0, width, height);
-
-            // Connect nearby particles
-            for (var a = 0; a < particles.length; a++) {
-                var p1 = particles[a];
-
-                // Pointer interaction
-                if (pointer.x !== null && pointer.y !== null) {
-                    var dxp = pointer.x - p1.x;
-                    var dyp = pointer.y - p1.y;
-                    var distP = Math.sqrt(dxp * dxp + dyp * dyp);
-                    if (distP < pointer.radius) {
-                        var force = (pointer.radius - distP) / pointer.radius;
-                        p1.x -= (dxp / distP) * force * 1.5;
-                        p1.y -= (dyp / distP) * force * 1.5;
-                    }
-                }
-
-                // Move particle
-                p1.x += p1.vx;
-                p1.y += p1.vy;
-
-                // Bounce off edges
-                if (p1.x < 0 || p1.x > width) p1.vx *= -1;
-                if (p1.y < 0 || p1.y > height) p1.vy *= -1;
-
-                // Draw dot
-                ctx.beginPath();
-                ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
-                ctx.fillStyle = "rgba(255, 255, 255, " + (p1.alpha * 0.7) + ")";
-                ctx.fill();
-
-                // Draw lines between particles
-                for (var b = a + 1; b < particles.length; b++) {
-                    var p2 = particles[b];
-                    var dx = p1.x - p2.x;
-                    var dy = p1.y - p2.y;
-                    var dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < maxDistance) {
-                        var lineAlpha = (1 - dist / maxDistance) * 0.22;
-                        ctx.beginPath();
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = "rgba(255, 255, 255, " + (lineAlpha * 0.25) + ")";
-                        ctx.lineWidth = 0.8;
-                        ctx.stroke();
-                    }
-                }
-            }
-
-            animFrameId = requestAnimationFrame(draw);
-        }
-
-        // Pointer listeners
-        window.addEventListener("mousemove", function(e) {
-            var rect = canvas.getBoundingClientRect();
-            if (e.clientY <= rect.bottom && e.clientY >= rect.top) {
-                pointer.x = e.clientX - rect.left;
-                pointer.y = e.clientY - rect.top;
-            } else {
-                pointer.x = null;
-                pointer.y = null;
-            }
-        });
-
-        window.addEventListener("mouseleave", function() {
-            pointer.x = null;
-            pointer.y = null;
-        });
-
-        // Optimize performance: pause canvas when hero is out of view
-        if ("IntersectionObserver" in window) {
-            var observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        if (!isCanvasVisible) {
-                            isCanvasVisible = true;
-                            draw();
-                        }
-                    } else {
-                        isCanvasVisible = false;
-                        cancelAnimationFrame(animFrameId);
-                    }
-                });
-            }, { threshold: 0.05 });
-            observer.observe(canvas.parentElement || canvas);
-        }
-
-        resizeCanvas();
-        createParticles();
-        draw();
-
-        window.addEventListener("resize", function() {
-            resizeCanvas();
-        });
-    }
-
-    // ==========================================================================
-    // 4. Desktop Precision Dual-Ring Cursor
-    // ==========================================================================
-    function initPrecisionCursor() {
-        if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) {
-            return; // Touch devices use native tap
-        }
-
-        var $dot = $("#inzanCursorDot");
-        var $ring = $("#inzanCursorRing");
-        if ($dot.length === 0 || $ring.length === 0) return;
-
-        var mouseX = -100;
-        var mouseY = -100;
-        var ringX = -100;
-        var ringY = -100;
-        var isCursorInWindow = false;
-
-        document.addEventListener("mousemove", function(e) {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            if (!isCursorInWindow) {
-                isCursorInWindow = true;
-                $dot.css("opacity", "1");
-                $ring.css("opacity", "1");
-            }
-            $dot.css("transform", "translate3d(" + mouseX + "px, " + mouseY + "px, 0) translate(-50%, -50%)");
-        });
-
-        document.addEventListener("mouseleave", function() {
-            isCursorInWindow = false;
-            $dot.css("opacity", "0");
-            $ring.css("opacity", "0");
-        });
-
-        // Hover expand on interactive elements
-        var interactiveSelector = "a, button, .btn, .story-pill-item, .schedule-day-tab, .schedule-filter-pill, .diag-option-btn, .tilt-card, .inzan-mob-bar-btn";
-        $(document).on("mouseenter", interactiveSelector, function() {
-            $("body").addClass("cursor-active");
-            if (soundEnabled) {
-                playSyntheticTone(1400, 0.015, "sine");
-            }
-        });
-        $(document).on("mouseleave", interactiveSelector, function() {
-            $("body").removeClass("cursor-active");
-        });
-
-        // Butter-smooth lerp loop for the outer ring
-        function renderCursorRing() {
-            ringX += (mouseX - ringX) * 0.18;
-            ringY += (mouseY - ringY) * 0.18;
-            $ring.css("transform", "translate3d(" + ringX + "px, " + ringY + "px, 0) translate(-50%, -50%)");
-            requestAnimationFrame(renderCursorRing);
-        }
-        renderCursorRing();
-    }
+    function playSyntheticTone() {}
+    window.toggleInzanSound = function() {};
+    function updateSoundToggleUI() {}
+    function initCinematicPreloader() {}
+    function initHeroParticles() {}
+    function initPrecisionCursor() {}
 
     // ==========================================================================
     // 5. 3D Perspective Card Tilt & Dynamic Spotlight Sheen
@@ -425,132 +50,11 @@
         });
     }
 
-    // ==========================================================================
-    // 6. Mobile Athletic Story Highlights Reel Controller
-    // ==========================================================================
-    var storyData = {
-        facility: {
-            author: "GARDEN 8 FACILITY",
-            category: "HIGH PERFORMANCE CENTRE",
-            title: "THE ARCHITECTURE OF ELITE TRAINING",
-            desc: "Explore Egypt's leading sports science venue: competition Eleiko barbell platforms, custom gymnastic rig, 25-meter indoor sprint turf, and biomechanical testing lab.",
-            image: "images/full-width-images/facility-1.jpg"
-        },
-        olympic: {
-            author: "COACH AHMED M.",
-            category: "OLYMPIC WEIGHTLIFTING",
-            title: "TRIPLE EXTENSION & BAR VELOCITY",
-            desc: "Technical progressions in the snatch and clean & jerk. High-speed video analysis and barbell trajectory tracking on Eleiko platforms.",
-            image: "images/portfolio/projects-4.jpg"
-        },
-        sc: {
-            author: "COACH YOUSSEF R.",
-            category: "STRENGTH & CONDITIONING",
-            title: "FORCE-VELOCITY & RFD LAB",
-            desc: "Tri-phasic velocity-based power development. Measure explosive ground reaction force and anaerobic threshold.",
-            image: "images/full-width-images/fac.jpg"
-        },
-        calisthenics: {
-            author: "COACH KAREEM S.",
-            category: "CALISTHENICS & RINGS",
-            title: "RELATIVE BODYWEIGHT MASTERY",
-            desc: "Strict gymnastic ring strength, front levers, handstand balance, and bulletproof scapular stabilization.",
-            image: "images/portfolio/projects-5.jpg"
-        },
-        diagnostic: {
-            author: "SPORTS SCIENCE TEAM",
-            category: "MOVEMENT DIAGNOSTIC",
-            title: "60-MIN BIOMECHANICAL SCREEN",
-            desc: "Every athlete undergoes our joint mobility screen, kinetic asymmetry test, and force baseline before loaded programming.",
-            image: "images/full-width-images/Test.jpg"
-        },
-        nutrition: {
-            author: "HANADI H. (RD, CISSN)",
-            category: "PERFORMANCE NUTRITION",
-            title: "PERIODIZED FUEL & RECOMPOSITION",
-            desc: "Custom macronutrient blueprints and intra-workout fueling to maximize neuromuscular output and recovery.",
-            image: "images/full-width-images/ast.jpg"
-        }
-    };
-
-    var storyKeys = ["facility", "olympic", "sc", "calisthenics", "diagnostic", "nutrition"];
-    var currentStoryIdx = 0;
-    var storyTimer = null;
-    var storyProgressVal = 0;
-    var storyDuration = 5000;
-    var isStoryPaused = false;
-
-    window.openStoryModal = function(key) {
-        var idx = storyKeys.indexOf(key);
-        currentStoryIdx = idx >= 0 ? idx : 0;
-        $("#inzanStoryModal").css("display", "flex").hide().fadeIn(250);
-        $("body").css("overflow", "hidden");
-        loadStorySlide(currentStoryIdx);
-        if (soundEnabled) playSyntheticTone(1150, 0.04, "sine");
-    };
-
-    window.closeStoryModal = function() {
-        clearInterval(storyTimer);
-        $("#inzanStoryModal").fadeOut(200);
-        $("body").css("overflow", "auto");
-    };
-
-    function loadStorySlide(idx) {
-        clearInterval(storyTimer);
-        storyProgressVal = 0;
-        $("#storyProgressFill").css("width", "0%");
-
-        var key = storyKeys[idx];
-        var item = storyData[key];
-        if (!item) return;
-
-        $("#storyAuthorName").text(item.author);
-        $("#storyCategory").text(item.category);
-        $("#storyCaptionTitle").text(item.title);
-        $("#storyCaptionDesc").text(item.desc);
-        $("#storyMediaView").attr("src", item.image);
-
-        // Animate story progress bar
-        var intervalTime = 50;
-        var stepAmount = (intervalTime / storyDuration) * 100;
-
-        storyTimer = setInterval(function() {
-            if (!isStoryPaused) {
-                storyProgressVal += stepAmount;
-                $("#storyProgressFill").css("width", Math.min(100, storyProgressVal) + "%");
-                if (storyProgressVal >= 100) {
-                    clearInterval(storyTimer);
-                    window.nextStorySlide();
-                }
-            }
-        }, intervalTime);
-    }
-
-    window.nextStorySlide = function() {
-        if (currentStoryIdx < storyKeys.length - 1) {
-            currentStoryIdx++;
-            loadStorySlide(currentStoryIdx);
-            if (soundEnabled) playSyntheticTone(1250, 0.03, "sine");
-        } else {
-            window.closeStoryModal();
-        }
-    };
-
-    window.prevStorySlide = function() {
-        if (currentStoryIdx > 0) {
-            currentStoryIdx--;
-            loadStorySlide(currentStoryIdx);
-            if (soundEnabled) playSyntheticTone(950, 0.03, "sine");
-        }
-    };
-
-    // Pause story timer on touch/hold
-    $(document).on("mousedown touchstart", ".story-media-view, .story-caption-overlay", function() {
-        isStoryPaused = true;
-    });
-    $(document).on("mouseup touchend", ".story-media-view, .story-caption-overlay", function() {
-        isStoryPaused = false;
-    });
+    // Story highlights no-op fallbacks
+    window.openStoryModal = function() {};
+    window.closeStoryModal = function() {};
+    window.nextStorySlide = function() {};
+    window.prevStorySlide = function() {};
 
     // ==========================================================================
     // 7. Mobile Quick Action Bottom Drawer Controller
@@ -659,39 +163,39 @@
             { time: "06:00 AM – 11:00 PM", cat: "open", catName: "Open Gym", title: "Open Athlete Floor & Recovery Suites", coach: "Staff On Duty", ratio: "Unrestricted", intensity: "Open Access" }
         ],
         tue: [
-            { time: "06:30 AM – 07:45 AM", cat: "calisthenics", catName: "Calisthenics", title: "Movement Prep & Kinetic Spine Flow", coach: "Coach Kareem S.", ratio: "1:6 Ratio", intensity: "Mobility Focus" },
-            { time: "11:00 AM – 12:15 PM", cat: "olympic", catName: "Olympic", title: "Clean & Jerk Bar Velocity Workshop", coach: "Coach Ahmed M.", ratio: "1:6 Ratio", intensity: "Technical Focus" },
-            { time: "05:30 PM – 06:45 PM", cat: "sc", catName: "S&C", title: "Posterior Chain & Deadlift Mastery", coach: "Coach Youssef R.", ratio: "1:6 Ratio", intensity: "High Intensity" },
-            { time: "07:15 PM – 08:30 PM", cat: "calisthenics", catName: "Calisthenics", title: "Handstand Balance & Scapular Lock", coach: "Coach Kareem S.", ratio: "1:6 Ratio", intensity: "Skill Focus" },
-            { time: "06:00 AM – 11:00 PM", cat: "open", catName: "Open Gym", title: "Open Athlete Floor & Recovery Suites", coach: "Staff On Duty", ratio: "Unrestricted", intensity: "Open Access" }
+            { time: "06:30 AM – 07:45 AM", cat: "calisthenics", catName: "Calisthenics", title: "Movement Prep & Spine Mobility Flow", coach: "Coach Kareem S.", ratio: "1:6 Ratio", intensity: "Mobility Focus" },
+            { time: "11:00 AM – 12:15 PM", cat: "olympic", catName: "Olympic", title: "Clean & Jerk Technique Workshop", coach: "Coach Ahmed M.", ratio: "1:6 Ratio", intensity: "Technical Focus" },
+            { time: "05:30 PM – 06:45 PM", cat: "sc", catName: "S&C", title: "Posterior Chain & Deadlift Focus", coach: "Coach Youssef R.", ratio: "1:6 Ratio", intensity: "High Intensity" },
+            { time: "07:15 PM – 08:30 PM", cat: "calisthenics", catName: "Calisthenics", title: "Handstand Balance & Scapular Control", coach: "Coach Kareem S.", ratio: "1:6 Ratio", intensity: "Skill Focus" },
+            { time: "06:00 AM – 11:00 PM", cat: "open", catName: "Open Gym", title: "Open Training Floor", coach: "Staff On Duty", ratio: "Unrestricted", intensity: "Open Access" }
         ],
         wed: [
-            { time: "06:30 AM – 07:45 AM", cat: "sc", catName: "S&C", title: "Tri-Phasic Power & Explosive RFD", coach: "Coach Youssef R.", ratio: "1:6 Ratio", intensity: "High Intensity" },
+            { time: "06:30 AM – 07:45 AM", cat: "sc", catName: "S&C", title: "Explosive Power & Plyometrics", coach: "Coach Youssef R.", ratio: "1:6 Ratio", intensity: "High Intensity" },
             { time: "10:00 AM – 11:15 AM", cat: "calisthenics", catName: "Calisthenics", title: "Functional Mobility & Joint Longevity", coach: "Coach Kareem S.", ratio: "1:6 Ratio", intensity: "Restoration" },
             { time: "05:00 PM – 06:15 PM", cat: "olympic", catName: "Olympic", title: "Olympic Complexes & Turnover Speed", coach: "Coach Ahmed M.", ratio: "1:6 Ratio", intensity: "Technical Focus" },
-            { time: "07:00 PM – 08:15 PM", cat: "sc", catName: "S&C", title: "Metabolic Engine & Turf Sled Sprints", coach: "Performance Staff", ratio: "1:6 Ratio", intensity: "Max Intensity" },
-            { time: "06:00 AM – 11:00 PM", cat: "open", catName: "Open Gym", title: "Open Athlete Floor & Recovery Suites", coach: "Staff On Duty", ratio: "Unrestricted", intensity: "Open Access" }
+            { time: "07:00 PM – 08:15 PM", cat: "sc", catName: "S&C", title: "Metabolic Conditioning & Turf Sled Sprints", coach: "Performance Staff", ratio: "1:6 Ratio", intensity: "High Intensity" },
+            { time: "06:00 AM – 11:00 PM", cat: "open", catName: "Open Gym", title: "Open Training Floor", coach: "Staff On Duty", ratio: "Unrestricted", intensity: "Open Access" }
         ],
         thu: [
-            { time: "06:30 AM – 07:45 AM", cat: "sc", catName: "S&C", title: "Foundational Squat & Bilateral Force", coach: "Coach Youssef R.", ratio: "1:6 Ratio", intensity: "High Intensity" },
+            { time: "06:30 AM – 07:45 AM", cat: "sc", catName: "S&C", title: "Foundational Squat & Strength", coach: "Coach Youssef R.", ratio: "1:6 Ratio", intensity: "High Intensity" },
             { time: "11:00 AM – 12:15 PM", cat: "calisthenics", catName: "Calisthenics", title: "Strict Gymnastics & Weighted Pull-Ups", coach: "Coach Kareem S.", ratio: "1:6 Ratio", intensity: "Strength Focus" },
-            { time: "05:30 PM – 06:45 PM", cat: "sc", catName: "S&C", title: "Speed-Strength & Reactive Jump Profiling", coach: "Coach Youssef R.", ratio: "1:6 Ratio", intensity: "Power Focus" },
-            { time: "07:15 PM – 08:30 PM", cat: "olympic", catName: "Olympic", title: "Olympic Lifting Bar Velocity Testing", coach: "Coach Ahmed M.", ratio: "1:6 Ratio", intensity: "Technical Focus" },
-            { time: "06:00 AM – 11:00 PM", cat: "open", catName: "Open Gym", title: "Open Athlete Floor & Recovery Suites", coach: "Staff On Duty", ratio: "Unrestricted", intensity: "Open Access" }
+            { time: "05:30 PM – 06:45 PM", cat: "sc", catName: "S&C", title: "Speed-Strength & Jump Mechanics", coach: "Coach Youssef R.", ratio: "1:6 Ratio", intensity: "Power Focus" },
+            { time: "07:15 PM – 08:30 PM", cat: "olympic", catName: "Olympic", title: "Olympic Lifting Barbell Technique", coach: "Coach Ahmed M.", ratio: "1:6 Ratio", intensity: "Technical Focus" },
+            { time: "06:00 AM – 11:00 PM", cat: "open", catName: "Open Gym", title: "Open Training Floor", coach: "Staff On Duty", ratio: "Unrestricted", intensity: "Open Access" }
         ],
         fri: [
-            { time: "08:00 AM – 09:15 AM", cat: "sc", catName: "S&C", title: "Weekend Engine & Aerobic Base Building", coach: "Head Coach Youssef R.", ratio: "1:6 Ratio", intensity: "Moderate-High" },
-            { time: "10:00 AM – 11:15 AM", cat: "calisthenics", catName: "Calisthenics", title: "Ring Muscle-Up Mastery & Core Levers", coach: "Coach Kareem S.", ratio: "1:6 Ratio", intensity: "Skill Focus" },
-            { time: "04:30 PM – 06:00 PM", cat: "olympic", catName: "Olympic", title: "Olympic Lifting Video Kinematic Review", coach: "Coach Ahmed M.", ratio: "1:6 Ratio", intensity: "Diagnostic" },
-            { time: "06:15 PM – 07:30 PM", cat: "sc", catName: "S&C", title: "Friday Athletic Throwdown", coach: "Coaching Team", ratio: "1:8 Ratio", intensity: "High Intensity" },
-            { time: "08:00 AM – 11:00 PM", cat: "open", catName: "Open Gym", title: "Open Athlete Floor & Recovery Suites", coach: "Staff On Duty", ratio: "Unrestricted", intensity: "Open Access" }
+            { time: "08:00 AM – 09:15 AM", cat: "sc", catName: "S&C", title: "Aerobic Base & Work Capacity", coach: "Head Coach Youssef R.", ratio: "1:6 Ratio", intensity: "Moderate-High" },
+            { time: "10:00 AM – 11:15 AM", cat: "calisthenics", catName: "Calisthenics", title: "Ring Muscle-Up Progressions & Core", coach: "Coach Kareem S.", ratio: "1:6 Ratio", intensity: "Skill Focus" },
+            { time: "04:30 PM – 06:00 PM", cat: "olympic", catName: "Olympic", title: "Olympic Lifting Video Technique Review", coach: "Coach Ahmed M.", ratio: "1:6 Ratio", intensity: "Technical Focus" },
+            { time: "06:15 PM – 07:30 PM", cat: "sc", catName: "S&C", title: "Friday Athletic Team Conditioning", coach: "Coaching Team", ratio: "1:8 Ratio", intensity: "High Intensity" },
+            { time: "08:00 AM – 11:00 PM", cat: "open", catName: "Open Gym", title: "Open Training Floor", coach: "Staff On Duty", ratio: "Unrestricted", intensity: "Open Access" }
         ],
         sat: [
-            { time: "09:00 AM – 10:15 AM", cat: "sc", catName: "S&C", title: "Hypertrophy & Kinetic Structural Balance", coach: "Coach Youssef R.", ratio: "1:6 Ratio", intensity: "High Intensity" },
+            { time: "09:00 AM – 10:15 AM", cat: "sc", catName: "S&C", title: "Hypertrophy & Structural Balance", coach: "Coach Youssef R.", ratio: "1:6 Ratio", intensity: "High Intensity" },
             { time: "11:00 AM – 12:30 PM", cat: "olympic", catName: "Olympic", title: "Olympic Weightlifting Club & Heavy Pulls", coach: "Coach Ahmed M.", ratio: "1:6 Ratio", intensity: "Heavy Focus" },
-            { time: "04:00 PM – 05:15 PM", cat: "calisthenics", catName: "Calisthenics", title: "Acrobatic Fundamentals & Movement Flow", coach: "Coach Kareem S.", ratio: "1:6 Ratio", intensity: "Skill Focus" },
-            { time: "05:30 PM – 07:00 PM", cat: "sc", catName: "S&C", title: "Sprint Acceleration & Deceleration Lab", coach: "Performance Staff", ratio: "1:6 Ratio", intensity: "Max Velocity" },
-            { time: "06:00 AM – 11:00 PM", cat: "open", catName: "Open Gym", title: "Open Athlete Floor & Recovery Suites", coach: "Staff On Duty", ratio: "Unrestricted", intensity: "Open Access" }
+            { time: "04:00 PM – 05:15 PM", cat: "calisthenics", catName: "Calisthenics", title: "Movement Fundamentals & Flow", coach: "Coach Kareem S.", ratio: "1:6 Ratio", intensity: "Skill Focus" },
+            { time: "05:30 PM – 07:00 PM", cat: "sc", catName: "S&C", title: "Sprint Acceleration & Deceleration Clinic", coach: "Performance Staff", ratio: "1:6 Ratio", intensity: "Max Velocity" },
+            { time: "06:00 AM – 11:00 PM", cat: "open", catName: "Open Gym", title: "Open Training Floor", coach: "Staff On Duty", ratio: "Unrestricted", intensity: "Open Access" }
         ],
         sun: [
             { time: "07:00 AM – 08:15 AM", cat: "sc", catName: "S&C", title: "Early Sunday Power & Plyometrics", coach: "Coach Youssef R.", ratio: "1:6 Ratio", intensity: "High Intensity" },
@@ -803,43 +307,43 @@
 
     var diagProtocols = {
         power: {
-            title: "INZAN TRI-PHASIC EXPLOSIVE POWER PROTOCOL",
-            coach: "Coach Youssef R. (Head of S&C, CSCS)",
-            phase: "Force-Velocity Profiling & Reactive Ground Force",
-            frequency: "4 Sessions / Week (Semi-Private 1:6)",
-            milestone: "+15–22% RFD • +10cm Vertical Leap",
+            title: "SPORT PERFORMANCE & SPEED TRACK",
+            coach: "Coach Youssef R. (Head of Strength & Conditioning)",
+            phase: "Sprint Mechanics, Acceleration & Power Development",
+            frequency: "3–4 Small Group Sessions / Week",
+            milestone: "Measured gains in vertical jump, sprint split & power output",
             pathwayVal: "Sport Performance"
         },
         olympic: {
-            title: "INZAN OLYMPIC KINEMATIC MASTERY PROTOCOL",
-            coach: "Coach Ahmed M. (EWF Certified, USAW L2)",
-            phase: "Hook Grip, Triple Extension & Bar Turnover Velocity",
-            frequency: "3–4 Technical Lifting Sessions / Week",
-            milestone: "Clean Bar Path • +15-25kg Barbell Total in 12 Weeks",
+            title: "OLYMPIC WEIGHTLIFTING TRACK",
+            coach: "Coach Ahmed M. (Olympic Lifting Specialist)",
+            phase: "Snatch, Clean & Jerk Technique, Mobility & Barbell Cycling",
+            frequency: "3–4 Technical Sessions / Week",
+            milestone: "Consistent bar path, deep receiving positions & steady PR progression",
             pathwayVal: "Strength Skills (Olympic & Calisthenics)"
         },
         calisthenics: {
-            title: "INZAN RELATIVE BODYWEIGHT & RING STRENGTH",
-            coach: "Coach Kareem S. (Gymnastic Specialist)",
-            phase: "Straight-Arm Scapular Stabilization & Lever Progressions",
-            frequency: "4 Movement & Gymnastic Sessions / Week",
-            milestone: "Strict Muscle-Up • Back Lever • Scapular Bulletproofing",
+            title: "CALISTHENICS & BODYWEIGHT STRENGTH TRACK",
+            coach: "Coach Kareem S. (Gymnastics & Movement Specialist)",
+            phase: "Scapular Control, Ring Work, Handstands & Lever Progressions",
+            frequency: "3–4 Movement Sessions / Week",
+            milestone: "Strict pull-up volume, ring muscle-up progression & joint durability",
             pathwayVal: "Strength Skills (Olympic & Calisthenics)"
         },
         hypertrophy: {
-            title: "INZAN FUNCTIONAL HYPERTROPHY & RECOMPOSITION",
-            coach: "Coach Youssef R. & Hanadi H. (RD, CISSN)",
-            phase: "Mechanical Tension, Force Vectors & Macro Blueprint",
-            frequency: "4–5 Strength & Conditioning Sessions / Week",
-            milestone: "Lean Muscle Hypertrophy • Optimized Body Composition",
+            title: "STRENGTH & CONDITIONING TRACK",
+            coach: "Coaching Staff & Nutritional Guidance",
+            phase: "Progressive Compound Overload, Hypertrophy & Work Capacity",
+            frequency: "4 Sessions / Week",
+            milestone: "Measurable gains in lean muscle mass, work capacity & strength benchmarks",
             pathwayVal: "Body Recomposition & Conditioning"
         },
         rehab: {
-            title: "INZAN KINETIC RESTORATION & RETURN TO PLAY",
-            coach: "Inzan Sports Science & Physical Therapy Team",
-            phase: "Joint Deceleration, Tendon Loading & Kinetic Symmetry",
-            frequency: "3 Targeted Corrective Sessions / Week",
-            milestone: "100% Pain-Free Kinetic Chain • Safe Return to Maximal Loads",
+            title: "MOVEMENT RESTORATION & PRIVATE COACHING",
+            coach: "Senior Coaching Staff & Movement Specialists",
+            phase: "Joint Mobility, Muscle Imbalance Correction & Progressive Loading",
+            frequency: "2–3 Private / Semi-Private Sessions / Week",
+            milestone: "Pain-free movement patterns, restored range of motion & confident lifting",
             pathwayVal: "Private 1-on-1 Coaching"
         }
     };
@@ -905,12 +409,12 @@
         var proto = diagProtocols[diagState.goal] || diagProtocols["power"];
         $("#athleteGoal").val(proto.pathwayVal);
 
-        var summaryNote = "DIAGNOSTIC ASSESSMENT RESULTS:\n" +
-            "• Recommended Protocol: " + proto.title + "\n" +
+        var summaryNote = "PROGRAM FINDER RESULTS:\n" +
+            "• Recommended Track: " + proto.title + "\n" +
             "• Primary Goal: " + diagState.goal.toUpperCase() + "\n" +
-            "• Training Age: " + diagState.experience.toUpperCase() + "\n" +
-            "• Commitment: " + diagState.frequency + " days/week\n" +
-            "• Kinetic Focus: " + diagState.focus.toUpperCase();
+            "• Experience Level: " + diagState.experience.toUpperCase() + "\n" +
+            "• Frequency: " + diagState.frequency + " days/week\n" +
+            "• Training Focus: " + diagState.focus.toUpperCase();
 
         $("#athleteMessage").val(summaryNote);
 
@@ -924,17 +428,17 @@
         }
 
         if (soundEnabled) playSyntheticTone(1500, 0.1, "triangle");
-        showToast("Diagnostic Applied! Your customized pathway is ready below.", "fa fa-check-circle");
+        showToast("Recommended track applied! Complete your details below.", "fa fa-check-circle");
     };
 
     window.consultDiagnosticWhatsApp = function() {
         var proto = diagProtocols[diagState.goal] || diagProtocols["power"];
         var text = encodeURIComponent(
-            "Hi Inzan Athletics! I just completed the 60-Second Athletic Diagnostic.\n" +
-            "My Recommended Protocol is: " + proto.title + "\n" +
-            "Experience: " + diagState.experience + " | Days: " + diagState.frequency + "/wk\n" +
-            "Focus/Injuries: " + diagState.focus + "\n" +
-            "I would like to discuss booking my in-person screening at Garden 8."
+            "Hi Inzan Athletics! I just completed the 60-Second Program Finder on your website.\n" +
+            "My Recommended Track is: " + proto.title + "\n" +
+            "Experience: " + diagState.experience + " | Frequency: " + diagState.frequency + " days/wk\n" +
+            "Focus: " + diagState.focus + "\n" +
+            "I would like to discuss booking an assessment session at Garden 8."
         );
         window.open("https://wa.me/201000061243?text=" + text, "_blank");
     };
@@ -952,7 +456,7 @@
         $("body").css("overflow", "auto");
     };
 
-    // Athlete Portal Gateway Modal
+    // Member Portal Gateway Modal
     window.openPortalModal = function(e) {
         if (e && e.preventDefault) e.preventDefault();
         $("#inzanPortalModal").fadeIn(300);
@@ -981,21 +485,300 @@
     window.handlePortalDemoLogin = function(e) {
         if (e && e.preventDefault) e.preventDefault();
         var $btn = $("#portalLoginBtn");
-        $btn.prop("disabled", true).html('<i class="fa fa-circle-o-notch fa-spin"></i> Authenticating Athlete...');
+        $btn.prop("disabled", true).html('<i class="fa fa-circle-o-notch fa-spin"></i> Checking credentials...');
 
         setTimeout(function() {
-            $btn.prop("disabled", false).html('<i class="fa fa-sign-in mr-5"></i> Access Athlete Dashboard');
+            $btn.prop("disabled", false).html('<i class="fa fa-sign-in mr-5"></i> Member Sign In');
             $("#portalLoginFeedback").html(
                 '<div style="background:rgba(255,255,255,0.06); border:1px solid #444444; border-radius:4px; padding:14px; margin-top:15px; color:#FFFFFF; font-size:12px; line-height:1.6;">' +
-                    '<div style="color:#FFFFFF; font-weight:700; font-size:13px; margin-bottom:4px;"><i class="fa fa-check-circle mr-5"></i> DEMO ATHLETE PROFILE LOADED</div>' +
-                    'Athlete: <strong>Omar H. (ID: INZ-2026-084)</strong><br>' +
-                    'Strain Today: <strong>14.2</strong> &bull; Recovery: <strong>88% (Optimal)</strong><br>' +
-                    'Next Session: <strong>Today 6:30 PM &bull; S&C Team (Garden 8)</strong>' +
+                    '<div style="color:#FFFFFF; font-weight:700; font-size:13px; margin-bottom:4px;"><i class="fa fa-check-circle mr-5"></i> ACTIVE MEMBER ACCOUNT</div>' +
+                    'Member: <strong>Omar H. (Garden 8 Member)</strong><br>' +
+                    'Current Plan: <strong>Small Group Strength (4x / week)</strong><br>' +
+                    'Next Booked Class: <strong>Today 6:30 PM &bull; Strength & Conditioning with Coach Youssef</strong>' +
                 '</div>'
             );
             if (soundEnabled) playSyntheticTone(1500, 0.12, "triangle");
-            showToast("Connected to Inzan Athlete Cloud Demo!", "fa fa-bolt");
+            showToast("Member profile verified.", "fa fa-check");
         }, 900);
+    };
+
+    // ==========================================================================
+    // LEONARDO.AI AESTHETIC SUITE CONTROLLERS
+    // ==========================================================================
+
+    // 1. Hero Athlete Pillar Switcher
+    var heroPillars = {
+        olympic: {
+            badge: "STRENGTH SKILLS",
+            coach: "Coach Ahmed M. (USAW/EWF Specialist)",
+            title: "OLYMPIC WEIGHTLIFTING PLATFORM",
+            desc: "Snatch, Clean & Jerk technical mastery on sanctioned competition platforms. Hook grip, bar velocity, and receiving depth under dedicated Olympic coaching.",
+            sessions: "3–4",
+            cap: "Max 6",
+            spec: "Eleiko IPF",
+            bg: "images/full-width-images/Test.jpg"
+        },
+        calisthenics: {
+            badge: "MOVEMENT & MASTERY",
+            coach: "Coach Kareem S. (Gymnastics Specialist)",
+            title: "CALISTHENICS & RING STRENGTH",
+            desc: "Strict ring muscle-ups, handstand alignment, front levers, and scapular bulletproofing. Build immense relative bodyweight strength and joint resilience.",
+            sessions: "3–4",
+            cap: "Max 6",
+            spec: "Gymnastic Rig",
+            bg: "images/full-width-images/ast.jpg"
+        },
+        sc: {
+            badge: "SPORT PERFORMANCE",
+            coach: "Coach Youssef R. (Head of S&C, CSCS)",
+            title: "STRENGTH & CONDITIONING SQUAD",
+            desc: "Progressive compound barbell loading, sprint acceleration, turf sled work, and anaerobic threshold conditioning. Maximum athletic output.",
+            sessions: "4–5",
+            cap: "Max 6",
+            spec: "Rogue Turf",
+            bg: "images/full-width-images/facility-1.jpg"
+        }
+    };
+
+    window.switchHeroPillar = function(pillar) {
+        var data = heroPillars[pillar];
+        if (!data) return;
+
+        $(".showcase-pill").removeClass("active");
+        $(".showcase-pill[onclick*='" + pillar + "']").addClass("active");
+
+        var $card = $("#heroPillarCard");
+        $card.css("opacity", "0.7");
+        setTimeout(function() {
+            $("#heroPillarBg").css("background-image", "url('" + data.bg + "')");
+            $("#heroPillarBadge").text(data.badge);
+            $("#heroPillarCoach").text(data.coach);
+            $("#heroPillarTitle").text(data.title);
+            $("#heroPillarDesc").text(data.desc);
+            $("#heroPillarSessions").text(data.sessions);
+            $("#heroPillarCap").text(data.cap);
+            $("#heroPillarSpec").text(data.spec);
+            $card.css("opacity", "1");
+        }, 150);
+    };
+
+    // 2. Bento Grid Facility Zone Switcher
+    var bentoZones = {
+        platforms: {
+            tag: "OLYMPIC BARBELL BAYS",
+            title: "Competition Barbell Platforms & Racks",
+            desc: "Dedicated 8x8 Eleiko lifting platforms, calibrated bumper plates, and competition needle-bearing barbells. Designed for maximal power output without overcrowding.",
+            bg: "images/full-width-images/fac.jpg"
+        },
+        turf: {
+            tag: "25M SPRINT & ACCELERATION TRACK",
+            title: "Heavy Prowlers, Sleds & Turf Lanes",
+            desc: "Shock-absorbing dual-density indoor turf engineered for sprint acceleration, decelerations, sled pushes, and multi-directional speed drills.",
+            bg: "images/full-width-images/facility-1.jpg"
+        },
+        rig: {
+            tag: "GYMNASTIC & BODYWEIGHT RIGGING",
+            title: "Custom Ceiling-Mounted Ring Rigs & Bars",
+            desc: "Structural steel rig supporting competition wooden rings, parallel dip bars, and climbing ropes for advanced calisthenics and shoulder longevity.",
+            bg: "images/full-width-images/ast.jpg"
+        },
+        recovery: {
+            tag: "RECOVERY & PREP SUITE",
+            title: "Movement Prep, Bands & Restoration Bays",
+            desc: "Dedicated soft-tissue prep zones with hyperice percussion units, mobility bands, and foam rollers to optimize joint recovery between heavy splits.",
+            bg: "images/full-width-images/facility-2.jpg"
+        }
+    };
+
+    window.switchBentoZone = function(zoneKey, el) {
+        var data = bentoZones[zoneKey];
+        if (!data) return;
+
+        $(".bento-pill").removeClass("active");
+        $(el).addClass("active");
+
+        $("#bentoFacilityBg").css("background-image", "url('" + data.bg + "')");
+        $("#bentoZoneTag").text(data.tag);
+        $("#bentoZoneTitle").text(data.title);
+        $("#bentoZoneDesc").text(data.desc);
+    };
+
+    // 3. Bento Grid Kinetic Joint Screening Explorer
+    var jointTests = {
+        shoulder: {
+            badge: "UPPER CHAIN SCREEN",
+            name: "Overhead Dowel Mobility & T-Spine Extension",
+            detail: "Evaluates active glenohumeral clearance, lat length, and rib cage flare. Ensures safe receiving positions for snatches and ring handstands.",
+            outcome: "<i class=\"fa fa-check-circle mr-5\"></i> Fixes forward barbell drift & shoulder impingement"
+        },
+        hip: {
+            badge: "POSTERIOR CHAIN SCREEN",
+            name: "Hip Hinge Symmetry & Deep Squat Clearing",
+            detail: "Measures femoral rotation, pelvic neutral control, and hamstring tension under hip flexion. Eliminates butt-wink and lower back shear force.",
+            outcome: "<i class=\"fa fa-check-circle mr-5\"></i> Optimizes maximal squat depth & deadlift power"
+        },
+        ankle: {
+            badge: "LOWER EXTREMITY SCREEN",
+            name: "Weight-Bearing Ankle Dorsiflexion (Knee-to-Wall)",
+            detail: "Quantifies tibial forward travel over talocrural joint. Tight ankles cause heel lift, valgus knee collapse, and missed Olympic snatches.",
+            outcome: "<i class=\"fa fa-check-circle mr-5\"></i> Restores upright torso in cleans & Olympic receiving"
+        },
+        core: {
+            badge: "TRUNK STIFFNESS SCREEN",
+            name: "Rotational Core Anti-Extension & Bracing Test",
+            detail: "Assesses intra-abdominal pressure generation and anti-rotation stability under unilateral loading. Protects lumbar spine under heavy compound lifts.",
+            outcome: "<i class=\"fa fa-check-circle mr-5\"></i> 100% spinal rigidity during heavy pulls & squats"
+        }
+    };
+
+    window.inspectJoint = function(jointKey, el) {
+        var data = jointTests[jointKey];
+        if (!data) return;
+
+        $(".joint-btn").removeClass("active");
+        $(el).addClass("active");
+
+        $("#jointBadge").text(data.badge);
+        $("#jointTestName").text(data.name);
+        $("#jointTestDetail").text(data.detail);
+        $("#jointTestOutcome").html(data.outcome);
+    };
+
+    // 4. Render Bento Schedule Ticker (Live Today at Inzan)
+    function renderBentoScheduleTicker() {
+        var $ticker = $("#bentoScheduleTicker");
+        if ($ticker.length === 0) return;
+
+        var days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+        var todayKey = days[new Date().getDay()] || "mon";
+        var list = scheduleData[todayKey] || scheduleData["mon"];
+
+        var html = "";
+        var count = Math.min(3, list.length);
+        for (var i = 0; i < count; i++) {
+            var item = list[i];
+            html += '<a href="#schedule" class="ticker-item">' +
+                '<div>' +
+                    '<div class="ticker-time"><i class="fa fa-clock-o mr-5"></i>' + item.time.split("–")[0].trim() + '</div>' +
+                    '<div class="ticker-name">' + item.title + '</div>' +
+                '</div>' +
+                '<span class="ticker-badge open">' + item.catName + '</span>' +
+            '</a>';
+        }
+        $ticker.html(html);
+    }
+
+    // 5. Athlete Track Studio (Interactive Playground)
+    var studioState = {
+        pillar: "sc",
+        time: "morning",
+        level: "intermediate"
+    };
+
+    var studioTracks = {
+        sc: {
+            title: "STRENGTH & CONDITIONING TRACK",
+            coach: "Coach Youssef R. (CSCS)",
+            split: "Barbell Overload • Turf Sled Sprints • Posterior Chain",
+            bay: "Main Floor Racks & Turf Track",
+            frequency: "4 Sessions / Week (Small Group Max 6)",
+            goalVal: "Body Recomposition & Conditioning"
+        },
+        olympic: {
+            title: "OLYMPIC WEIGHTLIFTING TRACK",
+            coach: "Coach Ahmed M. (USAW L2 / EWF)",
+            split: "Snatch Technique • Clean & Jerk • Pull Velocity",
+            bay: "Competition 8x8 Eleiko Platform Bay",
+            frequency: "3–4 Technical Lifting Sessions / Week",
+            goalVal: "Strength Skills (Olympic & Calisthenics)"
+        },
+        calisthenics: {
+            title: "CALISTHENICS & RING MASTERY TRACK",
+            coach: "Coach Kareem S. (Gymnastics Specialist)",
+            split: "Ring Support • Strict Levers • Scapular Bulletproofing",
+            bay: "Structural Gymnastic Ceiling Rig",
+            frequency: "3–4 Movement Sessions / Week",
+            goalVal: "Strength Skills (Olympic & Calisthenics)"
+        },
+        private: {
+            title: "PRIVATE 1-ON-1 ATHLETIC COACHING",
+            coach: "Head Coaching Staff (Dedicated 1:1)",
+            split: "Custom Biomechanical Periodization & Private Screening",
+            bay: "Private VIP Lifting Station",
+            frequency: "2–3 Private Sessions / Week",
+            goalVal: "Private 1-on-1 Coaching"
+        }
+    };
+
+    function updateStudioMonitor() {
+        var track = studioTracks[studioState.pillar] || studioTracks["sc"];
+        var timeLabel = (studioState.time === "morning") ? "Early Dawn (6:30 AM – 10:00 AM)" :
+                        (studioState.time === "midday") ? "Midday (10:00 AM – 4:00 PM)" : "Evening Prime (5:00 PM – 9:00 PM)";
+        var levelLabel = (studioState.level === "beginner") ? "Foundation / Novice" :
+                         (studioState.level === "intermediate") ? "Intermediate Lifter" : "Competitive Athlete";
+
+        $("#studioTrackTitle").text(track.title);
+        $("#studioTrackDetail").text("Engineered for " + levelLabel + " training during " + timeLabel + ". Structured in strict small-group format with dedicated platform space.");
+        $("#studioMetaCoach").text(track.coach);
+        $("#studioMetaSplit").text(track.split);
+        $("#studioMetaBay").text(track.bay);
+        $("#studioMetaFreq").text(track.frequency);
+
+        var waText = encodeURIComponent(
+            "Hi Inzan Athletics! I just customized my program on your Athlete Track Studio:\n" +
+            "• Track: " + track.title + "\n" +
+            "• Preferred Window: " + timeLabel + "\n" +
+            "• Experience Level: " + levelLabel + "\n" +
+            "I'd like to book my 60-min baseline movement screening at Garden 8."
+        );
+        $("#studioWhatsAppBtn").attr("href", "https://wa.me/201000061243?text=" + waText);
+    }
+
+    window.selectStudioPillar = function(pillarKey, el) {
+        studioState.pillar = pillarKey;
+        $(".studio-seg-pill[data-group='pillar']").removeClass("active");
+        $(el).addClass("active");
+        updateStudioMonitor();
+    };
+
+    window.selectStudioTime = function(timeKey, el) {
+        studioState.time = timeKey;
+        $(".studio-seg-pill[data-group='time']").removeClass("active");
+        $(el).addClass("active");
+        updateStudioMonitor();
+    };
+
+    window.selectStudioLevel = function(levelKey, el) {
+        studioState.level = levelKey;
+        $(".studio-seg-pill[data-group='level']").removeClass("active");
+        $(el).addClass("active");
+        updateStudioMonitor();
+    };
+
+    window.applyStudioToBooking = function() {
+        var track = studioTracks[studioState.pillar] || studioTracks["sc"];
+        $("#athleteGoal").val(track.goalVal);
+        
+        var timeVal = (studioState.time === "morning") ? "Morning (6:00 AM – 10:00 AM)" :
+                      (studioState.time === "midday") ? "Midday (10:00 AM – 4:00 PM)" : "Evening (4:00 PM – 11:00 PM)";
+        $("#athleteTime").val(timeVal);
+
+        var note = "ATHLETE TRACK STUDIO CONFIGURATION:\n" +
+            "• Selected Track: " + track.title + "\n" +
+            "• Preferred Timing: " + timeVal + "\n" +
+            "• Experience Level: " + studioState.level.toUpperCase() + "\n" +
+            "• Allocated Bay: " + track.bay;
+        $("#athleteMessage").val(note);
+
+        var $target = $("#assessment");
+        if ($target.length > 0) {
+            $("html, body").animate({
+                scrollTop: $target.offset().top - 80
+            }, 600, "easeInOutExpo", function() {
+                $("#athleteName").focus();
+            });
+        }
+        showToast("Studio Program configured! Complete your profile below.", "fa fa-check-circle");
     };
 
     // ==========================================================================
@@ -1007,19 +790,16 @@
         if (inzanInitialized) return;
         inzanInitialized = true;
 
-        // Initialize Immersive Suite
-        initCinematicPreloader();
-        initHeroParticles();
-        initPrecisionCursor();
         init3DTilt();
-        updateSoundToggleUI();
 
-        // Render initial timetable & diagnostic
+        // Render initial timetable, ticker, studio, and diagnostic
         renderSchedule();
+        renderBentoScheduleTicker();
+        updateStudioMonitor();
         updateDiagUI();
 
-        // Add spotlight divs to static tilt cards
-        $(".roadmap-step, .coach-card").each(function() {
+        // Add spotlight divs to static tilt cards and bento cells
+        $(".roadmap-step, .coach-card, .bento-cell, .leonardo-showcase-card, .leonardo-studio-card").each(function() {
             $(this).addClass("tilt-card");
             if ($(this).find(".card-spotlight").length === 0) {
                 $(this).prepend('<div class="card-spotlight"></div>');
@@ -1027,15 +807,14 @@
         });
 
         // Close modals on background click or ESC
-        $("#inzanNewsModal, #inzanStoryModal").on("click", function(e) {
-            if ($(e.target).closest(".inzan-modal-dialog, .story-modal-card").length === 0) {
+        $("#inzanNewsModal").on("click", function(e) {
+            if ($(e.target).closest(".inzan-modal-dialog").length === 0) {
                 closeNewsModal();
-                closeStoryModal();
             }
         });
 
         $("#inzanVideoModal, #inzanPortalModal").on("click", function(e) {
-            if ($(e.target).closest(".inzan-cinema-dialog").length === 0) {
+            if ($(e.target).closest(".inzan-cinema-dialog, .inzan-modal-dialog").length === 0) {
                 closeVideoReel();
                 closePortalModal();
             }
@@ -1044,14 +823,9 @@
         $(document).on("keydown", function(e) {
             if (e.key === "Escape") {
                 closeNewsModal();
-                closeStoryModal();
                 closeVideoReel();
                 closePortalModal();
                 closeBottomDrawer();
-            } else if (e.key === "ArrowRight") {
-                if ($("#inzanStoryModal").is(":visible")) nextStorySlide();
-            } else if (e.key === "ArrowLeft") {
-                if ($("#inzanStoryModal").is(":visible")) prevStorySlide();
             }
         });
 

@@ -102,50 +102,11 @@
     </head>
     <body class="appear-animate">
         
-        <!-- Desktop Precision Cursor -->
-        <div id="inzanCursorDot"></div>
-        <div id="inzanCursorRing"></div>
-        
-        <!-- Inzan Cinematic Telemetry Preloader -->
-        <div id="inzanPreloader">
-            <div class="preloader-curtain-top"></div>
-            <div class="preloader-curtain-bottom"></div>
-            <div class="preloader-hud-content">
-                <div class="hud-corner hud-corner-tl"></div>
-                <div class="hud-corner hud-corner-tr"></div>
-                <div class="hud-corner hud-corner-bl"></div>
-                <div class="hud-corner hud-corner-br"></div>
-                
-                <div class="preloader-brand-mark">
-                    <div class="preloader-ring"></div>
-                    <div class="preloader-ring-outer"></div>
-                    <img src="images/inzan-logo.png" alt="Inzan Athletics" style="max-height: 28px; filter: brightness(1.2) drop-shadow(0 0 10px rgba(255,255,255,0.3));" />
-                </div>
-
-                <div class="preloader-counter"><span id="preloaderNum">00</span><span>%</span></div>
-                
-                <div class="preloader-progress-track">
-                    <div class="preloader-progress-bar" id="preloaderBar"></div>
-                </div>
-                
-                <div class="preloader-status-text" id="preloaderStatus">INITIALIZING KINETIC SYSTEMS...</div>
-
-                <div class="preloader-meta-strip">
-                    <span>INZAN-OS v4.0</span>
-                    <span>GARDEN 8 &bull; NEW CAIRO</span>
-                    <span>ONLINE</span>
-                </div>
-            </div>
-        </div>
-        <!-- End Inzan Cinematic Telemetry Preloader -->
-        
         <!-- Page Wrap -->
         <div class="page" id="top">
             
             <!-- Home Section -->
             <section class="home-section bg-dark-alfa-90 parallax-2" data-background="images/full-width-images/Test.jpg" id="home">
-                <!-- Ambient Kinetic Mesh Canvas -->
-                <canvas id="heroParticleCanvas"></canvas>
                 <div class="js-height-full">
                     
                     <!-- Hero Content -->
@@ -162,7 +123,7 @@
                                 </h1>
                                 
                                 <p class="inzan-hero-sub mb-35">
-                                    Egypt's premier science-based athletic training facility. From foundational biomechanics to Olympic weightlifting, calisthenics, and high-velocity conditioning.
+                                    Strength &amp; conditioning, Olympic weightlifting, calisthenics, and movement screening in New Cairo. Coached in small groups and private sessions at Garden 8.
                                 </p>
                                 
                                 <!-- Primary & Secondary CTAs Above The Fold -->
@@ -178,13 +139,55 @@
                                         </a>
                                     </div>
                                     <div class="hero-cta-secondary-row">
-                                        <a href="#pathways" class="inzan-hero-sub-link">
-                                            <i class="fa fa-compass mr-5"></i> Choose Your Path
+                                        <a href="#ecosystem" class="inzan-hero-sub-link">
+                                            <i class="fa fa-th-large mr-5"></i> Explore Ecosystem
                                         </a>
                                         <span class="meta-sep">&bull;</span>
                                         <a href="#facility-reel" class="inzan-hero-sub-link" onclick="openVideoReel(event)">
                                             <i class="fa fa-play-circle mr-5"></i> Watch Facility Tour
                                         </a>
+                                    </div>
+                                </div>
+                                
+                                <!-- Leonardo-Style Interactive Athlete Showcase -->
+                                <div class="leonardo-hero-showcase">
+                                    <div class="leonardo-showcase-pills">
+                                        <button type="button" class="showcase-pill active" onclick="switchHeroPillar('olympic')">
+                                            <span class="pill-dot"></span> Olympic Weightlifting
+                                        </button>
+                                        <button type="button" class="showcase-pill" onclick="switchHeroPillar('calisthenics')">
+                                            <span class="pill-dot"></span> Gymnastics &amp; Rings
+                                        </button>
+                                        <button type="button" class="showcase-pill" onclick="switchHeroPillar('sc')">
+                                            <span class="pill-dot"></span> Strength &amp; Conditioning
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="leonardo-showcase-card tilt-card" id="heroPillarCard">
+                                        <div class="card-spotlight"></div>
+                                        <div class="showcase-card-bg" id="heroPillarBg" style="background-image: url('images/full-width-images/Test.jpg');"></div>
+                                        <div class="showcase-card-overlay"></div>
+                                        <div class="showcase-card-content">
+                                            <div class="showcase-badge-row">
+                                                <span class="showcase-track-badge" id="heroPillarBadge">STRENGTH SKILLS</span>
+                                                <span class="showcase-coach-pill"><i class="fa fa-user-circle-o mr-5"></i> <span id="heroPillarCoach">Coach Ahmed M. (USAW/EWF Specialist)</span></span>
+                                                <span class="showcase-ratio-pill">1:6 Platform Cap</span>
+                                            </div>
+                                            <h3 class="showcase-title" id="heroPillarTitle">OLYMPIC WEIGHTLIFTING PLATFORM</h3>
+                                            <p class="showcase-desc" id="heroPillarDesc">
+                                                Snatch, Clean &amp; Jerk technical mastery on sanctioned competition platforms. Hook grip, bar velocity, and receiving depth under dedicated Olympic coaching.
+                                            </p>
+                                            <div class="showcase-footer-row">
+                                                <div class="showcase-stats">
+                                                    <div class="stat-item"><span class="stat-val" id="heroPillarSessions">3–4</span><span class="stat-lbl">Sessions / Wk</span></div>
+                                                    <div class="stat-item"><span class="stat-val" id="heroPillarCap">Max 6</span><span class="stat-lbl">Platform Cap</span></div>
+                                                    <div class="stat-item"><span class="stat-val" id="heroPillarSpec">Eleiko IPF</span><span class="stat-lbl">Standard</span></div>
+                                                </div>
+                                                <a href="#schedule" class="showcase-action-btn" onclick="selectScheduleCat('olympic')">
+                                                    View Timetable <i class="fa fa-arrow-right ml-5"></i>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 
@@ -218,51 +221,6 @@
             </section>
             <!-- End Home Section -->
             
-            <!-- Athletic Story Highlights Reel -->
-            <div class="inzan-stories-section">
-                <div class="container relative">
-                    <div class="inzan-stories-wrap">
-                        <button type="button" class="story-pill-item" onclick="openStoryModal('facility')">
-                            <div class="story-ring">
-                                <img src="images/full-width-images/facility-1.jpg" alt="Facility Tour" class="story-avatar" />
-                            </div>
-                            <span class="story-label">Facility</span>
-                        </button>
-                        <button type="button" class="story-pill-item" onclick="openStoryModal('olympic')">
-                            <div class="story-ring">
-                                <img src="images/portfolio/projects-4.jpg" alt="Olympic Weightlifting" class="story-avatar" />
-                            </div>
-                            <span class="story-label">Olympic</span>
-                        </button>
-                        <button type="button" class="story-pill-item" onclick="openStoryModal('sc')">
-                            <div class="story-ring">
-                                <img src="images/full-width-images/fac.jpg" alt="S&C Power" class="story-avatar" />
-                            </div>
-                            <span class="story-label">S&amp;C Lab</span>
-                        </button>
-                        <button type="button" class="story-pill-item" onclick="openStoryModal('calisthenics')">
-                            <div class="story-ring">
-                                <img src="images/portfolio/projects-5.jpg" alt="Calisthenics" class="story-avatar" />
-                            </div>
-                            <span class="story-label">Calisthenics</span>
-                        </button>
-                        <button type="button" class="story-pill-item" onclick="openStoryModal('diagnostic')">
-                            <div class="story-ring">
-                                <img src="images/full-width-images/Test.jpg" alt="Biomechanical Screening" class="story-avatar" />
-                            </div>
-                            <span class="story-label">Screening</span>
-                        </button>
-                        <button type="button" class="story-pill-item" onclick="openStoryModal('nutrition')">
-                            <div class="story-ring">
-                                <img src="images/full-width-images/ast.jpg" alt="Nutrition" class="story-avatar" />
-                            </div>
-                            <span class="story-label">Nutrition</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- End Athletic Story Highlights Reel -->
-            
             <!-- Navigation panel -->
             <nav class="main-nav dark transparent stick-fixed" id="inzanMainNav">
                 <div class="full-wrapper relative clearfix">
@@ -291,12 +249,7 @@
                             <li><a href="#coaches"><span class="nav-idx">05</span> Coaches</a></li>
                             <li><a href="#results"><span class="nav-idx">06</span> Results</a></li>
                             <li><a href="#news"><span class="nav-idx">07</span> News</a></li>
-                            <li><a href="#portal" class="nav-portal-btn" onclick="openPortalModal(event)"><span class="nav-idx">08</span> <i class="fa fa-user-circle-o mr-5"></i> Athlete Portal</a></li>
-                            <li class="desktop-only-item desktop-sound-nav-item">
-                                <button type="button" class="desktop-nav-sound-btn" onclick="toggleInzanSound()" title="Tactile UI Audio Toggle" aria-label="Toggle tactile sound">
-                                    <i class="fa fa-volume-off" id="desktopSoundIcon"></i>
-                                </button>
-                            </li>
+                            <li><a href="#portal" class="nav-portal-btn" onclick="openPortalModal(event)"><span class="nav-idx">08</span> <i class="fa fa-user-circle-o mr-5"></i> Member Portal</a></li>
                             <li class="desktop-only-item"><a href="#assessment" class="nav-cta-highlight">Book Assessment</a></li>
                             
                             <!-- Mobile Menu Drawer Action & Info Footer -->
@@ -307,15 +260,6 @@
                                     </svg>
                                     Book 60-Min Assessment
                                 </a>
-                            </li>
-                            <li class="mobile-menu-sound-item">
-                                <button type="button" class="mobile-menu-sound-btn" onclick="toggleInzanSound()" aria-label="Toggle tactile audio feedback">
-                                    <span class="sound-label-group">
-                                        <i class="fa fa-volume-off" id="mobileSoundIcon"></i>
-                                        <span>Tactile Audio</span>
-                                    </span>
-                                    <span class="sound-badge" id="mobileSoundBadge">OFF</span>
-                                </button>
                             </li>
                             <li class="mobile-menu-info-item">
                                 <span>Garden 8 &bull; New Cairo &bull; <a href="tel:+201000061243">+20 100 006 1243</a></span>
@@ -333,22 +277,22 @@
                         <div class="proof-strip-item">
                             <i class="fa fa-heartbeat proof-strip-icon"></i>
                             <div class="proof-strip-title">60-Min Movement Screening</div>
-                            <div class="proof-strip-desc">Force, mobility &amp; kinetic baseline testing before any barbell loads</div>
+                            <div class="proof-strip-desc">Movement, mobility, and strength baseline testing before loaded training</div>
                         </div>
                         <div class="proof-strip-item">
                             <i class="fa fa-users proof-strip-icon"></i>
-                            <div class="proof-strip-title">1:6 Coach-to-Athlete Ratio</div>
-                            <div class="proof-strip-desc">Guaranteed technical precision, velocity tracking, and safety</div>
+                            <div class="proof-strip-title">Small Group Training (Max 6)</div>
+                            <div class="proof-strip-desc">Close coach attention, technical precision, and dedicated platform space</div>
                         </div>
                         <div class="proof-strip-item">
                             <i class="fa fa-certificate proof-strip-icon"></i>
-                            <div class="proof-strip-title">CSCS &amp; Olympic Certified</div>
-                            <div class="proof-strip-desc">Evidence-based periodization from internationally credentialed staff</div>
+                            <div class="proof-strip-title">Certified Coaches</div>
+                            <div class="proof-strip-desc">Specialists in Olympic weightlifting, calisthenics, and strength &amp; conditioning</div>
                         </div>
                         <div class="proof-strip-item">
                             <i class="fa fa-map-marker proof-strip-icon"></i>
                             <div class="proof-strip-title">Garden 8 &bull; New Cairo</div>
-                            <div class="proof-strip-desc">State-of-the-art facility open daily 6:00 AM to 11:00 PM</div>
+                            <div class="proof-strip-desc">Modern athletic facility open daily 6:00 AM to 11:00 PM</div>
                         </div>
                     </div>
                 </div>
@@ -505,153 +449,145 @@
             <!-- End What We Do Section -->
             
             
-            <!-- Where We Do It Section -->
-            <section class="page-section bg-dark-secondary pb-70">
+            <!-- Gapless Bento Grid: The Inzan Performance Ecosystem -->
+            <section class="page-section bg-dark-secondary pb-80" id="zone-training">
+                <div id="ecosystem" style="position:relative; top:-70px; visibility:hidden;"></div>
                 <div class="container relative">
                     
-                    <h2 class="section-title font-alt mb-70 mb-sm-40 align-center">
-                        WHERE WE DO IT
-                    </h2>
-                    
-                    <hr class="mb-50 inzan-divider" width="50%" />
-
-                    <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
-                            
-                            <div class="section-text align-center mb-60 mb-xs-40" style="font-size: 16px; line-height: 2;">
-                                Our High Performance Centre is designed to equally accommodate complete beginners and elite athletes. Our comprehensive approach combines Assessment and Program Design, Nutrition Counseling, and Mind Management to ensure our clients achieve their goals as safely and efficiently as humanly possible.
-                            </div>
-                            
+                    <div class="align-center mb-60">
+                        <div class="inzan-subheading mb-10">Facility Architecture &amp; Standards</div>
+                        <h2 class="section-title font-alt mb-20">THE PERFORMANCE ECOSYSTEM</h2>
+                        <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
+                            Engineered for competitive lifters and committed beginners. Garden 8's private athletic facility bridges Olympic lifting platforms, turf sprinting lanes, gymnastic rigging, and baseline movement screening.
                         </div>
                     </div>
 
-                    <hr class="mb-0 inzan-divider" width="50%" />
-
-                </div>
-            </section>
-            <!-- End Where We Do It Section -->
-            
-
-            <!-- Fullwidth Facility Slider Section -->
-            <div class="facility-slider owl-carousel bg-dark">
-                <!-- Slide Item 1 -->
-                <div class="item" style="background-image: url('images/full-width-images/facility-1.jpg');"></div>
-                <!-- Slide Item 2 -->
-                <div class="item" style="background-image: url('images/full-width-images/facility-2.jpg');"></div>
-                <!-- Slide Item 3 -->
-                <div class="item" style="background-image: url('images/full-width-images/facility-3.jpg');"></div>
-            </div>
-            <!-- End Fullwidth Facility Slider -->            
-            
-
-            <!-- Zone Training Section -->
-            <section class="page-section bg-dark pb-0" id="zone-training">
-                <div class="relative">
-                    
-                    <h2 class="section-title font-alt mb-70 mb-sm-40 align-center">
-                        ZONE TRAINING
-                    </h2>
-                    
-                    <hr class="mb-50 inzan-divider" width="40%" />
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                
-                                <div class="section-text align-center mb-70 mb-xs-40" style="font-size: 15.5px; line-height: 1.9;">
-                                    Our Private State-of-the-Art Facility lets you easily incorporate most sports into your structured workout routine. The large open floor plan is divided into training Zones, each with its own distinct requirements and dedicated equipment.
+                    <div class="leonardo-bento-grid">
+                        <!-- Cell 1: 2x2 Large Facility Hub with Interactive Zone Selector -->
+                        <div class="bento-cell bento-hero tilt-card">
+                            <div class="card-spotlight"></div>
+                            <div class="bento-bg" id="bentoFacilityBg" style="background-image: url('images/full-width-images/fac.jpg');"></div>
+                            <div class="bento-overlay"></div>
+                            <div class="bento-inner">
+                                <div class="bento-top-bar">
+                                    <span class="bento-live-badge"><span class="status-live-dot"></span> GARDEN 8 &bull; MAIN TRAINING FLOOR</span>
+                                    <span class="bento-zone-label" id="bentoZoneTag">OLYMPIC BARBELL BAYS</span>
                                 </div>
                                 
+                                <div class="bento-main-text">
+                                    <h3 class="bento-title" id="bentoZoneTitle">Competition Barbell Platforms &amp; Racks</h3>
+                                    <p class="bento-desc" id="bentoZoneDesc">
+                                        Dedicated 8x8 Eleiko lifting platforms, calibrated bumper plates, and competition needle-bearing barbells. Designed for maximal power output without overcrowding.
+                                    </p>
+                                </div>
+
+                                <div class="bento-interactive-strip">
+                                    <span class="strip-label">Inspect Zone:</span>
+                                    <div class="bento-zone-pills">
+                                        <button type="button" class="bento-pill active" onclick="switchBentoZone('platforms', this)">Platforms</button>
+                                        <button type="button" class="bento-pill" onclick="switchBentoZone('turf', this)">Turf Track</button>
+                                        <button type="button" class="bento-pill" onclick="switchBentoZone('rig', this)">Gymnastic Rig</button>
+                                        <button type="button" class="bento-pill" onclick="switchBentoZone('recovery', this)">Recovery Bay</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cell 2: 1x2 Tall Live Schedule Ticker -->
+                        <div class="bento-cell bento-tall tilt-card">
+                            <div class="card-spotlight"></div>
+                            <div class="bento-inner">
+                                <div class="bento-card-header">
+                                    <div class="bento-card-icon"><i class="fa fa-clock-o"></i></div>
+                                    <div>
+                                        <div class="bento-micro-eyebrow">TODAY AT INZAN</div>
+                                        <div class="bento-card-sub">Live Timetable</div>
+                                    </div>
+                                </div>
+
+                                <div class="bento-schedule-ticker" id="bentoScheduleTicker">
+                                    <!-- Populated dynamically via JS -->
+                                </div>
+
+                                <a href="#schedule" class="bento-footer-link">
+                                    Full 7-Day Timetable <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Cell 3: 1x1 Coaching Ratio & Metric -->
+                        <div class="bento-cell bento-metric tilt-card">
+                            <div class="card-spotlight"></div>
+                            <div class="bento-inner">
+                                <div class="bento-metric-number">1:6</div>
+                                <div class="bento-metric-title">Coach-to-Athlete Ratio</div>
+                                <p class="bento-metric-desc">Every small-group session is strictly capped at 6 athletes to guarantee platform space, coach scrutiny, and safety.</p>
+                                <div class="bento-badge-group">
+                                    <span class="micro-badge">CSCS</span>
+                                    <span class="micro-badge">USAW</span>
+                                    <span class="micro-badge">EWF</span>
+                                    <span class="micro-badge">CISSN</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cell 4: 2x1 Wide Interactive Joint Screening Engine -->
+                        <div class="bento-cell bento-wide tilt-card">
+                            <div class="card-spotlight"></div>
+                            <div class="bento-inner">
+                                <div class="bento-split-content">
+                                    <div class="bento-screen-left">
+                                        <div class="bento-micro-eyebrow">60-MIN INTAKE ASSESSMENT</div>
+                                        <h4 class="bento-screen-title">Kinetic Joint Screening</h4>
+                                        <p class="bento-screen-desc">
+                                            We screen mobility, force symmetry, and movement mechanics before loading any barbell. Click to inspect the screening tests:
+                                        </p>
+                                        <div class="joint-selector-grid">
+                                            <button type="button" class="joint-btn active" onclick="inspectJoint('shoulder', this)">
+                                                <i class="fa fa-dot-circle-o mr-5"></i> Shoulder / Thoracic
+                                            </button>
+                                            <button type="button" class="joint-btn" onclick="inspectJoint('hip', this)">
+                                                <i class="fa fa-dot-circle-o mr-5"></i> Hip / Pelvic Hinge
+                                            </button>
+                                            <button type="button" class="joint-btn" onclick="inspectJoint('ankle', this)">
+                                                <i class="fa fa-dot-circle-o mr-5"></i> Ankle Dorsiflexion
+                                            </button>
+                                            <button type="button" class="joint-btn" onclick="inspectJoint('core', this)">
+                                                <i class="fa fa-dot-circle-o mr-5"></i> Rotational Core
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="bento-screen-right" id="jointInspectionCard">
+                                        <div class="joint-test-badge" id="jointBadge">UPPER CHAIN SCREEN</div>
+                                        <div class="joint-test-name" id="jointTestName">Overhead Dowel Mobility &amp; T-Spine Extension</div>
+                                        <p class="joint-test-detail" id="jointTestDetail">Evaluates active glenohumeral clearance, lat length, and rib cage flare. Ensures safe receiving positions for snatches and ring handstands.</p>
+                                        <div class="joint-test-outcome" id="jointTestOutcome"><i class="fa fa-check-circle mr-5"></i> Fixes forward barbell drift &amp; shoulder impingement</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cell 5: 1x1 Facility Specs & Rigging -->
+                        <div class="bento-cell bento-spec tilt-card">
+                            <div class="card-spotlight"></div>
+                            <div class="bento-inner">
+                                <div class="bento-card-header">
+                                    <div class="bento-card-icon"><i class="fa fa-shield"></i></div>
+                                    <div>
+                                        <div class="bento-micro-eyebrow">EQUIPMENT &amp; FACILITY</div>
+                                        <div class="bento-card-sub">Garden 8 Mall, New Cairo</div>
+                                    </div>
+                                </div>
+                                <ul class="bento-spec-list">
+                                    <li><i class="fa fa-check"></i> Competition Eleiko &amp; Rogue Bars</li>
+                                    <li><i class="fa fa-check"></i> 25m Sprint Turf &amp; Heavy Prowlers</li>
+                                    <li><i class="fa fa-check"></i> Olympic Gymnastic Wooden Rings</li>
+                                    <li><i class="fa fa-check"></i> Private Member Showers &amp; Recovery</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    
-                    <hr class="mb-50 inzan-divider" width="40%" />
 
-                    <!-- Works Grid (3 Columns, 2 Rows) -->
-                    <ul class="works-grid work-grid-3 clearfix font-alt">
-                        
-                        <!-- 1. Gymnastics (Lightbox) -->
-                        <li class="work-item">
-                            <a href="images/portfolio/full-project-1.jpg" class="work-lightbox-link mfp-image">
-                                <div class="work-img">
-                                    <img src="images/portfolio/projects-1.jpg" alt="Gymnastics" />
-                                </div>
-                                <div class="work-intro">
-                                    <h3 class="work-title">Gymnastics</h3>
-                                    <div class="work-descr">IMAGE</div>
-                                </div>
-                            </a>
-                        </li>
-                        
-                        <!-- 2. Track & Field (Lightbox) -->
-                        <li class="work-item">
-                            <a href="images/portfolio/full-project-2.jpg" class="work-lightbox-link mfp-image">
-                                <div class="work-img">
-                                    <img src="images/portfolio/projects-2.jpg" alt="Track & Field" />
-                                </div>
-                                <div class="work-intro">
-                                    <h3 class="work-title">Track &amp; Field</h3>
-                                    <div class="work-descr">IMAGE</div>
-                                </div>
-                            </a>
-                        </li>
-                        
-                        <!-- 3. Kettlebell (Lightbox) -->
-                        <li class="work-item">
-                            <a href="images/portfolio/full-project-3.jpg" class="work-lightbox-link mfp-image">
-                                <div class="work-img">
-                                    <img src="images/portfolio/projects-3.jpg" alt="Kettlebell" />
-                                </div>
-                                <div class="work-intro">
-                                    <h3 class="work-title">Kettlebell</h3>
-                                    <div class="work-descr">IMAGE</div>
-                                </div>
-                            </a>
-                        </li>
-                        
-                        <!-- 4. Olympic Lifting (Lightbox) -->
-                        <li class="work-item">
-                            <a href="images/portfolio/full-project-4.jpg" class="work-lightbox-link mfp-image">
-                                <div class="work-img">
-                                    <img src="images/portfolio/projects-4.jpg" alt="Olympic Lifting" />
-                                </div>
-                                <div class="work-intro">
-                                    <h3 class="work-title">Olympic Lifting</h3>
-                                    <div class="work-descr">IMAGE</div>
-                                </div>
-                            </a>
-                        </li>
-                        
-                        <!-- 5. Calisthenics (Lightbox) -->
-                        <li class="work-item">
-                            <a href="images/portfolio/full-project-5.jpg" class="work-lightbox-link mfp-image">
-                                <div class="work-img">
-                                    <img src="images/portfolio/projects-5.jpg" alt="Calisthenics" />
-                                </div>
-                                <div class="work-intro">
-                                    <h3 class="work-title">Calisthenics</h3>
-                                    <div class="work-descr">IMAGE</div>
-                                </div>
-                            </a>
-                        </li>
-                        
-                        <!-- 6. Strongman (Lightbox) -->
-                        <li class="work-item">
-                            <a href="images/portfolio/full-project-6.jpg" class="work-lightbox-link mfp-image">
-                                <div class="work-img">
-                                    <img src="images/portfolio/projects-6.jpg" alt="Strongman" />
-                                </div>
-                                <div class="work-intro">
-                                    <h3 class="work-title">Strong Man</h3>
-                                    <div class="work-descr">IMAGE</div>
-                                </div>
-                            </a>
-                        </li>
-                        
-                    </ul>
-                    <!-- End Works Grid -->
-                    
                 </div>
             </section>
             <!-- The First 30 Days Roadmap Section -->
@@ -768,10 +704,10 @@
                 <div class="container relative">
                     
                     <div class="align-center mb-60">
-                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">Master Practitioners</div>
-                        <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">PERFORMANCE COACHES &amp; CREDENTIALS</h2>
+                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">Coaching Staff</div>
+                        <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">COACHES &amp; CREDENTIALS</h2>
                         <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
-                            "Science-based &bull; data-driven &bull; relentless" is backed by elite coaching qualifications, collegiate athletic experience, and international sports science credentials.
+                            Our coaches bring collegiate athletic backgrounds, international certifications, and years of coaching experience to every session.
                         </div>
                     </div>
 
@@ -1043,7 +979,7 @@
                                 ARCHITECTURE OF PERFORMANCE
                             </h3>
                             <div style="letter-spacing: 3px; color: #888888; font-size: 13px; text-transform: uppercase; margin-bottom: 25px;">
-                                SCIENCE-BASED &bull; DATA-DRIVEN &bull; RELENTLESS
+                                STRENGTH &bull; SKILL &bull; ATHLETIC LONGEVITY
                             </div>
                             <div>
                                 <a href="#facility-reel" class="btn btn-mod btn-border-w btn-medium btn-round" style="letter-spacing:2px; font-weight:700;" onclick="openVideoReel(event)">
@@ -1061,10 +997,10 @@
                 <div class="container relative">
                     
                     <div class="align-center mb-60">
-                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">Verified Athlete Outcomes</div>
-                        <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">DATA-DRIVEN RESULTS</h2>
+                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">Member Results</div>
+                        <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">ATHLETE OUTCOMES</h2>
                         <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
-                            We track force production, barbell velocity, body composition, and movement symmetry. Real progress measured under barbell and camera.
+                            Real progress from athletes training on our platforms in New Cairo. Strength gained, technique refined, and movement restored.
                         </div>
                     </div>
 
@@ -1266,251 +1202,128 @@
             </section>
             <!-- End Newsletter Section -->
 
-            <!-- Interactive 60-Second Athletic Diagnostic Section -->
+            <!-- Leonardo-Style Athlete Track Studio Section -->
             <section class="page-section bg-dark-secondary" id="diagnostic-tool">
+                <div id="program-finder" style="position:relative; top:-70px; visibility:hidden;"></div>
+                <div id="studio" style="position:relative; top:-70px; visibility:hidden;"></div>
                 <div class="container relative">
                     
                     <div class="align-center mb-40">
-                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">Biomechanical Intake Engine</div>
-                        <h2 class="section-title font-alt mb-15">60-SECOND ATHLETIC DIAGNOSTIC</h2>
+                        <div class="inzan-subheading mb-10">Interactive Program Studio</div>
+                        <h2 class="section-title font-alt mb-15">CUSTOMIZE YOUR TRAINING TRACK</h2>
                         <div class="section-text" style="max-width: 650px; margin: 0 auto; color: #A0A0A0; font-size: 14px;">
-                            Answer 4 quick performance indicators to calculate your recommended Inzan training protocol, assigned coach lead, and 12-week development benchmark.
+                            Configure your athletic pillar, preferred training window, and experience level to instantly compile your custom weekly split, allocated platform bay, and assigned coach.
                         </div>
                     </div>
 
-                    <div class="diagnostic-container">
-                        <!-- Progress Bar & Indicator -->
-                        <div class="diagnostic-progress">
-                            <div class="diagnostic-progress-bar-bg">
-                                <div class="diagnostic-progress-fill" id="diagProgressFill"></div>
-                            </div>
-                            <div class="diagnostic-step-dot active" id="dot1">1</div>
-                            <div class="diagnostic-step-dot" id="dot2">2</div>
-                            <div class="diagnostic-step-dot" id="dot3">3</div>
-                            <div class="diagnostic-step-dot" id="dot4">4</div>
-                        </div>
-
-                        <!-- Step 1: Goal -->
-                        <div class="diag-step-card active" id="diagStep1">
-                            <h3 class="diag-step-title">Step 1: Primary Athletic Objective</h3>
-                            <p class="diag-step-subtitle">What physical quality do you most want to develop or optimize?</p>
-                            <div class="diag-options-grid">
-                                <div class="diag-option-btn selected" onclick="selectDiagOption('goal', 'power', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">Explosive Power &amp; Speed</div>
-                                        <div class="diag-opt-desc">Rate of force development, vertical jump, sprint mechanics, and reactive velocity.</div>
+                    <div class="leonardo-studio-card tilt-card">
+                        <div class="card-spotlight"></div>
+                        <div class="studio-grid-wrap">
+                            <!-- Left Controls Pane -->
+                            <div class="studio-controls-pane">
+                                <div class="studio-section-label"><i class="fa fa-sliders"></i> 1. Select Athletic Pillar</div>
+                                <div class="studio-pill-group">
+                                    <div class="studio-seg-pill active" data-group="pillar" onclick="selectStudioPillar('sc', this)">
+                                        <div class="pill-heading">Strength &amp; Conditioning</div>
+                                        <div class="pill-sub">Barbell overload &amp; turf sprint work</div>
                                     </div>
-                                </div>
-                                <div class="diag-option-btn" onclick="selectDiagOption('goal', 'olympic', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">Olympic Weightlifting Mastery</div>
-                                        <div class="diag-opt-desc">Snatch, clean &amp; jerk technique, triple extension, bar trajectory, and max strength.</div>
+                                    <div class="studio-seg-pill" data-group="pillar" onclick="selectStudioPillar('olympic', this)">
+                                        <div class="pill-heading">Olympic Weightlifting</div>
+                                        <div class="pill-sub">Snatch, Clean &amp; Jerk technique</div>
                                     </div>
-                                </div>
-                                <div class="diag-option-btn" onclick="selectDiagOption('goal', 'calisthenics', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">Calisthenics &amp; Gymnastic Rings</div>
-                                        <div class="diag-opt-desc">Relative bodyweight strength, strict levers, muscle-ups, and scapular stabilization.</div>
+                                    <div class="studio-seg-pill" data-group="pillar" onclick="selectStudioPillar('calisthenics', this)">
+                                        <div class="pill-heading">Gymnastics &amp; Rings</div>
+                                        <div class="pill-sub">Strict levers &amp; relative strength</div>
                                     </div>
-                                </div>
-                                <div class="diag-option-btn" onclick="selectDiagOption('goal', 'hypertrophy', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">Hypertrophy &amp; Recomposition</div>
-                                        <div class="diag-opt-desc">Athletic muscle building, metabolic conditioning, body fat reduction, and nutritional periodization.</div>
-                                    </div>
-                                </div>
-                                <div class="diag-option-btn" onclick="selectDiagOption('goal', 'rehab', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">Injury Rehab &amp; Return to Play</div>
-                                        <div class="diag-opt-desc">Post-injury joint rebuilding, tendon resilience, kinetic symmetry, and pain-free movement.</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="diag-nav-actions" style="justify-content: flex-end;">
-                                <button type="button" class="btn btn-mod btn-small btn-round inzan-btn-primary" onclick="nextDiagStep()">
-                                    Next: Training Age <i class="fa fa-arrow-right ml-5"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Step 2: Experience / Training Age -->
-                        <div class="diag-step-card" id="diagStep2">
-                            <h3 class="diag-step-title">Step 2: Training Age &amp; Background</h3>
-                            <p class="diag-step-subtitle">How long have you been consistently training with barbells or structured athletics?</p>
-                            <div class="diag-options-grid">
-                                <div class="diag-option-btn" onclick="selectDiagOption('experience', 'beginner', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">Novice (&lt; 1 Year)</div>
-                                        <div class="diag-opt-desc">New to structured athletic training or returning after a multi-year hiatus.</div>
-                                    </div>
-                                </div>
-                                <div class="diag-option-btn selected" onclick="selectDiagOption('experience', 'intermediate', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">Intermediate (1 – 3 Years)</div>
-                                        <div class="diag-opt-desc">Consistent lifting background, familiar with basic compound movements.</div>
-                                    </div>
-                                </div>
-                                <div class="diag-option-btn" onclick="selectDiagOption('experience', 'advanced', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">Advanced (3 – 5+ Years)</div>
-                                        <div class="diag-opt-desc">Extensive strength foundation seeking velocity profiling and specialized coaching.</div>
-                                    </div>
-                                </div>
-                                <div class="diag-option-btn" onclick="selectDiagOption('experience', 'competitive', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">Competitive Athlete</div>
-                                        <div class="diag-opt-desc">Collegiate, professional, or competitive sport athlete requiring peak season prep.</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="diag-nav-actions">
-                                <button type="button" class="btn btn-mod btn-border-w btn-small btn-round" onclick="prevDiagStep()">
-                                    <i class="fa fa-arrow-left mr-5"></i> Back
-                                </button>
-                                <button type="button" class="btn btn-mod btn-small btn-round inzan-btn-primary" onclick="nextDiagStep()">
-                                    Next: Weekly Commitment <i class="fa fa-arrow-right ml-5"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Step 3: Frequency -->
-                        <div class="diag-step-card" id="diagStep3">
-                            <h3 class="diag-step-title">Step 3: Weekly Training Commitment</h3>
-                            <p class="diag-step-subtitle">How many training sessions can you realistically commit to each week at Garden 8?</p>
-                            <div class="diag-options-grid">
-                                <div class="diag-option-btn" onclick="selectDiagOption('frequency', '2-3', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">2 &ndash; 3 Sessions / Week</div>
-                                        <div class="diag-opt-desc">Ideal for busy professionals or maintenance phases combined with other sports.</div>
-                                    </div>
-                                </div>
-                                <div class="diag-option-btn selected" onclick="selectDiagOption('frequency', '4-5', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">4 &ndash; 5 Sessions / Week (Optimal)</div>
-                                        <div class="diag-opt-desc">The gold-standard frequency for maximum neuromuscular adaptation and rapid body composition shifts.</div>
-                                    </div>
-                                </div>
-                                <div class="diag-option-btn" onclick="selectDiagOption('frequency', '6+', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">6 Sessions / Week (High Performance)</div>
-                                        <div class="diag-opt-desc">Full periodized split with dedicated active recovery, mobility, and cold plunge regeneration.</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="diag-nav-actions">
-                                <button type="button" class="btn btn-mod btn-border-w btn-small btn-round" onclick="prevDiagStep()">
-                                    <i class="fa fa-arrow-left mr-5"></i> Back
-                                </button>
-                                <button type="button" class="btn btn-mod btn-small btn-round inzan-btn-primary" onclick="nextDiagStep()">
-                                    Next: Kinetic Health <i class="fa fa-arrow-right ml-5"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Step 4: Kinetic Focus & Past Injuries -->
-                        <div class="diag-step-card" id="diagStep4">
-                            <h3 class="diag-step-title">Step 4: Kinetic Health &amp; Joint Focus</h3>
-                            <p class="diag-step-subtitle">Do you have specific joints requiring bulletproofing or past injuries?</p>
-                            <div class="diag-options-grid">
-                                <div class="diag-option-btn selected" onclick="selectDiagOption('focus', 'none', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">100% Healthy / Full Body Focus</div>
-                                        <div class="diag-opt-desc">Zero chronic limitations; ready for unrestricted progressive overload.</div>
-                                    </div>
-                                </div>
-                                <div class="diag-option-btn" onclick="selectDiagOption('focus', 'shoulders', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">Shoulder &amp; Scapular Care</div>
-                                        <div class="diag-opt-desc">History of rotator cuff, impingement, or overhead mobility restrictions.</div>
-                                    </div>
-                                </div>
-                                <div class="diag-option-btn" onclick="selectDiagOption('focus', 'back', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">Lower Back &amp; Lumbar Care</div>
-                                        <div class="diag-opt-desc">Requires core bracing optimization and pelvic alignment focus.</div>
-                                    </div>
-                                </div>
-                                <div class="diag-option-btn" onclick="selectDiagOption('focus', 'knees', this)">
-                                    <div class="diag-opt-radio"></div>
-                                    <div>
-                                        <div class="diag-opt-title">Knee &amp; Ankle Mobility</div>
-                                        <div class="diag-opt-desc">Patellar tendon resilience, ankle dorsiflexion, or ACL return-to-play prep.</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="diag-nav-actions">
-                                <button type="button" class="btn btn-mod btn-border-w btn-small btn-round" onclick="prevDiagStep()">
-                                    <i class="fa fa-arrow-left mr-5"></i> Back
-                                </button>
-                                <button type="button" class="btn btn-mod btn-small btn-round inzan-btn-primary" onclick="nextDiagStep()">
-                                    <i class="fa fa-cogs mr-5"></i> Generate My Protocol
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Step 5: Generated Protocol Results -->
-                        <div class="diag-step-card" id="diagStep5">
-                            <div class="diag-result-card">
-                                <div class="diag-result-header">
-                                    <i class="fa fa-shield"></i> INZAN PRESCRIPTION &bull; BIOMECHANICAL MATCH
-                                </div>
-                                <h3 class="diag-result-protocol" id="diagResultProtocol">INZAN TRI-PHASIC EXPLOSIVE POWER PROTOCOL</h3>
-                                
-                                <div class="diag-metrics-grid">
-                                    <div class="diag-metric-box">
-                                        <div class="diag-metric-label">Assigned Coach Lead</div>
-                                        <div class="diag-metric-val" id="diagMetricCoach">Coach Youssef R.</div>
-                                    </div>
-                                    <div class="diag-metric-box">
-                                        <div class="diag-metric-label">Phase 1 Focus</div>
-                                        <div class="diag-metric-val" id="diagMetricPhase">Force-Velocity Baseline</div>
-                                    </div>
-                                    <div class="diag-metric-box">
-                                        <div class="diag-metric-label">Prescribed Frequency</div>
-                                        <div class="diag-metric-val" id="diagMetricFreq">4 Sessions / Week (1:6 Ratio)</div>
-                                    </div>
-                                    <div class="diag-metric-box">
-                                        <div class="diag-metric-label">Target 12-Wk Benchmark</div>
-                                        <div class="diag-metric-val" id="diagMetricMilestone" style="color:#FFFFFF;">+15–22% RFD</div>
+                                    <div class="studio-seg-pill" data-group="pillar" onclick="selectStudioPillar('private', this)">
+                                        <div class="pill-heading">Private 1-on-1 Coaching</div>
+                                        <div class="pill-sub">Dedicated bespoke periodization</div>
                                     </div>
                                 </div>
 
-                                <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
-                                    <button type="button" class="btn btn-mod btn-medium btn-round inzan-btn-primary" style="flex:1; min-width:240px;" onclick="applyDiagnosticToForm()">
-                                        <i class="fa fa-calendar-check-o mr-10"></i> Apply To Assessment Booking
+                                <div class="studio-section-label"><i class="fa fa-clock-o"></i> 2. Preferred Training Window</div>
+                                <div class="studio-pill-group">
+                                    <div class="studio-seg-pill active" data-group="time" onclick="selectStudioTime('morning', this)">
+                                        <div class="pill-heading">Early Dawn</div>
+                                        <div class="pill-sub">6:30 AM &ndash; 10:00 AM</div>
+                                    </div>
+                                    <div class="studio-seg-pill" data-group="time" onclick="selectStudioTime('midday', this)">
+                                        <div class="pill-heading">Midday Window</div>
+                                        <div class="pill-sub">10:00 AM &ndash; 4:00 PM</div>
+                                    </div>
+                                    <div class="studio-seg-pill" data-group="time" onclick="selectStudioTime('evening', this)">
+                                        <div class="pill-heading">Evening Prime</div>
+                                        <div class="pill-sub">5:00 PM &ndash; 9:00 PM</div>
+                                    </div>
+                                </div>
+
+                                <div class="studio-section-label"><i class="fa fa-signal"></i> 3. Athlete Experience Level</div>
+                                <div class="studio-pill-group">
+                                    <div class="studio-seg-pill" data-group="level" onclick="selectStudioLevel('beginner', this)">
+                                        <div class="pill-heading">Foundation / Novice</div>
+                                        <div class="pill-sub">&lt; 1 Year barbell training</div>
+                                    </div>
+                                    <div class="studio-seg-pill active" data-group="level" onclick="selectStudioLevel('intermediate', this)">
+                                        <div class="pill-heading">Intermediate Lifter</div>
+                                        <div class="pill-sub">1 &ndash; 3 Years compound lifting</div>
+                                    </div>
+                                    <div class="studio-seg-pill" data-group="level" onclick="selectStudioLevel('advanced', this)">
+                                        <div class="pill-heading">Competitive Athlete</div>
+                                        <div class="pill-sub">3+ Years sports performance</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Monitor Pane (Live Reactive Card) -->
+                            <div class="studio-monitor-pane">
+                                <div>
+                                    <div class="studio-monitor-header">
+                                        <span class="studio-live-tag"><span class="status-live-dot"></span> LIVE PROGRAM MONITOR</span>
+                                        <span style="font-size:11px; font-weight:700; color:#888888; text-transform:uppercase;">GARDEN 8 BAY</span>
+                                    </div>
+
+                                    <div class="studio-track-card">
+                                        <h3 class="studio-track-title" id="studioTrackTitle">STRENGTH &amp; CONDITIONING TRACK</h3>
+                                        <p class="studio-track-detail" id="studioTrackDetail">
+                                            Engineered for Intermediate Lifter training during Early Dawn (6:30 AM – 10:00 AM). Structured in strict small-group format with dedicated platform space.
+                                        </p>
+
+                                        <div class="studio-meta-grid">
+                                            <div class="studio-meta-cell">
+                                                <div class="meta-label">Lead Coach</div>
+                                                <div class="meta-val" id="studioMetaCoach">Coach Youssef R. (CSCS)</div>
+                                            </div>
+                                            <div class="studio-meta-cell">
+                                                <div class="meta-label">Weekly Split</div>
+                                                <div class="meta-val" id="studioMetaSplit">Barbell Overload • Turf Sled Sprints</div>
+                                            </div>
+                                            <div class="studio-meta-cell">
+                                                <div class="meta-label">Allocated Bay</div>
+                                                <div class="meta-val" id="studioMetaBay">Main Floor Racks &amp; Turf Track</div>
+                                            </div>
+                                            <div class="studio-meta-cell">
+                                                <div class="meta-label">Prescription</div>
+                                                <div class="meta-val" id="studioMetaFreq">4 Sessions / Week (Max 6:1)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="studio-actions-wrap">
+                                    <button type="button" class="studio-primary-btn" onclick="applyStudioToBooking()">
+                                        <i class="fa fa-calendar-check-o mr-5"></i> Lock Track &amp; Book Assessment
                                     </button>
-                                    <button type="button" class="btn btn-mod btn-medium btn-round inzan-btn-whatsapp" style="flex:1; min-width:240px;" onclick="consultDiagnosticWhatsApp()">
-                                        <i class="fa fa-whatsapp mr-10"></i> Send Results via WhatsApp
-                                    </button>
+                                    <a href="#" id="studioWhatsAppBtn" target="_blank" rel="noopener noreferrer" class="studio-whatsapp-btn">
+                                        <i class="fa fa-whatsapp mr-5"></i> Discuss Track on WhatsApp
+                                    </a>
                                 </div>
                             </div>
-                            <div style="text-align:center;">
-                                <a href="#" onclick="diagState.step=1; updateDiagUI(); return false;" style="color:#777777; font-size:12px; text-decoration:underline;">
-                                    &larr; Retake Diagnostic Test
-                                </a>
-                            </div>
                         </div>
-
                     </div>
 
                 </div>
             </section>
-            <!-- End Interactive 60-Second Athletic Diagnostic Section -->
+            <!-- End Athlete Track Studio Section -->
 
             <!-- Contact & Assessment Booking Section -->
             <section class="page-section bg-dark" id="assessment">
@@ -1518,10 +1331,10 @@
                 <div class="container relative">
                     
                     <div class="align-center mb-60">
-                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">Diagnostic Intake &bull; Garden 8, New Cairo</div>
+                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">Intake &amp; Tour &bull; Garden 8, New Cairo</div>
                         <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">BOOK YOUR ASSESSMENT</h2>
                         <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
-                            Every athlete begins with our 60-minute movement screening, power baseline, and facility tour. Reserve your session with an Inzan Performance Coach below.
+                            Every athlete begins with our 60-minute movement screening, physical baseline, and facility tour. Reserve your session with an Inzan coach below.
                         </div>
                     </div>
 
@@ -1807,7 +1620,7 @@
                             THE ARCHITECTURE OF ELITE PERFORMANCE
                         </h3>
                         <p style="color:#C0C0C0; font-size:13px; max-width:680px; line-height:1.6; margin-bottom:20px;">
-                            Explore Egypt's leading science-based training centre: dedicated Eleiko competition lifting platforms, bespoke gymnastic rig, 25-meter indoor sprint turf, and comprehensive biomechanical testing lab.
+                            Take a look inside our Garden 8 facility: dedicated Eleiko lifting platforms, custom gymnastic rig, 25-meter indoor sprint turf, and movement screening space in New Cairo.
                         </p>
                         <div style="display:flex; gap:12px; flex-wrap:wrap;">
                             <a href="#assessment" class="btn btn-mod btn-small btn-round inzan-btn-primary" onclick="closeVideoReel()">
@@ -1822,34 +1635,26 @@
             </div>
         </div>
 
-        <!-- Athlete Portal Gateway Modal -->
+        <!-- Member Portal Modal -->
         <div id="inzanPortalModal" class="inzan-cinema-modal">
-            <div class="inzan-cinema-dialog" style="max-width:740px;">
+            <div class="inzan-cinema-dialog" style="max-width:540px;">
                 <div class="inzan-cinema-close" onclick="closePortalModal()">&times;</div>
-                <div class="portal-tabs">
-                    <button type="button" class="portal-tab-btn active" data-tab="login" onclick="switchPortalTab('login')">
-                        <i class="fa fa-lock mr-5"></i> Athlete Sign In
-                    </button>
-                    <button type="button" class="portal-tab-btn" data-tab="features" onclick="switchPortalTab('features')">
-                        <i class="fa fa-th-large mr-5"></i> Platform Ecosystem
-                    </button>
-                </div>
 
-                <!-- Sign In Tab -->
-                <div class="portal-tab-body" id="portalTabLogin">
+                <!-- Sign In Form -->
+                <div class="portal-tab-body" id="portalTabLogin" style="padding: 24px 20px;">
                     <div style="text-align:center; margin-bottom:25px;">
                         <img src="images/inzan-logo.png" srcset="images/inzan-logo@2x.png 2x" height="26" alt="INZAN ATHLETICS" style="margin-bottom:12px;" />
-                        <h3 class="font-alt" style="font-size:18px; letter-spacing:2px; color:#FFFFFF; margin-bottom:6px;">ATHLETE PERFORMANCE CLOUD</h3>
-                        <p style="font-size:12px; color:#888888;">Access class reservations, velocity tracking, and personalized nutritional blueprints.</p>
+                        <h3 class="font-alt" style="font-size:18px; letter-spacing:2px; color:#FFFFFF; margin-bottom:6px;">MEMBER PORTAL</h3>
+                        <p style="font-size:12px; color:#888888;">Sign in to view your session schedule, coaching plan, and membership details.</p>
                     </div>
 
                     <form onsubmit="handlePortalDemoLogin(event)">
                         <div class="mb-20">
-                            <label class="inzan-field-label" for="portalEmail">Athlete Email or Member ID</label>
+                            <label class="inzan-field-label" for="portalEmail">Email or Member ID</label>
                             <input type="text" id="portalEmail" name="username" class="inzan-form-control" autocomplete="username" placeholder="e.g. omar@inzan.me or INZ-2026-084" value="athlete.demo@inzanathletics.com" required />
                         </div>
                         <div class="mb-25">
-                            <label class="inzan-field-label" for="portalPassword">Athlete Password</label>
+                            <label class="inzan-field-label" for="portalPassword">Password</label>
                             <input type="password" id="portalPassword" name="password" class="inzan-form-control" autocomplete="current-password" placeholder="••••••••••••" value="password123" required />
                         </div>
 
@@ -1857,11 +1662,11 @@
                             <label style="cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
                                 <input type="checkbox" checked style="accent-color:#FFFFFF;" /> Remember credentials
                             </label>
-                            <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20need%20help%20with%20my%20Athlete%20Portal%20password." target="_blank" rel="noopener noreferrer" style="color:#888888;">Forgot password?</a>
+                            <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20need%20help%20with%20my%20Member%20Portal%20password." target="_blank" rel="noopener noreferrer" style="color:#888888;">Forgot password?</a>
                         </div>
 
                         <button type="submit" class="btn btn-mod btn-medium btn-round inzan-btn-primary" id="portalLoginBtn" style="width:100%;">
-                            <i class="fa fa-sign-in mr-5"></i> Access Athlete Dashboard
+                            <i class="fa fa-sign-in mr-5"></i> Sign In to Member Portal
                         </button>
                     </form>
 
@@ -1872,83 +1677,6 @@
                     </div>
                 </div>
 
-                <!-- Features Tab -->
-                <div class="portal-tab-body" id="portalTabFeatures" style="display:none;">
-                    <div style="text-align:center; margin-bottom:25px;">
-                        <h3 class="font-alt" style="font-size:18px; letter-spacing:2px; color:#FFFFFF; margin-bottom:6px;">CONNECTED ATHLETIC ECOSYSTEM</h3>
-                        <p style="font-size:12px; color:#888888;">Seamless digital coaching tools built directly for Inzan members.</p>
-                    </div>
-
-                    <div class="portal-feature-grid">
-                        <div class="portal-feature-card">
-                            <div class="portal-feature-icon"><i class="fa fa-heartbeat"></i></div>
-                            <h4 class="portal-feature-title">Wearable Health Sync</h4>
-                            <p class="portal-feature-desc">Automatic bi-directional sync with Apple Health, Whoop 4.0, Garmin, and Oura ring recovery data.</p>
-                        </div>
-                        <div class="portal-feature-card">
-                            <div class="portal-feature-icon"><i class="fa fa-line-chart"></i></div>
-                            <h4 class="portal-feature-title">Barbell Velocity Tracking</h4>
-                            <p class="portal-feature-desc">Log mean concentric velocity, estimated 1RM, and load progression per session.</p>
-                        </div>
-                        <div class="portal-feature-card">
-                            <div class="portal-feature-icon"><i class="fa fa-cutlery"></i></div>
-                            <h4 class="portal-feature-title">Inzan Kitchen Ordering</h4>
-                            <p class="portal-feature-desc">Pre-order precision macro meals, recovery shakes, and hydration ready right as your session finishes.</p>
-                        </div>
-                        <div class="portal-feature-card">
-                            <div class="portal-feature-icon"><i class="fa fa-shield"></i></div>
-                            <h4 class="portal-feature-title">Athletic Passport</h4>
-                            <p class="portal-feature-desc">Gamified progress badges, movement screening milestones, and periodized training phases.</p>
-                        </div>
-                    </div>
-
-                    <div style="text-align:center; margin-top:20px;">
-                        <a href="#assessment" class="btn btn-mod btn-medium btn-round inzan-btn-primary" onclick="closePortalModal()">
-                            <i class="fa fa-calendar-check-o mr-5"></i> Join Inzan Athletics
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        
-        <!-- Athletic Story Lightbox Modal -->
-        <div id="inzanStoryModal">
-            <div class="story-modal-card">
-                <div class="story-progress-row">
-                    <div class="story-progress-seg"><div class="story-progress-fill" id="storyProgressFill"></div></div>
-                </div>
-                <div class="story-header-bar">
-                    <div class="story-author-info">
-                        <img src="images/logo-dark.png" alt="Inzan Athletics" class="story-author-img" id="storyAuthorImg" />
-                        <div>
-                            <div class="story-author-name" id="storyAuthorName">INZAN ATHLETICS</div>
-                            <div style="font-size:10px; color:#A0A0A0; letter-spacing:1px; text-transform:uppercase;" id="storyCategory">FACILITY TOUR</div>
-                        </div>
-                    </div>
-                    <button type="button" class="story-close-btn" onclick="closeStoryModal()">&times;</button>
-                </div>
-                
-                <img src="images/full-width-images/facility-1.jpg" alt="Story Media" class="story-media-view" id="storyMediaView" />
-                
-                <div class="story-nav-tap story-tap-prev" onclick="prevStorySlide()"></div>
-                <div class="story-nav-tap story-tap-next" onclick="nextStorySlide()"></div>
-                
-                <div class="story-caption-overlay">
-                    <h4 class="story-caption-title" id="storyCaptionTitle">GARDEN 8 HIGH PERFORMANCE FACILITY</h4>
-                    <p class="story-caption-desc" id="storyCaptionDesc">Dedicated Eleiko competition platforms, custom gymnastic rig, 25-meter indoor sprint turf, and biomechanical testing lab in New Cairo.</p>
-                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <a href="#assessment" class="btn btn-mod btn-small inzan-btn-primary" style="flex:1; border-radius:2px;" onclick="closeStoryModal()">
-                            <i class="fa fa-calendar mr-5"></i> Book Screening
-                        </a>
-                        <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20am%20watching%20your%20story%20highlights%20and%20want%20to%20inquire." target="_blank" rel="noopener noreferrer" class="btn btn-mod btn-small inzan-btn-outline" style="flex:1; border-radius:2px;">
-                            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="display:inline-block; vertical-align:middle; margin-right:4px;">
-                                <path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.075-.301-.15-1.272-.469-2.424-1.496-.897-.799-1.503-1.786-1.678-2.087-.176-.301-.019-.464.132-.614.136-.134.301-.351.452-.526.15-.176.2-.301.301-.502.1-.201.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.234-.244-.588-.492-.508-.677-.518-.175-.008-.376-.01-.577-.01-.201 0-.527.075-.802.376-.276.301-1.053 1.029-1.053 2.509 0 1.48 1.078 2.909 1.229 3.11.15.201 2.122 3.24 5.141 4.544.718.311 1.279.497 1.716.636.722.23 1.378.197 1.898.12.578-.087 1.782-.728 2.032-1.431.251-.703.251-1.305.176-1.431-.075-.126-.276-.201-.577-.351zM12.042 21.688A9.626 9.626 0 0 1 7.12 20.35l-.352-.209-3.666.961.978-3.573-.23-.366a9.643 9.643 0 0 1-1.481-5.121c0-5.328 4.336-9.663 9.673-9.663 2.583 0 5.011 1.006 6.837 2.833 1.826 1.827 2.831 4.256 2.83 6.84 0 5.33-4.336 9.664-9.668 9.664zm0-18.005c-4.599 0-8.341 3.742-8.341 8.343a8.318 8.318 0 0 0 1.277 4.417l.142.227-.604 2.207 2.261-.593.22.131a8.317 8.317 0 0 0 4.045 1.052h.004c4.6 0 8.343-3.743 8.343-8.344 0-2.228-.868-4.323-2.445-5.901a8.298 8.298 0 0 0-5.9-2.442z"/>
-                            </svg>
-                            WhatsApp
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -1997,8 +1725,8 @@
                 <div class="drawer-links-grid">
                     <a href="#diagnostic-tool" class="drawer-action-card" onclick="closeBottomDrawer()">
                         <i class="fa fa-sliders"></i>
-                        <div class="drawer-action-title">60s Diagnostic</div>
-                        <div class="drawer-action-sub">Calculate Protocol</div>
+                        <div class="drawer-action-title">Find Your Program</div>
+                        <div class="drawer-action-sub">60-Second Quiz</div>
                     </a>
                     <a href="#schedule" class="drawer-action-card" onclick="closeBottomDrawer()">
                         <i class="fa fa-calendar"></i>
@@ -2007,7 +1735,7 @@
                     </a>
                     <a href="#coaches" class="drawer-action-card" onclick="closeBottomDrawer()">
                         <i class="fa fa-user-circle"></i>
-                        <div class="drawer-action-title">Master Coaches</div>
+                        <div class="drawer-action-title">Coaches</div>
                         <div class="drawer-action-sub">Credentials &amp; Bio</div>
                     </a>
                     <a href="https://maps.google.com/?q=Garden+8+Mall+New+Cairo" target="_blank" rel="noopener noreferrer" class="drawer-action-card">
@@ -2021,12 +1749,6 @@
                 </button>
             </div>
         </div>
-
-        <!-- Synthesized Tactile Sound Toggle (Opt-In) -->
-        <button type="button" id="inzanSoundToggle" onclick="toggleInzanSound()" aria-label="Toggle interface sound effects">
-            <i class="fa fa-volume-off" id="soundToggleIcon"></i>
-            <span id="soundToggleText">Audio: Off</span>
-        </button>
         
         <!-- Toast Notification -->
         <div id="inzanToast" class="inzan-toast"></div>
