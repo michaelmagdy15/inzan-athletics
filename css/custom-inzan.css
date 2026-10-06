@@ -4071,3 +4071,55 @@ section[id] {
     }
 }
 
+.inzan-instagram-section {
+    background: #090a0c;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.inzan-section-kicker {
+    color: #9b9da1;
+    font: 700 11px/1.4 Arial, sans-serif;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+}
+
+.inzan-instagram-section .section-subtitle {
+    color: #85878b;
+}
+
+.inzan-instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    align-items: start;
+}
+
+.inzan-instagram-card {
+    min-width: 0;
+    min-height: 360px;
+    overflow: hidden;
+    background: #111216;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.inzan-instagram-card .instagram-media {
+    min-width: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    background: #111216 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+@media (max-width: 767px) {
+    .inzan-instagram-grid {
+        grid-template-columns: 1fr;
+        max-width: 540px;
+        margin: 0 auto;
+    }
+
+    .inzan-instagram-card {
+        min-height: 0;
+    }
+}

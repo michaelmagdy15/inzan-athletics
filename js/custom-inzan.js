@@ -459,9 +459,18 @@
     // Member Portal Gateway Modal
     window.openPortalModal = function(e) {
         if (e && e.preventDefault) e.preventDefault();
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        var isMobile = /android|iphone|ipad|ipod|iemobile|mobile/i.test(userAgent);
+
+        if (!isMobile) {
+            window.location.href = "https://admin.inzanathletics.com";
+            return false;
+        }
+
         $("#inzanPortalModal").fadeIn(300);
         $("body").css("overflow", "hidden");
         if (soundEnabled) playSyntheticTone(1200, 0.04, "sine");
+        return false;
     };
 
     window.closePortalModal = function() {

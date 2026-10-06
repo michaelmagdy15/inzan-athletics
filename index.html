@@ -60,15 +60,9 @@
           "openingHoursSpecification": [
             {
               "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Saturday", "Sunday"],
-              "opens": "06:00",
-              "closes": "23:00"
-            },
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": "Friday",
-              "opens": "08:00",
-              "closes": "22:00"
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              "opens": "07:00",
+              "closes": "23:59"
             }
           ],
           "sameAs": [
@@ -1073,6 +1067,38 @@
             
             
             <!-- Latest News Section -->
+            <section class="page-section bg-dark-secondary inzan-instagram-section" id="instagram">
+                <div class="container relative">
+                    <div class="section-text align-center mb-70 mb-sm-40">
+                        <div class="inzan-section-kicker">FIELD NOTES / @INZAN.ATHLETICS</div>
+                        <h2 class="section-title font-alt">LATEST FROM INSTAGRAM</h2>
+                        <p class="section-subtitle">Training intelligence, assessment work, and the people behind the platform.</p>
+                    </div>
+                    <div class="inzan-instagram-grid">
+                        <article class="inzan-instagram-card">
+                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Dd9F1_GI50d/" data-instgrm-version="14">
+                                <a href="https://www.instagram.com/p/Dd9F1_GI50d/" target="_blank" rel="noopener noreferrer">View this post on Instagram</a>
+                            </blockquote>
+                        </article>
+                        <article class="inzan-instagram-card">
+                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Dd38KqJog9v/" data-instgrm-version="14">
+                                <a href="https://www.instagram.com/reel/Dd38KqJog9v/" target="_blank" rel="noopener noreferrer">View this Reel on Instagram</a>
+                            </blockquote>
+                        </article>
+                        <article class="inzan-instagram-card">
+                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Ddw4Fo_RXML/" data-instgrm-version="14">
+                                <a href="https://www.instagram.com/p/Ddw4Fo_RXML/" target="_blank" rel="noopener noreferrer">View this post on Instagram</a>
+                            </blockquote>
+                        </article>
+                    </div>
+                    <div class="align-center mt-40">
+                        <a href="https://www.instagram.com/inzan.athletics/" class="btn btn-mod btn-small btn-round inzan-btn-primary" target="_blank" rel="noopener noreferrer">
+                            <i class="fa fa-instagram mr-5"></i> Follow @inzan.athletics
+                        </a>
+                    </div>
+                </div>
+            </section>
+
             <section class="page-section bg-dark" id="news">
                 <div class="container relative">
                     
@@ -1640,44 +1666,27 @@
         </div>
 
         <!-- Member Portal Modal -->
-        <div id="inzanPortalModal" class="inzan-cinema-modal">
+        <div id="inzanPortalModal" class="inzan-cinema-modal" aria-labelledby="portalGatewayTitle">
             <div class="inzan-cinema-dialog" style="max-width:540px;">
                 <div class="inzan-cinema-close" onclick="closePortalModal()">&times;</div>
 
-                <!-- Sign In Form -->
+                <!-- Mobile App Gateway -->
                 <div class="portal-tab-body" id="portalTabLogin" style="padding: 24px 20px;">
                     <div style="text-align:center; margin-bottom:25px;">
                         <img src="images/inzan-logo.png" srcset="images/inzan-logo@2x.png 2x" height="26" alt="INZAN ATHLETICS" style="margin-bottom:12px;" />
-                        <h3 class="font-alt" style="font-size:18px; letter-spacing:2px; color:#FFFFFF; margin-bottom:6px;">MEMBER PORTAL</h3>
-                        <p style="font-size:12px; color:#888888;">Sign in to view your session schedule, coaching plan, and membership details.</p>
+                        <h3 id="portalGatewayTitle" class="font-alt" style="font-size:18px; letter-spacing:2px; color:#FFFFFF; margin-bottom:6px;">MEMBER APP</h3>
+                        <p style="font-size:12px; color:#888888;">Access your schedule, coaching plan, and membership details from the Inzan member app.</p>
                     </div>
-
-                    <form onsubmit="handlePortalDemoLogin(event)">
-                        <div class="mb-20">
-                            <label class="inzan-field-label" for="portalEmail">Email or Member ID</label>
-                            <input type="text" id="portalEmail" name="username" class="inzan-form-control" autocomplete="username" placeholder="e.g. omar@inzan.me or INZ-2026-084" value="athlete.demo@inzanathletics.com" required />
-                        </div>
-                        <div class="mb-25">
-                            <label class="inzan-field-label" for="portalPassword">Password</label>
-                            <input type="password" id="portalPassword" name="password" class="inzan-form-control" autocomplete="current-password" placeholder="••••••••••••" value="password123" required />
-                        </div>
-
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; font-size:12px; color:#888888;">
-                            <label style="cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
-                                <input type="checkbox" checked style="accent-color:#FFFFFF;" /> Remember credentials
-                            </label>
-                            <a href="https://wa.me/201000061243?text=Hi%20Inzan%20Athletics%2C%20I%20need%20help%20with%20my%20Member%20Portal%20password." target="_blank" rel="noopener noreferrer" style="color:#888888;">Forgot password?</a>
-                        </div>
-
-                        <button type="submit" class="btn btn-mod btn-medium btn-round inzan-btn-primary" id="portalLoginBtn" style="width:100%;">
-                            <i class="fa fa-sign-in mr-5"></i> Sign In to Member Portal
-                        </button>
-                    </form>
-
-                    <div id="portalLoginFeedback"></div>
-
-                    <div style="text-align:center; margin-top:25px; padding-top:20px; border-top:1px solid #222222; font-size:12px; color:#888888;">
-                        Not an active member yet? <a href="#assessment" onclick="closePortalModal()" style="color:#FFFFFF; font-weight:700;">Book an intake assessment</a> to activate member credentials.
+                    <div style="display:grid; gap:10px;">
+                        <a class="btn btn-mod btn-medium btn-round inzan-btn-primary" href="https://apps.apple.com/eg/search?term=Inzan%20Athletics" target="_blank" rel="noopener noreferrer">
+                            <i class="fa fa-apple mr-5"></i> Download for iPhone
+                        </a>
+                        <a class="btn btn-mod btn-medium btn-round" href="https://play.google.com/store/search?q=Inzan%20Athletics&amp;c=apps" target="_blank" rel="noopener noreferrer" style="border:1px solid #555; color:#FFFFFF;">
+                            <i class="fa fa-android mr-5"></i> Download for Android
+                        </a>
+                    </div>
+                    <div style="text-align:center; margin-top:20px; font-size:12px; color:#888888;">
+                        Desktop members can <a href="https://admin.inzanathletics.com" target="_blank" rel="noopener noreferrer" style="color:#FFFFFF; font-weight:700;">open the member portal</a> in their browser.
                     </div>
                 </div>
 
@@ -1781,6 +1790,9 @@
         <!-- Core Template JS -->
         <script type="text/javascript" src="js/all.js?v=5"></script>
         
+        <!-- Instagram official embed renderer -->
+        <script async src="https://www.instagram.com/embed.js"></script>
+
         <!-- Custom Inzan Athletics JS -->
         <script type="text/javascript" src="js/custom-inzan.js?v=5"></script>
         
