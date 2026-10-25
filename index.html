@@ -92,7 +92,7 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
         
         <!-- Inzan Athletics Custom Commercial Gym Styling -->
-        <link rel="stylesheet" href="css/custom-inzan.css?v=5">
+        <link rel="stylesheet" href="css/custom-inzan.css?v=6">
     </head>
     <body class="appear-animate">
         
@@ -126,13 +126,13 @@
                                 </p>
                                 
                                 <div class="leonardo-scene-actions">
-                                    <a href="#assessment" class="leonardo-btn-glow">
+                                    <a href="#assessment" class="leonardo-btn-glow" onclick="openAssessmentModal(); return false;">
                                         <span>Book Assessment</span>
                                         <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" style="display:inline-block; vertical-align:middle; margin-left:6px;"><path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z"></path></svg>
                                     </a>
-                                    <a href="#program-explorer" class="leonardo-btn-glass">
+                                    <a href="#packages" class="leonardo-btn-glass">
                                         <i class="fa fa-th-large mr-5"></i>
-                                        <span>Explore Disciplines</span>
+                                        <span>Memberships &amp; Packages</span>
                                     </a>
                                 </div>
                             </div>
@@ -178,22 +178,23 @@
                         <ul class="clearlist scroll-nav inzan-nav-list">
                             <li><a href="#about"><span class="nav-idx">01</span> About</a></li>
                             <li><a href="#program-explorer"><span class="nav-idx">02</span> Disciplines</a></li>
-                            <li><a href="#zone-training"><span class="nav-idx">03</span> Ecosystem</a></li>
-                            <li><a href="#schedule"><span class="nav-idx">04</span> Schedule</a></li>
-                            <li><a href="#first30days"><span class="nav-idx">05</span> Process</a></li>
-                            <li><a href="#coaches"><span class="nav-idx">06</span> Coaches</a></li>
-                            <li><a href="#results"><span class="nav-idx">07</span> Results</a></li>
-                            <li><a href="#news"><span class="nav-idx">08</span> News</a></li>
-                            <li><a href="#portal" class="nav-portal-btn" onclick="openPortalModal(event)"><span class="nav-idx">09</span> <i class="fa fa-user-circle-o mr-5"></i> Member Portal</a></li>
-                            <li class="desktop-only-item"><a href="#assessment" class="nav-cta-highlight">Book Assessment</a></li>
+                            <li><a href="#packages"><span class="nav-idx">03</span> Packages</a></li>
+                            <li><a href="#zone-training"><span class="nav-idx">04</span> Ecosystem</a></li>
+                            <li><a href="#schedule"><span class="nav-idx">05</span> Schedule</a></li>
+                            <li><a href="#first30days"><span class="nav-idx">06</span> Process</a></li>
+                            <li><a href="#coaches"><span class="nav-idx">07</span> Coaches</a></li>
+                            <li><a href="#results"><span class="nav-idx">08</span> Results</a></li>
+                            <li><a href="#news"><span class="nav-idx">09</span> News</a></li>
+                            <li><a href="#portal" class="nav-portal-btn" onclick="openPortalModal(event)"><span class="nav-idx">10</span> <i class="fa fa-user-circle-o mr-5"></i> Member Portal</a></li>
+                            <li class="desktop-only-item"><a href="#assessment" class="nav-cta-highlight" onclick="openAssessmentModal(); return false;">Book Assessment</a></li>
                             
                             <!-- Mobile Menu Drawer Action & Info Footer -->
                             <li class="mobile-menu-cta-item">
-                                <a href="#assessment" class="inzan-menu-cta-btn">
+                                <a href="#assessment" class="inzan-menu-cta-btn" onclick="openAssessmentModal(); return false;">
                                     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display:inline-block; vertical-align:middle; margin-right:6px;">
                                         <path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z"></path>
                                     </svg>
-                                    Book 60-Min Assessment
+                                    Book Assessment
                                 </a>
                             </li>
                             <li class="mobile-menu-info-item">
@@ -238,7 +239,7 @@
                             <div class="showcase-card-content">
                                 <div class="showcase-badge-row">
                                     <span class="showcase-track-badge" id="heroPillarBadge">STRENGTH SKILLS</span>
-                                    <span class="showcase-coach-pill"><i class="fa fa-user-circle-o mr-5"></i> <span id="heroPillarCoach">Coach Ahmed M. (USAW/EWF Specialist)</span></span>
+                                    <span class="showcase-coach-pill"><i class="fa fa-user-circle-o mr-5"></i> <span id="heroPillarCoach">Coach Ahmed Tarek &amp; Coach Akram Hammad</span></span>
                                     <span class="showcase-ratio-pill">1:6 Platform Cap</span>
                                 </div>
                                 <h3 class="showcase-title" id="heroPillarTitle">OLYMPIC WEIGHTLIFTING PLATFORM</h3>
@@ -252,10 +253,10 @@
                                         <div class="stat-item"><span class="stat-val" id="heroPillarSpec">Eleiko IPF</span><span class="stat-lbl">Standard</span></div>
                                     </div>
                                     <div class="showcase-actions-group">
-                                        <a href="#schedule" class="showcase-action-btn" onclick="selectScheduleCat('olympic')">
+                                        <a href="#schedule" class="showcase-action-btn" onclick="filterScheduleCategory('olympic')">
                                             View Timetable <i class="fa fa-arrow-right ml-5"></i>
                                         </a>
-                                        <a href="#assessment" class="showcase-book-btn">
+                                        <a href="#assessment" class="showcase-book-btn" onclick="openAssessmentModal(); return false;">
                                             Book Assessment
                                         </a>
                                     </div>
@@ -406,6 +407,64 @@
                 </div>
             </section>
             <!-- End Choose Your Path Section -->
+
+            <!-- Live Memberships & Packages Section (Synced with Inzan CRM) -->
+            <section class="page-section bg-dark" id="packages">
+                <div class="container relative">
+                    <div class="align-center mb-40">
+                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">
+                            <span class="status-live-dot" style="display:inline-block; margin-right:6px;"></span> Live System Catalog &bull; Garden 8, New Cairo
+                        </div>
+                        <h2 class="section-title font-alt mb-15">MEMBERSHIPS &amp; TRAINING PACKAGES</h2>
+                        <div class="section-text" style="max-width: 720px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
+                            Official Inzan Athletics memberships, private personal training blocks, academies, studio packs, and allied health programs synced directly with the Inzan Member System. Every new membership begins with a complimentary 60-minute baseline assessment.
+                        </div>
+                    </div>
+
+                    <!-- Category Filter Pills & Live Search -->
+                    <div class="packages-controls-bar mb-30">
+                        <div class="schedule-filters-wrap" style="margin-bottom: 16px;">
+                            <button type="button" class="package-filter-pill schedule-filter-pill active" data-pkg-cat="featured" onclick="filterInzanPackages('featured', this)">Featured Packages</button>
+                            <button type="button" class="package-filter-pill schedule-filter-pill" data-pkg-cat="Memberships" onclick="filterInzanPackages('Memberships', this)">Gym Memberships</button>
+                            <button type="button" class="package-filter-pill schedule-filter-pill" data-pkg-cat="Personal Training" onclick="filterInzanPackages('Personal Training', this)">Personal Training (PT)</button>
+                            <button type="button" class="package-filter-pill schedule-filter-pill" data-pkg-cat="Academies & SGF" onclick="filterInzanPackages('Academies & SGF', this)">Academies &amp; SGF</button>
+                            <button type="button" class="package-filter-pill schedule-filter-pill" data-pkg-cat="Studio Classes" onclick="filterInzanPackages('Studio Classes', this)">Studio &amp; Boxing</button>
+                            <button type="button" class="package-filter-pill schedule-filter-pill" data-pkg-cat="Allied Health" onclick="filterInzanPackages('Allied Health', this)">Nutrition &amp; Physio</button>
+                            <button type="button" class="package-filter-pill schedule-filter-pill" data-pkg-cat="all_crm" onclick="filterInzanPackages('all_crm', this)">All System Packages <span id="totalPackagesBadge" class="pkg-count-chip">247</span></button>
+                        </div>
+                        <div class="packages-search-wrap">
+                            <div class="packages-search-box">
+                                <i class="fa fa-search"></i>
+                                <input type="text" id="packageSearchInput" class="inzan-form-control" placeholder="Search memberships, Couple/Family plans, PT sessions, Calisthenics, Boxing, Nutrition..." oninput="handlePackageSearch(this.value)" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Packages Grid -->
+                    <div class="inzan-packages-grid" id="packagesGridContainer">
+                        <!-- Populated dynamically & synced live with db-inzanathletics -->
+                    </div>
+
+                    <div class="inzan-pt-policy-banner mt-40">
+                        <div class="pt-policy-banner-left">
+                            <div class="pt-policy-title"><i class="fa fa-info-circle mr-5"></i> OFFICIAL INZAN PRIVATE TRAINING &amp; ASSESSMENT POLICY</div>
+                            <div class="pt-policy-items">
+                                <span><strong>Basic Membership:</strong> 3 Complimentary PT Sessions (valid 1 week)</span>
+                                <span><strong>Premium Membership:</strong> 6 Complimentary PT Sessions (valid 2 weeks)</span>
+                                <span><strong>Freezing:</strong> Not allowed for free sessions (max 1 week for paid PT)</span>
+                                <span><strong>PT Expiry:</strong> Paid PT packages expire within 1 month</span>
+                            </div>
+                            <div class="pt-policy-note">* Note: Your initial 60-minute fitness &amp; InBody assessment is complimentary and does not count as one of your paid sessions.</div>
+                        </div>
+                        <div class="pt-policy-banner-right">
+                            <button type="button" class="btn btn-mod btn-medium btn-round inzan-btn-primary" onclick="openAssessmentModal()">
+                                <i class="fa fa-calendar-check-o mr-5"></i> Book Complimentary Assessment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End Live Memberships & Packages Section -->
             
             
             <!-- What We Do Section -->
@@ -680,7 +739,8 @@
                         <button type="button" class="schedule-filter-pill active" data-filter="all" onclick="filterScheduleCategory('all')">All Disciplines</button>
                         <button type="button" class="schedule-filter-pill" data-filter="sc" onclick="filterScheduleCategory('sc')">Strength &amp; Conditioning</button>
                         <button type="button" class="schedule-filter-pill" data-filter="olympic" onclick="filterScheduleCategory('olympic')">Olympic Weightlifting</button>
-                        <button type="button" class="schedule-filter-pill" data-filter="calisthenics" onclick="filterScheduleCategory('calisthenics')">Calisthenics &amp; Movement</button>
+                        <button type="button" class="schedule-filter-pill" data-filter="calisthenics" onclick="filterScheduleCategory('calisthenics')">Calisthenics &amp; Rings</button>
+                        <button type="button" class="schedule-filter-pill" data-filter="studio" onclick="filterScheduleCategory('studio')">Boxing &amp; Studio</button>
                         <button type="button" class="schedule-filter-pill" data-filter="open" onclick="filterScheduleCategory('open')">Open Gym Access</button>
                     </div>
 
@@ -690,7 +750,7 @@
                     </div>
 
                     <div style="text-align:center; margin-top:35px; color:#888888; font-size:13px;">
-                        <i class="fa fa-info-circle mr-5"></i> Private 1-on-1 coaching slots can be scheduled outside timetable hours upon coach reservation.
+                        <i class="fa fa-info-circle mr-5"></i> Live schedule synced with the Inzan Member App. Private 1-on-1 coaching slots can be scheduled with any active Inzan coach.
                     </div>
 
                 </div>
@@ -701,79 +761,102 @@
             <section class="page-section bg-dark-secondary" id="coaches">
                 <div class="container relative">
                     
-                    <div class="align-center mb-60">
-                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">Coaching Staff</div>
-                        <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">COACHES &amp; CREDENTIALS</h2>
-                        <div class="section-text" style="max-width: 680px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
-                            Our coaches bring collegiate athletic backgrounds, international certifications, and years of coaching experience to every session.
+                    <div class="align-center mb-40">
+                        <div class="inzan-subheading mb-10" style="color: #A0A0A0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;">
+                            <span class="status-live-dot" style="display:inline-block; margin-right:6px;"></span> Live Coaching &amp; Clinical Roster
+                        </div>
+                        <h2 class="section-title font-alt mb-20" style="margin-bottom: 15px;">COACHES &amp; SPECIALISTS</h2>
+                        <div class="section-text" style="max-width: 700px; margin: 0 auto; color: #A0A0A0; font-size: 15px;">
+                            Meet the real Inzan Athletics coaching and allied health team in Garden 8. Select any coach below to request your 60-minute assessment or private training block directly with them.
                         </div>
                     </div>
 
-                    <div class="row">
-                        <!-- Coach 1: Head of S&C -->
-                        <div class="col-sm-6 col-md-3 mb-sm-30">
+                    <!-- Coach Department Filter Pills -->
+                    <div class="schedule-filters-wrap mb-40">
+                        <button type="button" class="coach-filter-pill schedule-filter-pill active" data-coach-cat="featured" onclick="filterInzanCoaches('featured', this)">Featured Leads</button>
+                        <button type="button" class="coach-filter-pill schedule-filter-pill" data-coach-cat="Personal Training" onclick="filterInzanCoaches('Personal Training', this)">Personal Training &amp; S&amp;C</button>
+                        <button type="button" class="coach-filter-pill schedule-filter-pill" data-coach-cat="Studio & Academies" onclick="filterInzanCoaches('Studio & Academies', this)">Academies &amp; Studio</button>
+                        <button type="button" class="coach-filter-pill schedule-filter-pill" data-coach-cat="Allied Health" onclick="filterInzanCoaches('Allied Health', this)">Nutrition &amp; Physiotherapy</button>
+                        <button type="button" class="coach-filter-pill schedule-filter-pill" data-coach-cat="all" onclick="filterInzanCoaches('all', this)">All Inzan Coaches (<span id="totalCoachesCount">26</span>)</button>
+                    </div>
+
+                    <div class="row" id="coachesGridContainer">
+                        <!-- Coach 1: Ahmed Tarek -->
+                        <div class="col-sm-6 col-md-3 mb-30">
                             <div class="coach-card">
                                 <div class="coach-photo-wrap">
-                                    <img src="images/full-width-images/fac.jpg" alt="Coach Youssef R." loading="lazy" />
+                                    <img src="images/full-width-images/fac.jpg" alt="Coach Ahmed Tarek" loading="lazy" />
                                 </div>
                                 <div class="coach-info">
-                                    <h3 class="coach-name">Youssef R.</h3>
+                                    <h3 class="coach-name">Ahmed Tarek</h3>
                                     <div class="coach-role">Head of Strength &amp; Conditioning</div>
-                                    <div class="coach-credentials-badge">CSCS &bull; MSc Sports Science</div>
+                                    <div class="coach-credentials-badge">CSCS &bull; Senior Performance Specialist</div>
                                     <p class="coach-bio">
-                                        Specializes in force-velocity profiling, reactive power development, and athletic injury mitigation for collegiate and competitive athletes.
+                                        Specializes in force-velocity profiling, athletic strength development, compound barbell mechanics, and injury-resilient programming.
                                     </p>
+                                    <button type="button" class="coach-book-btn" onclick="openAssessmentModal({ coachName: 'Ahmed Tarek' })">
+                                        <i class="fa fa-calendar-check-o mr-5"></i> Book with Ahmed Tarek
+                                    </button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Coach 2: Olympic Weightlifting -->
-                        <div class="col-sm-6 col-md-3 mb-sm-30">
+                        <!-- Coach 2: Akram Hammad -->
+                        <div class="col-sm-6 col-md-3 mb-30">
                             <div class="coach-card">
                                 <div class="coach-photo-wrap">
-                                    <img src="images/portfolio/projects-4.jpg" alt="Coach Ahmed M." loading="lazy" />
+                                    <img src="images/portfolio/projects-4.jpg" alt="Coach Akram Hammad" loading="lazy" />
                                 </div>
                                 <div class="coach-info">
-                                    <h3 class="coach-name">Ahmed M.</h3>
-                                    <div class="coach-role">Olympic Weightlifting Specialist</div>
-                                    <div class="coach-credentials-badge">EWF Certified &bull; USAW L2</div>
+                                    <h3 class="coach-name">Akram Hammad</h3>
+                                    <div class="coach-role">Olympic Weightlifting &amp; Power Lead</div>
+                                    <div class="coach-credentials-badge">EWF &bull; Weightlifting &amp; Power Coach</div>
                                     <p class="coach-bio">
-                                        Former national weightlifting competitor specializing in the snatch and clean &amp; jerk mechanics, bar turnover velocity, and triple extension.
+                                        Specialist in the snatch, clean &amp; jerk, barbell velocity, triple extension mechanics, and explosive lower-body power output.
                                     </p>
+                                    <button type="button" class="coach-book-btn" onclick="openAssessmentModal({ coachName: 'Akram Hammad' })">
+                                        <i class="fa fa-calendar-check-o mr-5"></i> Book with Akram Hammad
+                                    </button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Coach 3: Calisthenics & Gymnastics -->
-                        <div class="col-sm-6 col-md-3 mb-sm-30">
+                        <!-- Coach 3: Kareem Awny -->
+                        <div class="col-sm-6 col-md-3 mb-30">
                             <div class="coach-card">
                                 <div class="coach-photo-wrap">
-                                    <img src="images/portfolio/projects-5.jpg" alt="Coach Kareem S." loading="lazy" />
+                                    <img src="images/portfolio/projects-5.jpg" alt="Coach Kareem Awny" loading="lazy" />
                                 </div>
                                 <div class="coach-info">
-                                    <h3 class="coach-name">Kareem S.</h3>
-                                    <div class="coach-role">Calisthenics &amp; Movement Lead</div>
-                                    <div class="coach-credentials-badge">Gymnastic Strength Specialist</div>
+                                    <h3 class="coach-name">Kareem Awny</h3>
+                                    <div class="coach-role">Calisthenics &amp; Gymnastics Academy Lead</div>
+                                    <div class="coach-credentials-badge">Calisthenics &amp; Ring Specialist</div>
                                     <p class="coach-bio">
-                                        Expert in gymnastic ring strength, strict bodyweight lever progressions, scapular stabilization, and joint bulletproofing.
+                                        Leads Inzan's Calisthenics Academy, specializing in gymnastic ring strength, strict muscle-up progressions, handstand balance, and joint control.
                                     </p>
+                                    <button type="button" class="coach-book-btn" onclick="openAssessmentModal({ coachName: 'Kareem Awny' })">
+                                        <i class="fa fa-calendar-check-o mr-5"></i> Book with Kareem Awny
+                                    </button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Coach 4: Sports Nutrition -->
-                        <div class="col-sm-6 col-md-3">
+                        <!-- Coach 4: Dr. Melissia Magdy -->
+                        <div class="col-sm-6 col-md-3 mb-30">
                             <div class="coach-card">
                                 <div class="coach-photo-wrap">
-                                    <img src="images/full-width-images/ast.jpg" alt="Hanadi H." loading="lazy" />
+                                    <img src="images/full-width-images/ast.jpg" alt="Dr. Melissia Magdy" loading="lazy" />
                                 </div>
                                 <div class="coach-info">
-                                    <h3 class="coach-name">Hanadi H.</h3>
-                                    <div class="coach-role">Director of Sports Nutrition</div>
-                                    <div class="coach-credentials-badge">RD &bull; CISSN Performance Dietitian</div>
+                                    <h3 class="coach-name">Dr. Melissia Magdy</h3>
+                                    <div class="coach-role">Clinical Sports Nutrition &amp; Recovery</div>
+                                    <div class="coach-credentials-badge">Clinical Nutrition &amp; InBody Specialist</div>
                                     <p class="coach-bio">
-                                        Designs periodized nutritional blueprints, metabolic recovery strategies, and body recomposition plans aligned with training volume.
+                                        Designs clinical nutrition blueprints, body recomposition protocols, and performance fueling strategies tailored to your InBody baseline.
                                     </p>
+                                    <button type="button" class="coach-book-btn" onclick="openAssessmentModal({ coachName: 'Dr. Melissia Magdy' })">
+                                        <i class="fa fa-calendar-check-o mr-5"></i> Book with Dr. Melissia
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -1128,7 +1211,7 @@
                                         BIOMECHANICAL PROFILING: WHY INZAN STARTS WITH SCREENING
                                     </h3>
                                     <div class="news-card-meta font-alt" style="color:#A0A0A0;">
-                                        COACH YOUSSEF R. &bull; 18 SEPT 2026
+                                        COACH AHMED TAREK &bull; 18 SEPT 2026
                                     </div>
                                     <div class="news-card-text">
                                         Why high-speed video capture, force plates, and joint mobility screens are mandatory at Inzan before loaded barbell training begins.
@@ -1153,7 +1236,7 @@
                                         THE OLYMPIC LIFTING TRANSFER: DEVELOPING ROTATIONAL POWER
                                     </h3>
                                     <div class="news-card-meta font-alt" style="color:#A0A0A0;">
-                                        COACH AHMED M. &bull; 04 SEPT 2026
+                                        COACH AKRAM HAMMAD &bull; 04 SEPT 2026
                                     </div>
                                     <div class="news-card-text">
                                         How the triple extension and velocity of the snatch and clean &amp; jerk directly transfer to sprint acceleration and field agility.
@@ -1178,7 +1261,7 @@
                                         CALISTHENICS VS. HEAVY IRON: INTEGRATING RELATIVE STRENGTH
                                     </h3>
                                     <div class="news-card-meta font-alt" style="color:#A0A0A0;">
-                                        COACH KAREEM S. &bull; 22 AUG 2026
+                                        COACH KAREEM AWNY &bull; 22 AUG 2026
                                     </div>
                                     <div class="news-card-text">
                                         Merging strict gymnastic ring mastery with loaded squats to build bulletproof joints, rotational core stiffness, and dense lean muscle.
@@ -1321,7 +1404,7 @@
                                         <div class="studio-meta-grid">
                                             <div class="studio-meta-cell">
                                                 <div class="meta-label">Lead Coach</div>
-                                                <div class="meta-val" id="studioMetaCoach">Coach Youssef R. (CSCS)</div>
+                                                <div class="meta-val" id="studioMetaCoach">Coach Ahmed Tarek &amp; Coach Beezo</div>
                                             </div>
                                             <div class="studio-meta-cell">
                                                 <div class="meta-label">Weekly Split</div>
@@ -1423,34 +1506,58 @@
                                 <!-- Dynamic Success Container -->
                                 <div class="inzan-success-box" id="inzanSuccessBox">
                                     <i class="fa fa-check-circle inzan-success-icon"></i>
-                                    <h3 class="inzan-success-title">ASSESSMENT REQUEST RECEIVED</h3>
+                                    <h3 class="inzan-success-title">ASSESSMENT REQUEST LOGGED IN INZAN SYSTEM</h3>
                                     <p class="inzan-success-desc">
-                                        Thank you, <strong id="successAthleteName" style="color:#FFFFFF;">Athlete</strong>! Your initial 60-minute baseline screening request for <span id="successAthleteGoal" style="color:#FFFFFF; font-weight:700;">Foundational Athleticism</span> (<span id="successAthleteTime" style="color:#FFFFFF;">Morning</span>) has been received.
+                                        Thank you, <strong id="successAthleteName" style="color:#FFFFFF;">Athlete</strong>! Your 60-minute assessment &amp; InBody request (<span id="successAthleteGoal" style="color:#FFFFFF; font-weight:700;">Premium Annual</span> &bull; <span id="successAthleteTime" style="color:#FFFFFF;">Morning</span>) has been submitted directly to the Inzan Fitness Manager Queue.
                                         <br><br>
-                                        Our Head of Performance will reach out via WhatsApp/Phone within 24 hours to finalize your scheduled time at Garden 8.
+                                        <span id="successRefBadge" style="display:inline-block; background:rgba(255,255,255,0.08); border:1px solid #444; padding:4px 12px; border-radius:4px; font-size:11px; color:#DDD; margin-bottom:8px;">System Status: Pending Coach Assignment</span>
+                                        <br>
+                                        Our Fitness Manager or your preferred coach will contact you via WhatsApp/Phone to confirm your exact slot at Garden 8.
                                     </p>
-                                    <div>
-                                        <a href="#" id="successWhatsAppBtn" target="_blank" rel="noopener noreferrer" class="btn btn-mod btn-medium btn-round inzan-btn-whatsapp mb-10">
+                                    <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+                                        <a href="#" id="successWhatsAppBtn" target="_blank" rel="noopener noreferrer" class="btn btn-mod btn-medium btn-round inzan-btn-whatsapp">
                                             <i class="fa fa-whatsapp mr-10"></i> Confirm Immediately on WhatsApp
                                         </a>
+                                        <button type="button" class="btn btn-mod btn-border-w btn-medium btn-round" onclick="resetInlineAssessmentForm()">
+                                            Submit Another Request
+                                        </button>
                                     </div>
                                 </div>
 
-                                <!-- Assessment Booking Form -->
+                                <!-- Unified Member App Assessment Request Form -->
                                 <form class="contact-form" id="inzanContactForm" autocomplete="off">
                                     <!-- Honeypot anti-spam -->
                                     <input type="text" name="_anti_spam" id="_anti_spam" style="display:none !important;" tabindex="-1" autocomplete="off" />
+
+                                    <!-- Member App Private Training Policies Box -->
+                                    <div class="inzan-app-policy-box mb-25">
+                                        <div class="policy-box-header">
+                                            <i class="fa fa-info-circle"></i>
+                                            <span>Important Private Training Policies</span>
+                                        </div>
+                                        <ul class="policy-box-list">
+                                            <li><strong>Basic Membership:</strong> 3 sessions (valid 1 week)</li>
+                                            <li><strong>Premium Membership:</strong> 6 sessions (valid 2 weeks)</li>
+                                            <li><strong>Freezing:</strong> Not allowed for free sessions (max 1 week for paid)</li>
+                                            <li><strong>Expiry:</strong> PT packages expire within 1 month</li>
+                                        </ul>
+                                        <div class="policy-box-footnote">
+                                            * Note: The fitness assessment is complimentary and does not count as one of your paid sessions.
+                                        </div>
+                                    </div>
+
+                                    <div class="inzan-form-section-heading">1. Member / Athlete Information</div>
 
                                     <div class="row">
                                         <!-- Full Name -->
                                         <div class="col-sm-6 mb-20">
                                             <label for="athleteName" class="inzan-field-label">Full Name *</label>
-                                            <input type="text" name="name" id="athleteName" class="inzan-form-control" autocomplete="name" placeholder="e.g. Omar Hassan" required />
+                                            <input type="text" name="name" id="athleteName" class="inzan-form-control" autocomplete="name" placeholder="Enter your full name" required />
                                         </div>
 
                                         <!-- Phone / WhatsApp -->
                                         <div class="col-sm-6 mb-20">
-                                            <label for="athletePhone" class="inzan-field-label">Phone / WhatsApp Number *</label>
+                                            <label for="athletePhone" class="inzan-field-label">Phone Number * <span class="field-sub-hint">(Must have WhatsApp)</span></label>
                                             <input type="tel" name="phone" id="athletePhone" class="inzan-form-control" autocomplete="tel" placeholder="e.g. +20 100 000 0000" required />
                                         </div>
                                     </div>
@@ -1459,39 +1566,123 @@
                                         <!-- Email Address -->
                                         <div class="col-sm-6 mb-20">
                                             <label for="athleteEmail" class="inzan-field-label">Email Address *</label>
-                                            <input type="email" name="email" id="athleteEmail" class="inzan-form-control" autocomplete="email" placeholder="e.g. omar@example.com" required />
+                                            <input type="email" name="email" id="athleteEmail" class="inzan-form-control" autocomplete="email" placeholder="your.email@example.com" required />
                                         </div>
 
-                                        <!-- Primary Goal / Pathway -->
+                                        <!-- Membership ID -->
                                         <div class="col-sm-6 mb-20">
-                                            <label for="athleteGoal" class="inzan-field-label">Primary Objective / Pathway *</label>
-                                            <select name="goal" id="athleteGoal" class="inzan-form-control" required>
-                                                <option value="Foundational Athleticism">Foundational Athleticism (Beginners / Movement Prep)</option>
-                                                <option value="Sport Performance">Sport Performance (Velocity &amp; Explosive Power)</option>
-                                                <option value="Strength Skills (Olympic &amp; Calisthenics)">Strength Skills (Olympic Lifting &amp; Calisthenics)</option>
-                                                <option value="Body Recomposition &amp; Conditioning">Body Recomposition &amp; Conditioning (Fat Loss / Hypertrophy)</option>
+                                            <label for="athleteMembershipId" class="inzan-field-label">Membership ID * <span class="field-sub-hint">(If none type Guest)</span></label>
+                                            <input type="text" name="membershipId" id="athleteMembershipId" class="inzan-form-control" value="Guest" placeholder="ID or 'Guest'" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <!-- Age Group -->
+                                        <div class="col-sm-6 mb-20">
+                                            <label for="athleteAge" class="inzan-field-label">Age *</label>
+                                            <select name="age" id="athleteAge" class="inzan-form-control" required>
+                                                <option value="Under 16">Under 16</option>
+                                                <option value="16 to 21">16 to 21</option>
+                                                <option value="21 to 30" selected>21 to 30</option>
+                                                <option value="30 to 45">30 to 45</option>
+                                                <option value="Above 45">Above 45</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Membership Type / Package -->
+                                        <div class="col-sm-6 mb-20">
+                                            <label for="athleteGoal" class="inzan-field-label">Membership Type / Package *</label>
+                                            <select name="goal" id="athleteGoal" class="inzan-form-control inzan-membership-type-select" required>
+                                                <option value="Premium Annual">Premium Annual</option>
+                                                <option value="Basic Annual">Basic Annual</option>
+                                                <option value="6 Months">6 Months</option>
+                                                <option value="3 Months">3 Months</option>
+                                                <option value="1 Month">1 Month</option>
+                                                <option value="Youth [Under 16]">Youth [Under 16]</option>
+                                                <option value="Guest">Guest (Prospective Member / Trial)</option>
+                                                <option value="Foundational Athleticism">Foundational Athleticism</option>
+                                                <option value="Sport Performance">Sport Performance</option>
+                                                <option value="Strength Skills (Olympic & Calisthenics)">Strength Skills (Olympic &amp; Calisthenics)</option>
+                                                <option value="Body Recomposition & Conditioning">Body Recomposition &amp; Conditioning</option>
                                                 <option value="Private 1-on-1 Coaching">Private 1-on-1 Coaching</option>
-                                                <option value="Team / Corporate Training">Team / Corporate Athletic Training</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="inzan-form-section-heading">2. Preferred Schedule &amp; Time</div>
+
+                                    <div class="row">
+                                        <!-- Shift Toggle -->
+                                        <div class="col-sm-6 mb-20">
+                                            <label class="inzan-field-label">Time Shift *</label>
+                                            <input type="hidden" id="athleteShift" value="Morning [8AM - 4PM]" />
+                                            <div class="inzan-shift-toggle-grid">
+                                                <button type="button" class="inzan-shift-btn active" data-shift="Morning [8AM - 4PM]" onclick="selectInlineShift('Morning [8AM - 4PM]', this)">
+                                                    Morning [8AM - 4PM]
+                                                </button>
+                                                <button type="button" class="inzan-shift-btn" data-shift="Night [4PM - 11PM]" onclick="selectInlineShift('Night [4PM - 11PM]', this)">
+                                                    Night [4PM - 11PM]
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <!-- Preferred Hour -->
+                                        <div class="col-sm-6 mb-20">
+                                            <label for="athleteTime" class="inzan-field-label">Preferred Hour *</label>
+                                            <input type="text" name="time" id="athleteTime" class="inzan-form-control" value="10:00 AM" placeholder="e.g. 10:00 AM or 06:30 PM" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="inzan-form-section-heading">3. Preferred Coach</div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 mb-15">
+                                            <label class="inzan-field-label">Do you have a preferred coach? *</label>
+                                            <input type="hidden" id="athletePrefCoachFlag" value="no" />
+                                            <div class="inzan-shift-toggle-grid" style="max-width:340px;">
+                                                <button type="button" class="inzan-pref-coach-btn inzan-shift-btn active" data-pref="no" onclick="toggleInlinePreferredCoach('no', this)">
+                                                    No (Any Coach)
+                                                </button>
+                                                <button type="button" class="inzan-pref-coach-btn inzan-shift-btn" data-pref="yes" onclick="toggleInlinePreferredCoach('yes', this)">
+                                                    Yes (Select Coach)
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" id="inlinePreferredCoachFields" style="display:none;">
+                                        <div class="col-sm-6 mb-20">
+                                            <label for="athleteCoachName" class="inzan-field-label">Coach Name *</label>
+                                            <select id="athleteCoachSelect" class="inzan-form-control inzan-coach-dropdown mb-10" onchange="document.getElementById('athleteCoachName').value = this.value">
+                                                <option value="">-- Select from Active Coaches --</option>
+                                                <option value="Ahmed Tarek">Ahmed Tarek (Head of S&amp;C)</option>
+                                                <option value="Beezo">Beezo (Senior Performance Coach)</option>
+                                                <option value="Akram Hammad">Akram Hammad (Olympic Weightlifting)</option>
+                                                <option value="Ahmed Ezzat">Ahmed Ezzat (Hypertrophy &amp; Strength)</option>
+                                                <option value="Bassem Youssef">Bassem Youssef (Functional Conditioning)</option>
+                                                <option value="Kareem Awny">Kareem Awny (Calisthenics &amp; Rings)</option>
+                                                <option value="Heidi El Hariri">Heidi El Hariri (Women's Strength &amp; Studio)</option>
+                                                <option value="Dr. Melissia Magdy">Dr. Melissia Magdy (Clinical Nutrition)</option>
+                                                <option value="Dr. Heba">Dr. Heba (Physiotherapy &amp; Rehab)</option>
+                                            </select>
+                                            <input type="text" id="athleteCoachName" class="inzan-form-control" placeholder="Or type coach's name" />
+                                        </div>
+                                        <div class="col-sm-6 mb-20">
+                                            <label for="athleteReferralSource" class="inzan-field-label">How did you know about him/her? *</label>
+                                            <select id="athleteReferralSource" class="inzan-form-control">
+                                                <option value="Social Media">Social Media</option>
+                                                <option value="Floor Service">Floor Service</option>
+                                                <option value="A Friend">A Friend</option>
+                                                <option value="Sales person">Sales person</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <!-- Preferred Time Window -->
-                                        <div class="col-sm-6 mb-20">
-                                            <label for="athleteTime" class="inzan-field-label">Preferred Session Window</label>
-                                            <select name="time" id="athleteTime" class="inzan-form-control">
-                                                <option value="Morning (6:00 AM – 10:00 AM)">Morning (6:00 AM – 10:00 AM)</option>
-                                                <option value="Midday (10:00 AM – 4:00 PM)">Midday (10:00 AM – 4:00 PM)</option>
-                                                <option value="Evening (4:00 PM – 11:00 PM)">Evening (4:00 PM – 11:00 PM)</option>
-                                                <option value="Flexible">Flexible / Any Available Slot</option>
-                                            </select>
-                                        </div>
-
                                         <!-- Notes / Past Injuries -->
-                                        <div class="col-sm-6 mb-20">
-                                            <label for="athleteMessage" class="inzan-field-label">Past Injuries or Training Background</label>
-                                            <textarea name="message" id="athleteMessage" class="inzan-form-control" rows="2" placeholder="Tell us about your fitness background or specific goals..."></textarea>
+                                        <div class="col-sm-12 mb-20">
+                                            <label for="athleteMessage" class="inzan-field-label">Training Goals, Past Injuries, or Notes (Optional)</label>
+                                            <textarea name="message" id="athleteMessage" class="inzan-form-control" rows="2" placeholder="Tell us about your fitness background, injuries, or specific package/class interest..."></textarea>
                                         </div>
                                     </div>
 
@@ -1499,12 +1690,12 @@
                                         <div class="col-sm-7 pt-10">
                                             <div class="inzan-form-privacy">
                                                 <i class="fa fa-lock"></i>
-                                                <span>100% Confidential. An Inzan Coach contacts you within 24h. No spam ever.</span>
+                                                <span>Synced live with the Inzan Athletics Gym System.</span>
                                             </div>
                                         </div>
                                         <div class="col-sm-5 align-right pt-5">
                                             <button type="submit" class="btn btn-mod btn-medium btn-round inzan-btn-primary" id="submit_btn" style="width:100%;">
-                                                <i class="fa fa-calendar-check-o mr-10"></i> Confirm Assessment
+                                                <i class="fa fa-calendar-check-o mr-10"></i> Submit Request
                                             </button>
                                         </div>
                                     </div>
@@ -1667,29 +1858,223 @@
 
         <!-- Member Portal Modal -->
         <div id="inzanPortalModal" class="inzan-cinema-modal" aria-labelledby="portalGatewayTitle">
-            <div class="inzan-cinema-dialog" style="max-width:540px;">
+            <div class="inzan-cinema-dialog" style="max-width:560px;">
                 <div class="inzan-cinema-close" onclick="closePortalModal()">&times;</div>
 
-                <!-- Mobile App Gateway -->
-                <div class="portal-tab-body" id="portalTabLogin" style="padding: 24px 20px;">
-                    <div style="text-align:center; margin-bottom:25px;">
-                        <img src="images/inzan-logo.png" srcset="images/inzan-logo@2x.png 2x" height="26" alt="INZAN ATHLETICS" style="margin-bottom:12px;" />
-                        <h3 id="portalGatewayTitle" class="font-alt" style="font-size:18px; letter-spacing:2px; color:#FFFFFF; margin-bottom:6px;">MEMBER APP</h3>
-                        <p style="font-size:12px; color:#888888;">Access your schedule, coaching plan, and membership details from the Inzan member app.</p>
+                <!-- Unified Member & Staff Portal Gateway -->
+                <div class="portal-tab-body" id="portalTabLogin" style="padding: 28px 24px;">
+                    <div style="text-align:center; margin-bottom:22px;">
+                        <img src="images/inzan-logo.png" srcset="images/inzan-logo@2x.png 2x" height="28" alt="INZAN ATHLETICS" style="margin-bottom:12px;" />
+                        <h3 id="portalGatewayTitle" class="font-alt" style="font-size:18px; letter-spacing:2px; color:#FFFFFF; margin-bottom:6px;">INZAN ATHLETICS SYSTEM PORTAL</h3>
+                        <p style="font-size:12px; color:#999999; margin:0;">Access your live Membership QR, PT Sessions, Assessment Results, and Class Bookings.</p>
                     </div>
-                    <div style="display:grid; gap:10px;">
-                        <a class="btn btn-mod btn-medium btn-round inzan-btn-primary" href="https://apps.apple.com/eg/search?term=Inzan%20Athletics" target="_blank" rel="noopener noreferrer">
-                            <i class="fa fa-apple mr-5"></i> Download for iPhone
+                    <div style="display:grid; gap:12px;">
+                        <a class="btn btn-mod btn-medium btn-round inzan-btn-primary" href="https://admin.inzanathletics.com" target="_blank" rel="noopener noreferrer" style="display:flex; align-items:center; justify-content:center; gap:8px;">
+                            <i class="fa fa-sign-in"></i> Launch Web Member &amp; Coach Portal
                         </a>
-                        <a class="btn btn-mod btn-medium btn-round" href="https://play.google.com/store/search?q=Inzan%20Athletics&amp;c=apps" target="_blank" rel="noopener noreferrer" style="border:1px solid #555; color:#FFFFFF;">
-                            <i class="fa fa-android mr-5"></i> Download for Android
-                        </a>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                            <a class="btn btn-mod btn-small btn-round" href="https://apps.apple.com/eg/search?term=Inzan%20Athletics" target="_blank" rel="noopener noreferrer" style="border:1px solid #444; color:#FFFFFF; text-align:center;">
+                                <i class="fa fa-apple mr-5"></i> iOS App
+                            </a>
+                            <a class="btn btn-mod btn-small btn-round" href="https://play.google.com/store/search?q=Inzan%20Athletics&amp;c=apps" target="_blank" rel="noopener noreferrer" style="border:1px solid #444; color:#FFFFFF; text-align:center;">
+                                <i class="fa fa-android mr-5"></i> Android App
+                            </a>
+                        </div>
                     </div>
-                    <div style="text-align:center; margin-top:20px; font-size:12px; color:#888888;">
-                        Desktop members can <a href="https://admin.inzanathletics.com" target="_blank" rel="noopener noreferrer" style="color:#FFFFFF; font-weight:700;">open the member portal</a> in their browser.
+                    <div style="margin-top:20px; padding-top:16px; border-top:1px solid #2B2B2B; text-align:center;">
+                        <div style="font-size:12px; color:#999999; margin-bottom:10px;">New to Inzan Athletics? Book your complimentary 60-min assessment first:</div>
+                        <button type="button" class="btn btn-mod btn-small btn-round" style="border:1px solid #FFFFFF; color:#FFFFFF; background:transparent; width:100%;" onclick="closePortalModal(); openAssessmentModal();">
+                            <i class="fa fa-calendar-check-o mr-5"></i> Request Complimentary Assessment
+                        </button>
                     </div>
                 </div>
 
+            </div>
+        </div>
+
+        <!-- Unified Member App Assessment Request Modal -->
+        <div id="inzanAssessmentModal" class="inzan-cinema-modal" aria-labelledby="assessmentModalTitle">
+            <div class="inzan-cinema-dialog inzan-assessment-modal-dialog">
+                <div class="inzan-assessment-modal-header">
+                    <div>
+                        <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#999999; font-weight:700;">
+                            <span class="status-live-dot" style="display:inline-block; margin-right:5px;"></span> Inzan Athletics Member App &amp; System
+                        </div>
+                        <h3 id="assessmentModalTitle" class="font-alt" style="font-size:18px; letter-spacing:2px; color:#FFFFFF; margin:4px 0 0;">
+                            ASSESSMENT REQUEST
+                        </h3>
+                    </div>
+                    <button type="button" class="inzan-assessment-close-btn" onclick="closeAssessmentModal()" aria-label="Close Assessment Modal">&times;</button>
+                </div>
+
+                <div class="inzan-assessment-modal-body">
+                    <!-- Modal Success View -->
+                    <div id="modalAssessmentSuccessBox" class="inzan-success-box" style="display:none; margin:10px 0;">
+                        <i class="fa fa-check-circle inzan-success-icon"></i>
+                        <h3 class="inzan-success-title">ASSESSMENT REQUEST SUBMITTED!</h3>
+                        <p class="inzan-success-desc">
+                            Thank you, <strong id="modalSuccessName" style="color:#FFFFFF;">Athlete</strong>! Your assessment request (<span id="modalSuccessType" style="color:#FFFFFF; font-weight:700;">Premium Annual</span> &bull; <span id="modalSuccessShift" style="color:#FFFFFF;">Morning</span>) is now live in the Inzan Fitness Manager Queue.
+                            <br><br>
+                            <span id="modalSuccessRef" style="display:inline-block; background:rgba(255,255,255,0.08); border:1px solid #444; padding:4px 12px; border-radius:4px; font-size:11px; color:#DDD;">Status: Pending Coach Assignment</span>
+                        </p>
+                        <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px;">
+                            <a href="#" id="modalSuccessWhatsAppBtn" target="_blank" rel="noopener noreferrer" class="btn btn-mod btn-medium btn-round inzan-btn-whatsapp">
+                                <i class="fa fa-whatsapp mr-10"></i> Confirm Slot on WhatsApp
+                            </a>
+                            <button type="button" class="btn btn-mod btn-border-w btn-medium btn-round" onclick="closeAssessmentModal()">
+                                Done
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Modal Form -->
+                    <form id="inzanModalAssessmentForm" autocomplete="off">
+                        <!-- Policies Notice (Matches Member App AssessmentDialog.tsx) -->
+                        <div class="inzan-app-policy-box mb-20">
+                            <div class="policy-box-header">
+                                <i class="fa fa-info-circle"></i>
+                                <span>Important Private Training Policies</span>
+                            </div>
+                            <ul class="policy-box-list">
+                                <li><strong>Basic Membership:</strong> 3 sessions (valid 1 week)</li>
+                                <li><strong>Premium Membership:</strong> 6 sessions (valid 2 weeks)</li>
+                                <li><strong>Freezing:</strong> Not allowed for free sessions (max 1 week for paid)</li>
+                                <li><strong>Expiry:</strong> PT packages expire within 1 month</li>
+                            </ul>
+                            <div class="policy-box-footnote">
+                                * Note: The fitness assessment is complimentary and does not count as one of your paid sessions.
+                            </div>
+                        </div>
+
+                        <div class="inzan-form-section-heading">Member Information</div>
+                        <div class="row">
+                            <div class="col-sm-6 mb-15">
+                                <label for="modalFullName" class="inzan-field-label">Full Name *</label>
+                                <input type="text" id="modalFullName" class="inzan-form-control" placeholder="Enter your full name" required />
+                            </div>
+                            <div class="col-sm-6 mb-15">
+                                <label for="modalPhone" class="inzan-field-label">Phone Number * <span class="field-sub-hint">(Must have WhatsApp)</span></label>
+                                <input type="tel" id="modalPhone" class="inzan-form-control" placeholder="e.g. +20 100 000 0000" required />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 mb-15">
+                                <label for="modalEmail" class="inzan-field-label">Email Address *</label>
+                                <input type="email" id="modalEmail" class="inzan-form-control" placeholder="your.email@example.com" required />
+                            </div>
+                            <div class="col-sm-6 mb-15">
+                                <label for="modalMembershipId" class="inzan-field-label">Membership ID * <span class="field-sub-hint">(If none type Guest)</span></label>
+                                <input type="text" id="modalMembershipId" class="inzan-form-control" value="Guest" placeholder="ID or 'Guest'" required />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 mb-15">
+                                <label for="modalAge" class="inzan-field-label">Age *</label>
+                                <select id="modalAge" class="inzan-form-control" required>
+                                    <option value="Under 16">Under 16</option>
+                                    <option value="16 to 21">16 to 21</option>
+                                    <option value="21 to 30" selected>21 to 30</option>
+                                    <option value="30 to 45">30 to 45</option>
+                                    <option value="Above 45">Above 45</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6 mb-15">
+                                <label for="modalMembershipType" class="inzan-field-label">Membership Type / Package *</label>
+                                <select id="modalMembershipType" class="inzan-form-control inzan-membership-type-select" required>
+                                    <option value="Premium Annual">Premium Annual</option>
+                                    <option value="Basic Annual">Basic Annual</option>
+                                    <option value="6 Months">6 Months</option>
+                                    <option value="3 Months">3 Months</option>
+                                    <option value="1 Month">1 Month</option>
+                                    <option value="Youth [Under 16]">Youth [Under 16]</option>
+                                    <option value="Guest">Guest (Prospective Member / Trial)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="inzan-form-section-heading">Preferred Schedule &amp; Time</div>
+                        <div class="row">
+                            <div class="col-sm-6 mb-15">
+                                <label class="inzan-field-label">Time Shift *</label>
+                                <input type="hidden" id="modalShift" value="Morning [8AM - 4PM]" />
+                                <div class="inzan-shift-toggle-grid">
+                                    <button type="button" class="inzan-modal-shift-btn inzan-shift-btn active" data-shift="Morning [8AM - 4PM]" onclick="selectModalShift('Morning [8AM - 4PM]', this)">
+                                        Morning [8AM - 4PM]
+                                    </button>
+                                    <button type="button" class="inzan-modal-shift-btn inzan-shift-btn" data-shift="Night [4PM - 11PM]" onclick="selectModalShift('Night [4PM - 11PM]', this)">
+                                        Night [4PM - 11PM]
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-15">
+                                <label for="modalPreferredHour" class="inzan-field-label">Preferred Hour *</label>
+                                <input type="text" id="modalPreferredHour" class="inzan-form-control" value="10:00 AM" placeholder="e.g. 10:00 AM or 06:30 PM" required />
+                            </div>
+                        </div>
+
+                        <div class="inzan-form-section-heading">Preferred Coach</div>
+                        <div class="row">
+                            <div class="col-sm-12 mb-15">
+                                <label class="inzan-field-label">Do you have a preferred coach? *</label>
+                                <input type="hidden" id="modalPrefCoachFlag" value="no" />
+                                <div class="inzan-shift-toggle-grid" style="max-width:340px;">
+                                    <button type="button" class="inzan-modal-pref-btn inzan-shift-btn active" data-pref="no" onclick="toggleModalPreferredCoach('no', this)">
+                                        No (Any Coach)
+                                    </button>
+                                    <button type="button" class="inzan-modal-pref-btn inzan-shift-btn" data-pref="yes" onclick="toggleModalPreferredCoach('yes', this)">
+                                        Yes (Select Coach)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" id="modalPreferredCoachFields" style="display:none;">
+                            <div class="col-sm-6 mb-15">
+                                <label for="modalCoachName" class="inzan-field-label">Coach Name *</label>
+                                <select id="modalCoachSelect" class="inzan-form-control inzan-coach-dropdown mb-10" onchange="document.getElementById('modalCoachName').value = this.value">
+                                    <option value="">-- Select from Active Coaches --</option>
+                                    <option value="Ahmed Tarek">Ahmed Tarek (Head of S&amp;C)</option>
+                                    <option value="Beezo">Beezo (Senior Performance Coach)</option>
+                                    <option value="Akram Hammad">Akram Hammad (Olympic Weightlifting)</option>
+                                    <option value="Ahmed Ezzat">Ahmed Ezzat (Hypertrophy &amp; Strength)</option>
+                                    <option value="Bassem Youssef">Bassem Youssef (Functional Conditioning)</option>
+                                    <option value="Kareem Awny">Kareem Awny (Calisthenics &amp; Rings)</option>
+                                    <option value="Heidi El Hariri">Heidi El Hariri (Women's Strength &amp; Studio)</option>
+                                    <option value="Dr. Melissia Magdy">Dr. Melissia Magdy (Clinical Nutrition)</option>
+                                    <option value="Dr. Heba">Dr. Heba (Physiotherapy &amp; Rehab)</option>
+                                </select>
+                                <input type="text" id="modalCoachName" class="inzan-form-control" placeholder="Or type coach's name" />
+                            </div>
+                            <div class="col-sm-6 mb-15">
+                                <label for="modalReferralSource" class="inzan-field-label">How did you know about him/her? *</label>
+                                <select id="modalReferralSource" class="inzan-form-control">
+                                    <option value="Social Media">Social Media</option>
+                                    <option value="Floor Service">Floor Service</option>
+                                    <option value="A Friend">A Friend</option>
+                                    <option value="Sales person">Sales person</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 mb-15">
+                                <label for="modalNotes" class="inzan-field-label">Training Goals, Past Injuries, or Notes (Optional)</label>
+                                <textarea id="modalNotes" class="inzan-form-control" rows="2" placeholder="Any injuries, medical conditions, or specific goals..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="inzan-assessment-modal-footer">
+                            <button type="button" class="btn btn-mod btn-border-w btn-medium btn-round" onclick="closeAssessmentModal()">
+                                Cancel
+                            </button>
+                            <button type="submit" id="modalAssessmentSubmitBtn" class="btn btn-mod btn-medium btn-round inzan-btn-primary">
+                                <i class="fa fa-check-circle mr-5"></i> Submit Request
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -1704,6 +2089,13 @@
                 </svg>
                 <span>Zones</span>
             </button>
+            <a href="#packages" class="inzan-mob-bar-btn" aria-label="Memberships & Packages">
+                <svg class="mob-dock-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                </svg>
+                <span>Packages</span>
+            </a>
             <a href="#schedule" class="inzan-mob-bar-btn" aria-label="Timetable Schedule">
                 <svg class="mob-dock-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -1713,7 +2105,7 @@
                 </svg>
                 <span>Schedule</span>
             </a>
-            <a href="#assessment" class="inzan-mob-bar-btn inzan-mob-bar-cta" aria-label="Book 60-Minute Assessment">
+            <a href="#assessment" class="inzan-mob-bar-btn inzan-mob-bar-cta" onclick="openAssessmentModal(); return false;" aria-label="Book 60-Minute Assessment">
                 <svg class="mob-dock-icon" viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
                     <path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z"></path>
                 </svg>
@@ -1794,7 +2186,7 @@
         <script async src="https://www.instagram.com/embed.js"></script>
 
         <!-- Custom Inzan Athletics JS -->
-        <script type="text/javascript" src="js/custom-inzan.js?v=5"></script>
+        <script type="text/javascript" src="js/custom-inzan.js?v=6"></script>
         
     </body>
 </html>
