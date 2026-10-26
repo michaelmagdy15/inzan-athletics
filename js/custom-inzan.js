@@ -1134,7 +1134,9 @@
 
     window.closePortalModal = function() {
         $("#inzanPortalModal").fadeOut(250);
-        $("body").css("overflow", "auto");
+        if (!$("body").hasClass("inzan-coming-soon-mode")) {
+            $("body").css("overflow", "auto");
+        }
     };
 
     // Hero Athlete Pillar Switcher

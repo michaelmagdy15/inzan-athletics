@@ -92,14 +92,14 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
         
         <!-- Inzan Athletics Custom Commercial Gym Styling -->
-        <link rel="stylesheet" href="css/custom-inzan.css?v=6">
+        <link rel="stylesheet" href="css/custom-inzan.css?v=7">
     </head>
-    <body class="appear-animate">
+    <body class="appear-animate inzan-coming-soon-mode">
         
         <!-- Page Wrap -->
         <div class="page" id="top">
             
-            <!-- Home / Scene Hero Section (Leonardo.ai Inspired) -->
+            <!-- Home / Scene Hero Section (Coming Soon Mode) -->
             <section class="home-section leonardo-scene-section" data-background="images/full-width-images/Test.jpg" id="home">
                 <div class="js-height-full leonardo-scene-height">
                     
@@ -117,22 +117,19 @@
                                 </div>
 
                                 <h1 class="leonardo-scene-title">
-                                    <span class="scene-title-top">HIGH PERFORMANCE</span>
-                                    <span class="scene-title-bot scene-title-gradient">TRAINING CENTRE</span>
+                                    <span class="scene-title-top">COMING</span>
+                                    <span class="scene-title-bot scene-title-gradient">SOON</span>
                                 </h1>
                                 
                                 <p class="leonardo-scene-tagline">
-                                    Olympic Weightlifting &bull; Gymnastic Rings &bull; Strength &amp; Conditioning
+                                    Our High Performance Training Centre digital experience is being finalized for the public.<br class="hidden-xs" />
+                                    Existing members and coaches can access the Member Portal below.
                                 </p>
                                 
                                 <div class="leonardo-scene-actions">
-                                    <a href="#assessment" class="leonardo-btn-glow" onclick="openAssessmentModal(); return false;">
-                                        <span>Book Assessment</span>
-                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" style="display:inline-block; vertical-align:middle; margin-left:6px;"><path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z"></path></svg>
-                                    </a>
-                                    <a href="#packages" class="leonardo-btn-glass">
-                                        <i class="fa fa-th-large mr-5"></i>
-                                        <span>Memberships &amp; Packages</span>
+                                    <a href="https://admin.inzanathletics.com" class="leonardo-btn-glow" onclick="openPortalModal(event)">
+                                        <i class="fa fa-user-circle-o" style="font-size:16px;"></i>
+                                        <span>Member Portal</span>
                                     </a>
                                 </div>
                             </div>
@@ -140,16 +137,6 @@
                         </div>
                     </div>
                     <!-- End Hero Content -->
-                    
-                    <!-- Leonardo Cinematic Scroll Down Indicator -->
-                    <div class="leonardo-scene-scroll">
-                        <a href="#program-explorer" class="scene-scroll-link" aria-label="Scroll to Program Explorer">
-                            <div class="scene-scroll-mouse">
-                                <div class="scene-scroll-dot"></div>
-                            </div>
-                            <span class="scene-scroll-text">EXPLORE DISCIPLINES</span>
-                        </a>
-                    </div>
                     
                 </div>
             </section>
@@ -176,20 +163,20 @@
                     <!-- Main Menu & Full-Screen Mobile Drawer -->
                     <div class="inner-nav desktop-nav" id="inzanDesktopNav">
                         <ul class="clearlist scroll-nav inzan-nav-list">
-                            <li><a href="#about"><span class="nav-idx">01</span> About</a></li>
-                            <li><a href="#program-explorer"><span class="nav-idx">02</span> Disciplines</a></li>
-                            <li><a href="#packages"><span class="nav-idx">03</span> Packages</a></li>
-                            <li><a href="#zone-training"><span class="nav-idx">04</span> Ecosystem</a></li>
-                            <li><a href="#schedule"><span class="nav-idx">05</span> Schedule</a></li>
-                            <li><a href="#first30days"><span class="nav-idx">06</span> Process</a></li>
-                            <li><a href="#coaches"><span class="nav-idx">07</span> Coaches</a></li>
-                            <li><a href="#results"><span class="nav-idx">08</span> Results</a></li>
-                            <li><a href="#news"><span class="nav-idx">09</span> News</a></li>
-                            <li><a href="#portal" class="nav-portal-btn" onclick="openPortalModal(event)"><span class="nav-idx">10</span> <i class="fa fa-user-circle-o mr-5"></i> Member Portal</a></li>
-                            <li class="desktop-only-item"><a href="#assessment" class="nav-cta-highlight" onclick="openAssessmentModal(); return false;">Book Assessment</a></li>
+                            <li class="public-site-nav-item"><a href="#about"><span class="nav-idx">01</span> About</a></li>
+                            <li class="public-site-nav-item"><a href="#program-explorer"><span class="nav-idx">02</span> Disciplines</a></li>
+                            <li class="public-site-nav-item"><a href="#packages"><span class="nav-idx">03</span> Packages</a></li>
+                            <li class="public-site-nav-item"><a href="#zone-training"><span class="nav-idx">04</span> Ecosystem</a></li>
+                            <li class="public-site-nav-item"><a href="#schedule"><span class="nav-idx">05</span> Schedule</a></li>
+                            <li class="public-site-nav-item"><a href="#first30days"><span class="nav-idx">06</span> Process</a></li>
+                            <li class="public-site-nav-item"><a href="#coaches"><span class="nav-idx">07</span> Coaches</a></li>
+                            <li class="public-site-nav-item"><a href="#results"><span class="nav-idx">08</span> Results</a></li>
+                            <li class="public-site-nav-item"><a href="#news"><span class="nav-idx">09</span> News</a></li>
+                            <li class="portal-nav-item"><a href="https://admin.inzanathletics.com" class="nav-portal-btn" onclick="openPortalModal(event)"><span class="nav-idx">01</span> <i class="fa fa-user-circle-o mr-5"></i> Member Portal</a></li>
+                            <li class="desktop-only-item public-site-nav-item"><a href="#assessment" class="nav-cta-highlight" onclick="openAssessmentModal(); return false;">Book Assessment</a></li>
                             
                             <!-- Mobile Menu Drawer Action & Info Footer -->
-                            <li class="mobile-menu-cta-item">
+                            <li class="mobile-menu-cta-item public-site-nav-item">
                                 <a href="#assessment" class="inzan-menu-cta-btn" onclick="openAssessmentModal(); return false;">
                                     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display:inline-block; vertical-align:middle; margin-right:6px;">
                                         <path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z"></path>
@@ -1865,7 +1852,7 @@
                 <div class="portal-tab-body" id="portalTabLogin" style="padding: 28px 24px;">
                     <div style="text-align:center; margin-bottom:22px;">
                         <img src="images/inzan-logo.png" srcset="images/inzan-logo@2x.png 2x" height="28" alt="INZAN ATHLETICS" style="margin-bottom:12px;" />
-                        <h3 id="portalGatewayTitle" class="font-alt" style="font-size:18px; letter-spacing:2px; color:#FFFFFF; margin-bottom:6px;">INZAN ATHLETICS SYSTEM PORTAL</h3>
+                        <h3 id="portalGatewayTitle" class="font-alt" style="font-size:18px; letter-spacing:2px; color:#FFFFFF; margin-bottom:6px;">INZAN ATHLETICS MEMBER PORTAL</h3>
                         <p style="font-size:12px; color:#999999; margin:0;">Access your live Membership QR, PT Sessions, Assessment Results, and Class Bookings.</p>
                     </div>
                     <div style="display:grid; gap:12px;">
@@ -1880,12 +1867,6 @@
                                 <i class="fa fa-android mr-5"></i> Android App
                             </a>
                         </div>
-                    </div>
-                    <div style="margin-top:20px; padding-top:16px; border-top:1px solid #2B2B2B; text-align:center;">
-                        <div style="font-size:12px; color:#999999; margin-bottom:10px;">New to Inzan Athletics? Book your complimentary 60-min assessment first:</div>
-                        <button type="button" class="btn btn-mod btn-small btn-round" style="border:1px solid #FFFFFF; color:#FFFFFF; background:transparent; width:100%;" onclick="closePortalModal(); openAssessmentModal();">
-                            <i class="fa fa-calendar-check-o mr-5"></i> Request Complimentary Assessment
-                        </button>
                     </div>
                 </div>
 
@@ -2186,7 +2167,7 @@
         <script async src="https://www.instagram.com/embed.js"></script>
 
         <!-- Custom Inzan Athletics JS -->
-        <script type="text/javascript" src="js/custom-inzan.js?v=6"></script>
+        <script type="text/javascript" src="js/custom-inzan.js?v=7"></script>
         
     </body>
 </html>
