@@ -1,13 +1,13 @@
 /**
  * INZAN ATHLETICS - Custom Commercial Gym Interactions & Live System Sync
  * Version: 6.0.0 (Live CRM Sync: Packages, Coaches, Schedule & Member App Assessment)
- * Connected to: faa-test-guide-v2 / db-inzanathletics (admin.inzanathletics.com)
+ * Connected to: inzan-crm-spark-26 / (default) (admin.inzanathletics.com)
  */
 
 (function($) {
     "use strict";
 
-    var FIRESTORE_BASE_URL = "https://firestore.googleapis.com/v1/projects/faa-test-guide-v2/databases/db-inzanathletics/documents";
+    var FIRESTORE_BASE_URL = "https://firestore.googleapis.com/v1/projects/inzan-crm-spark-26/databases/(default)/documents";
     var CRM_API_BASE_URL = "https://admin.inzanathletics.com";
 
     // ==========================================================================
